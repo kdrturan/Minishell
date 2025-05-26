@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   token_del.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/26 22:29:44 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/26 20:37:02 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/26 22:09:28 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "token.h"
 
-int	main(int ac, char **av, char **env)
+void	token_del(t_token *token)
 {
-	return (0);
+	if (token)
+	{
+		free(token->text);
+		free(token);
+	}
 }

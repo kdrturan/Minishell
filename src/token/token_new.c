@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   token_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/26 22:29:44 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/26 20:15:11 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/26 22:02:48 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "token.h"
 
-int	main(int ac, char **av, char **env)
+t_token	*token_new(t_token_type type, char *text)
 {
-	return (0);
+	t_token	*token;
+
+	token = ft_calloc(1, sizeof(t_token));
+	if (!token)
+		return (NULL);
+	token->text = text;
+	token->type = type;
+	token->next = NULL;
+	token->prev = NULL;
+	return (token);
 }
