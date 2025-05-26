@@ -14,13 +14,7 @@ LIBFT = $(PATH_LIBFT)/libft.a
 
 PATH_INCLUDE = -I include -I $(PATH_LIBFT) -I $(PATH_TOKEN)
 
-MAIN_SRCS = main.c
-PARSE_SRCS = parse.c
-TOKEN_SRCS = token_add_back.c token_clear.c token_del.c token_new.c token_remove.c
-
-SRCS =	$(addprefix $(PATH_SRC)/, $(MAIN_SRCS)) \
-		$(addprefix $(PATH_PARSER)/, $(PARSE_SRCS)) \
-		$(addprefix $(PATH_TOKEN)/, $(TOKEN_SRCS))
+SRCS = $(wildcard $(PATH_SRC)/*.c) $(wildcard $(PATH_PARSER)/*.c) $(wildcard $(PATH_TOKEN)/*.c)
 
 OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
 
