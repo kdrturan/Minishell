@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:10:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 05:17:59 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/27 15:41:20 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_token_list(t_token *list)
 			text = list->text;
 		else
 			text = "(null)";
-		printf("Type: %-10s | Text: \"%s\"\n",
+		printf("Type: %-10s | Text: %s\n",
 			token_type_to_str(list->type),
 			text);
 		list = list->next;

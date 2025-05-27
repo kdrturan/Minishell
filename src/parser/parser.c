@@ -6,12 +6,12 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 05:16:25 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/27 15:45:54 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+#include "debug.h"
 static	t_token_type	token_seperator(char *value, int i)
 {
 	if (value[i] == '\'')
@@ -72,4 +72,5 @@ void	parse(char *input)
 		else
 			token_add_back(&list, token_new(type, ft_substr(input, i++, 1)));
 	}
+	token_clear(&list);
 }
