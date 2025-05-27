@@ -27,6 +27,8 @@ SRCS =	$(wildcard $(PATH_SRC)/*.c) \
 		$(wildcard $(PATH_UTILS)/*.c) \
 		$(wildcard $(PATH_DEBUG)/*.c)
 
+
+
 OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
 
 UNAME_S := $(shell uname -s)
