@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env_get_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 22:30:37 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/27 23:13:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <minishell.h>
 
-# include <libft.h>
-# include <stdio.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdlib.h>
-# include <parser.h>
-# include <token.h>
-# include <signal_handler.h>
-# include <utils.h>
-# include <env.h>
+char	*env_get_value(t_env *env, char *key)
+{
+    size_t  i;
 
-# include <debug.h>
-
-typedef struct s_shell  t_shell;
-
-struct  s_shell{
-    char    *cmd;
-    t_env   *env;
-};
-
-#endif
+    i = 0;
+    while (i < env->count)
+    {
+        if (ft_strncmp(env->pairs[i].key, key, ft_strlen(key)) == 0)
+            return (env->pairs[i].val);
+        i++;
+    }
+    return (NULL);
+}

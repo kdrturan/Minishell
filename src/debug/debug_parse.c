@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   debug_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:10:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 15:41:20 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/27 22:24:22 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static const char	*token_type_to_str(t_token_type type)
 	return ("UNKNOWN");
 }
 
-void	print_token_list(t_token *list)
+void	debug_print_token_list(t_token *list)
 {
 	const char	*text;
 
@@ -53,3 +53,4 @@ void	print_token_list(t_token *list)
 		list = list->next;
 	}
 }
+

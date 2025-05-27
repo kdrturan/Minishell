@@ -1,36 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 22:30:37 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/27 21:23:34 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/27 21:36:50 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include <libft.h>
-# include <stdio.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdlib.h>
-# include <parser.h>
-# include <token.h>
-# include <signal_handler.h>
-# include <utils.h>
-# include <env.h>
-
-# include <debug.h>
-
-typedef struct s_shell  t_shell;
-
-struct  s_shell{
-    char    *cmd;
-    t_env   *env;
-};
-
-#endif
+#include <minishell.h>
