@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 00:26:46 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/27 21:57:56 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/27 23:12:36 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	main(int ac, char **av, char **env_data)
+t_env	*env_parse(char **env_data)
 {
-	t_shell *shell;
+	t_env	*env;
+	size_t	i;
+    char **values;
 
-	init_shell(&shell, env_data);
-
-	while (1)
+    env = malloc(sizeof(t_env));
+	env->count = env_len(env_data, NULL);
+	env->pairs = malloc(sizeof(t_pair) * env->count);
+    i = 0;
+	while (env_data[i])
 	{
-		shell->cmd = readline("MINISHELL>");
-		if (shell->cmd == NULL)
-			exit (0);
-		parse(shell->cmd);
-		free(shell->cmd);
+        values = ft_split(env_data[i], '=');
+        env->pairs[i].key = values[0];
+		env->pairs[i].val = values[1];
+		i++;
 	}
-	return (0);
+    return (env);
 }

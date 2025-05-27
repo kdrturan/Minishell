@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 22:30:37 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/27 21:37:40 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/27 22:03:20 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include <libft.h>
-# include <stdio.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdlib.h>
-# include <parser.h>
-# include <token.h>
-# include <signal_handler.h>
-# include <utils.h>
-# include <env.h>
+size_t  env_len(char **env, t_pair *pairs)
+{
+    size_t  i;
 
-# include <debug.h>
-
-typedef struct s_shell  t_shell;
-
-struct  s_shell{
-    char    *cmd;
-    t_env   *env;
-};
-
-#endif
+    i = 0;
+    if (pairs)
+        ;
+    if (env && *env)
+    {
+        while (env[i])
+            i++;
+    }
+    return (i);
+}
