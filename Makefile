@@ -8,6 +8,8 @@ PATH_SRC = src
 PATH_PARSER = $(PATH_SRC)/parser
 PATH_SIGNAL = $(PATH_SRC)/signal
 PATH_TOKEN = $(PATH_SRC)/token
+PATH_UTILS = $(PATH_SRC)/utils
+PATH_DEBUG = $(PATH_SRC)/debug
 
 PATH_OBJ = obj
 
@@ -15,15 +17,17 @@ LIBFT = $(PATH_LIBFT)/libft.a
 
 PATH_INCLUDE =	-I include \
 				-I $(PATH_LIBFT) -I $(PATH_PARSER) \
-				-I $(PATH_TOKEN) -I $(PATH_SIGNAL) 
+				-I $(PATH_TOKEN) -I $(PATH_SIGNAL) \
+				-I $(PATH_UTILS) -I $(PATH_DEBUG)
 
 SRCS =	$(wildcard $(PATH_SRC)/*.c) \
 		$(wildcard $(PATH_PARSER)/*.c) \
 		$(wildcard $(PATH_TOKEN)/*.c) \
-		$(wildcard $(PATH_SIGNAL)/*.c)
+		$(wildcard $(PATH_SIGNAL)/*.c) \
+		$(wildcard $(PATH_UTILS)/*.c) \
+		$(wildcard $(PATH_DEBUG)/*.c)
 
 OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
-
 
 UNAME_S := $(shell uname -s)
 
@@ -45,6 +49,8 @@ $(PATH_OBJ):
 	@mkdir obj/parser
 	@mkdir obj/signal
 	@mkdir obj/token
+	@mkdir obj/utils
+	@mkdir obj/debug
 
 $(PATH_OBJ)/%.o: $(PATH_SRC)/%.c | $(PATH_OBJ)
 	$(CC) $(CFLAGS) $(PATH_INCLUDE) -o $@ -c $?

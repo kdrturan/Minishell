@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 05:09:13 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/27 05:07:07 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/27 05:16:52 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include "libft.h"
-# include <stdio.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdlib.h>
-# include "parser.h"
-# include "token.h"
-# include "signal_handler.h"
-# include "utils.h"
-
-#endif
+int	is_white_space(int c)
+{
+	if (c == 32 || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
+}

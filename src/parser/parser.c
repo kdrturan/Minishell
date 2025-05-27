@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 04:42:13 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/27 05:16:25 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static	t_token_type	token_seperator(char *value, int i)
 {
 	if (value[i] == '\'')
-		return(QUOTE);
+		return (QUOTE);
 	else if (value[i] == '\"')
-		return(DQUOTE);
+		return (DQUOTE);
 	else if (value[i] == '$')
-		return(DOLLAR);
+		return (DOLLAR);
 	else if (value[i] == '|')
-		return(PIPE);
+		return (PIPE);
 	else if (is_white_space(value[i]))
 		return (WS);
 	else if (value[i] == '<')
@@ -32,9 +32,9 @@ static	t_token_type	token_seperator(char *value, int i)
 	}
 	else if (value[i] == '>')
 	{
-		if (value[i + 1] =='>')
+		if (value[i + 1] == '>')
 			return (APPEND);
-		return(OUTPUT);
+		return (OUTPUT);
 	}
 	return (WORD);
 }
@@ -71,13 +71,5 @@ void	parse(char *input)
 		}
 		else
 			token_add_back(&list, token_new(type, ft_substr(input, i++, 1)));
-
 	}
-}
-
-int is_white_space(int c)
-{
-	if (c == 32 || (c >= 9 && c <= 13))
-		return(1);
-	return (0);
 }

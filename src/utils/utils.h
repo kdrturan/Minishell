@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 05:09:13 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/27 05:07:58 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include "libft.h"
-# include <stdio.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdlib.h>
-# include "parser.h"
-# include "token.h"
-# include "signal_handler.h"
-# include "utils.h"
+int	is_white_space(int c);
 
 #endif
