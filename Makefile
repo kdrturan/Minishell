@@ -27,8 +27,6 @@ SRCS =	$(wildcard $(PATH_SRC)/*.c) \
 		$(wildcard $(PATH_UTILS)/*.c) \
 		$(wildcard $(PATH_DEBUG)/*.c)
 
-
-
 OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
 
 UNAME_S := $(shell uname -s)
@@ -73,5 +71,9 @@ re: fclean all
 update_libs:
 	rm -rf lib
 	git clone https://github.com/Tuncayarda/Libft.git lib/libft
+
+setup_env:
+	git remote set-url --add --push origin git@github.com:Tuncayarda/Minishell.git
+	git remote set-url --add --push origin git@github.com:kdrturan/Minishell.git
 
 .PHONY: all clean fclean re
