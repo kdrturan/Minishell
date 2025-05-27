@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 00:26:46 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 00:49:26 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	main(int ac, char **av, char **env_data)
 	t_shell *shell;
 
 	init_shell(&shell, env_data);
-
+	
 	while (1)
 	{
 		shell->cmd = readline("MINISHELL>");
 		if (shell->cmd == NULL)
 			exit (0);
-		parse(shell->cmd);
+		parse(shell);
 		free(shell->cmd);
 	}
 	return (0);

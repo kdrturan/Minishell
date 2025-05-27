@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:10 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/26 22:29:11 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 01:59:28 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ enum						e_token_type
 	DOLLAR,
 	INPUT,
 	OUTPUT,
-	WS
+	WS,
+	NONE
 };
 
 struct						s_token

@@ -6,14 +6,16 @@
 /*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 00:30:06 by abturan          ###   ########.fr       */
+/*   Updated: 2025/05/28 02:00:10 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <parser.h>
 
-static	t_token_type	token_seperator(char *value, int i)
+t_token_type	token_seperator(char *value, int i)
 {
+	if(!value)
+		return (NONE);
 	if (value[i] == '\'')
 		return (QUOTE);
 	else if (value[i] == '\"')
@@ -50,8 +52,9 @@ static void	add_word_token(char *in, int *i, t_token **lst)
 	val = ft_substr(in, start, *i - start);
 	token_add_back(lst, token_new(WORD, val));
 }
+#include"debug.h"
 
-void	parse(char *input)
+void	parse(t_shell *shell)
 {
 	t_token_type	type;
 	t_token			*list;
@@ -59,19 +62,20 @@ void	parse(char *input)
 
 	list = NULL;
 	i = 0;
-	while (input[i])
+	while (shell->cmd[i])
 	{
-		type = token_seperator(input, i);
+		type = token_seperator(shell->cmd, i);
 		if (type == WORD)
-			add_word_token(input, &i, &list);
+			add_word_token(shell->cmd, &i, &list);
 		else if (type == HEREDOC || type == APPEND)
 		{
-			token_add_back(&list, token_new(type, ft_substr(input, i, 2)));
+			token_add_back(&list, token_new(type, ft_substr(shell->cmd, i, 2)));
 			i += 2;
 		}
 		else
-			token_add_back(&list, token_new(type, ft_substr(input, i++, 1)));
+			token_add_back(&list, token_new(type, ft_substr(shell->cmd, i++, 1)));
 	}
-	token_parser();
+	token_parser(shell ,&list);
+	debug_print_token_list(list);
 	//token_clear(&list);
 }

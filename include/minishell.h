@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 22:30:37 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 01:16:03 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdlib.h>
-# include <parser.h>
 # include <token.h>
+# include <parser.h>
 # include <signal_handler.h>
 # include <utils.h>
-# include <env.h>
+#include "../env/env.h"
+
 
 # include <debug.h>
 
