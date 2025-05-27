@@ -69,7 +69,7 @@ fclean: clean
 re: fclean all
 
 update_libs:
-	git submodule sync
-	git submodule update --remote --merge
+	rm -rf lib
+	git clone https://github.com/Tuncayarda/Libft.git lib/libft
 
 .PHONY: all clean fclean re
