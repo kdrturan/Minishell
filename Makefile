@@ -6,19 +6,34 @@ PATH_LIBFT = lib/libft
 
 PATH_SRC = src
 PATH_PARSER = $(PATH_SRC)/parser
+PATH_SIGNAL = $(PATH_SRC)/signal
 PATH_TOKEN = $(PATH_SRC)/token
 
 PATH_OBJ = obj
 
 LIBFT = $(PATH_LIBFT)/libft.a
 
-PATH_INCLUDE = -I include -I $(PATH_LIBFT) -I $(PATH_TOKEN)
+PATH_INCLUDE =	-I include \
+				-I $(PATH_LIBFT) -I $(PATH_PARSER) \
+				-I $(PATH_TOKEN) -I $(PATH_SIGNAL) 
 
-SRCS = $(wildcard $(PATH_SRC)/*.c) $(wildcard $(PATH_PARSER)/*.c) $(wildcard $(PATH_TOKEN)/*.c)
+SRCS =	$(wildcard $(PATH_SRC)/*.c) \
+		$(wildcard $(PATH_PARSER)/*.c) \
+		$(wildcard $(PATH_TOKEN)/*.c) \
+		$(wildcard $(PATH_SIGNAL)/*.c)
 
 OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
 
-LIBS = -lreadline $(LIBFT)
+
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Darwin)
+	READLINE_PATH := $(shell brew --prefix readline 2>/dev/null)
+	PATH_INCLUDE += -I $(READLINE_PATH)/include
+	LIBS = -L$(READLINE_PATH)/lib -lreadline -lhistory -lncurses $(LIBFT)
+else
+	LIBS = -lreadline -lhistory -lncurses $(LIBFT)
+endif
 
 all: $(NAME)
 
@@ -28,6 +43,7 @@ $(LIBFT):
 $(PATH_OBJ):
 	@mkdir obj
 	@mkdir obj/parser
+	@mkdir obj/signal
 	@mkdir obj/token
 
 $(PATH_OBJ)/%.o: $(PATH_SRC)/%.c | $(PATH_OBJ)
