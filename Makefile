@@ -69,6 +69,7 @@ fclean: clean
 re: fclean all
 
 update_libs:
+	git submodule sync
 	git submodule update --remote --merge
 
 .PHONY: all clean fclean re
