@@ -6,7 +6,7 @@
 /*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 20:52:05 by abturan          ###   ########.fr       */
+/*   Updated: 2025/05/28 00:30:06 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	parse(char *input)
 	t_token_type	type;
 	t_token			*list;
 	int				i;
+
 	list = NULL;
 	i = 0;
 	while (input[i])
@@ -71,6 +72,6 @@ void	parse(char *input)
 		else
 			token_add_back(&list, token_new(type, ft_substr(input, i++, 1)));
 	}
-	// token_parser();
+	token_parser();
 	//token_clear(&list);
 }
