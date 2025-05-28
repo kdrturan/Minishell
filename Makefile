@@ -38,10 +38,12 @@ UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
 	READLINE_PATH := $(shell brew --prefix readline 2>/dev/null)
-	PATH_INCLUDE  += -I $(READLINE_PATH)/include
+	PATH_INCLUDE  += -I$(READLINE_PATH)/include
 	LIBS = -L$(READLINE_PATH)/lib -lreadline -lhistory -lncurses $(LIBFT)
+else ifeq ($(UNAME_S),Linux)
+	PATH_INCLUDE  += -I/usr/include -I/usr/include/readline
+	LIBS = -lreadline -lhistory -lncurses $(LIBFT)
 endif
-
 
 STOP_ANIM = \
 	kill -TERM $$anim_pid 2>/dev/null || true; \
