@@ -36,24 +36,44 @@ OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
 
 UNAME_S := $(shell uname -s)
 
+UNAME_S := $(shell uname -s)
+
 ifeq ($(UNAME_S),Darwin)
 	READLINE_PATH := $(shell brew --prefix readline 2>/dev/null)
-	PATH_INCLUDE += -I $(READLINE_PATH)/include
+	PATH_INCLUDE  += -I $(READLINE_PATH)/include
 	LIBS = -L$(READLINE_PATH)/lib -lreadline -lhistory -lncurses $(LIBFT)
+
+	STOP_ANIM = \
+		kill -TERM $$anim_pid 2>/dev/null || true; \
+		pkill -TERM -P $$anim_pid 2>/dev/null || true
 else
 	LIBS = -lreadline -lhistory -lncurses $(LIBFT)
-endif
 
+	STOP_ANIM = \
+		kill -TERM -- -$$anim_pid 2>/dev/null || true
+endif
 
 all:
 	@{ \
-		$(MAKE) anim &          \
-		anim_pid=$$!;           \
-		$(MAKE) -s $(NAME);       \
-		kill $$anim_pid;        \
-		wait $$anim_pid;        \
-		printf '\033c';         \
-		echo "✅"; \
+		( exec bash -c 'trap "exit" INT TERM; \
+		  tput civis; \
+		  while true; do $(MAKE) -s -C ascii_anim ascii_anim; done' \
+		) 2>/dev/null & \
+		anim_pid=$$!; \
+		$(MAKE) --no-print-directory $(NAME) >build.log 2>&1; status=$$?; \
+		$(STOP_ANIM); \
+		wait $$anim_pid 2>/dev/null || true; \
+		if [ $$status -eq 0 ]; then \
+			printf '\033c'; echo "✅  Derleme tamamlandı"; \
+			rm -f build.log; \
+		else \
+			echo; \
+			echo "❌  Derleme HATA ile bitti ($$status)"; \
+			echo "------ Son 40 satır ------"; \
+			tail -n 40 build.log; \
+			echo "(Tüm log: build.log dosyasında)"; \
+		fi; \
+		exit $$status; \
 	}
 
 $(LIBFT):

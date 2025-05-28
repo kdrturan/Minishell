@@ -774,10 +774,11 @@ ascii_anim:
 	echo "                                                                                "; \
 	sleep 0.1; \
 
-.PHONY: loop
+.PHONY: ascii_anim loop
 
 loop:
-	@bash -c 'trap "exit" INT TERM; \
+	@bash -c 'trap "tput cnorm; exit" INT TERM; \
+	tput civis; \
 	while true; do \
 		$(MAKE) -s ascii_anim; \
 	done'
