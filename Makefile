@@ -52,7 +52,6 @@ STOP_ANIM = \
 all:
 	@{ \
 		( exec bash -c 'trap "exit" INT TERM; \
-		  tput civis; \
 		  while true; do $(MAKE) -s -C ascii_anim ascii_anim; done' \
 		) 2>/dev/null & \
 		anim_pid=$$!; \
