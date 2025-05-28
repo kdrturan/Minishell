@@ -22,5 +22,4 @@ void	token_remove(t_token **head, t_token *node)
 		*head = node->next;
 	if (node->next)
 		node->next->prev = node->prev;
-	token_del(node);
 }

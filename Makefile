@@ -1,6 +1,6 @@
 NAME = minishell
 
-CFLAGS = -g -fsanitize=address  #-Wall -Wextra -Werror
+CFLAGS = # -g -fsanitize=address  #-Wall -Wextra -Werror
 
 PATH_LIBFT = lib/libft
 
@@ -108,7 +108,7 @@ setup_env:
 	git remote set-url --add --push origin git@github.com:Tuncayarda/Minishell.git
 	git remote set-url --add --push origin git@github.com:kdrturan/Minishell.git
 
-anim:
-	@$(MAKE) -s -C ascii_anim ascii_anim
+run_valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=valgrind.supp ./minishell
 
 .PHONY: all clean fclean re

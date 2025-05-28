@@ -34,6 +34,37 @@ void	*gc_malloc(t_gc *gc, size_t size)
 	return (ptr);
 }
 
+void	*gc_track(t_gc *gc, void *ptr)
+{
+	t_gc_node	*node;
+
+	if (!ptr)
+		return (NULL);
+	node = malloc(sizeof(t_gc_node));
+	if (!node)
+		return (NULL);
+	node->ptr = ptr;
+	node->next = gc->head;
+	gc->head = node;
+	return (ptr);
+}
+
+void **gc_track_array(t_gc *gc, void **array)
+{
+	size_t i;
+
+	if (!array)
+		return (NULL);
+	i = 0;
+	while (array[i])
+	{
+		gc_track(gc, array[i]);
+		i++;
+	}
+	gc_track(gc, array);
+	return (array);
+}
+
 void	gc_free_all(t_gc *gc)
 {
 	t_gc_node *current;

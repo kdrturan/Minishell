@@ -44,7 +44,7 @@ t_token_type	token_seperator(char *value, int i)
 	return (WORD);
 }
 
-static void	add_word_token(char *in, int *i, t_token **lst)
+static void	add_word_token(t_shell *shell, char *in, int *i, t_token **lst)
 {
 	char	*val;
 	int		start;
@@ -52,8 +52,8 @@ static void	add_word_token(char *in, int *i, t_token **lst)
 	start = *i;
 	while (token_seperator(in, *i) == WORD && in[*i])
 		(*i)++;
-	val = ft_substr(in, start, *i - start);
-	token_add_back(lst, token_new(WORD, val));
+	val = gc_track(&shell->gc, ft_substr(in, start, *i - start));
+	token_add_back(lst, token_new(shell, WORD, val));
 }
 #include"debug.h"
 
@@ -69,14 +69,14 @@ void	parse(t_shell *shell)
 	{
 		type = token_seperator(shell->cmd, i);
 		if (type == WORD)
-			add_word_token(shell->cmd, &i, &list);
+			add_word_token(shell, shell->cmd, &i, &list);
 		else if (type == HEREDOC || type == APPEND)
 		{
-			token_add_back(&list, token_new(type, ft_substr(shell->cmd, i, 2)));
+			token_add_back(&list, token_new(shell, type, gc_track(&shell->gc, ft_substr(shell->cmd, i, 2))));
 			i += 2;
 		}
 		else
-			token_add_back(&list, token_new(type, ft_substr(shell->cmd, i++, 1)));
+			token_add_back(&list, token_new(shell, type, gc_track(&shell->gc, ft_substr(shell->cmd, i++, 1))));
 	}
 	token_parser(shell ,&list);
 	debug_print_token_list(list);

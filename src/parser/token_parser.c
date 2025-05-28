@@ -65,11 +65,11 @@ void    dollar_check(t_shell *shell, t_token *token)
             i++;
             while (token->text[i] != '\0' && token_seperator(token->text, i) == WORD)
             {
-                key = ft_strjoin(key, ft_substr(token->text, i, 1));
+                key = gc_track(&shell->gc, ft_strjoin(key, gc_track(&shell->gc, ft_substr(token->text, i, 1))));
                 i++;
             }
             expanse = env_get_value(shell->env,key);
-            token->text = str_change(token->text,expanse,j,(i - j));
+            token->text = gc_track(&shell->gc, str_change(token->text,expanse,j,(i - j)));
             return (dollar_check(shell, token));
         }
         i++;
@@ -84,14 +84,14 @@ void dquote_parser(t_shell *shell, t_token **list, t_token **token)
     t_token *new_token;
     t_token* temp = *token;
 
-    new_token = token_new(WORD, NULL);
+    new_token = token_new(shell, WORD, NULL);
     new_token->type = WORD;
     new_token->prev = temp;
     temp = temp->next;
     value = NULL;
     while (temp->type != DQUOTE)
     {
-        value = ft_strjoin(value,temp->text);
+        value = gc_track(&shell->gc, ft_strjoin(value,temp->text));
         temp->text = NULL;
         temp = temp->next;
         token_remove(list, temp->prev);
@@ -110,14 +110,14 @@ void quote_parser(t_shell *shell ,t_token **list, t_token **token)
     t_token *new_token;
     t_token* temp = *token;
 
-    new_token = token_new(WORD, NULL);
+    new_token = token_new(shell, WORD, NULL);
     new_token->type = WORD;
     new_token->prev = temp;
     temp = temp->next;
     value = NULL;
     while (temp->type != DQUOTE)
     {
-        value = ft_strjoin(value,temp->text);
+        value = gc_track(&shell->gc, ft_strjoin(value,temp->text));
         temp->text = NULL;
         temp = temp->next;
         token_remove(list, temp->prev);

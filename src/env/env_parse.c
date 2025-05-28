@@ -26,7 +26,7 @@ t_env	*env_parse(t_shell *shell, char **env_data)
     i = 0;
 	while (env_data[i])
 	{
-        values = ft_split(env_data[i], '=');
+        values = gc_track_array(&shell->gc, ft_split(env_data[i], '='));
         env->pairs[i].key = values[0];
 		env->pairs[i].val = values[1];
 		i++;

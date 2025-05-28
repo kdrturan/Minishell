@@ -12,12 +12,13 @@
 
 #include <token.h>
 #include <libft.h>
+#include <gc.h>
 
-t_token	*token_new(t_token_type type, char *text)
+t_token	*token_new(t_shell *shell, t_token_type type, char *text)
 {
 	t_token	*token;
 
-	token = ft_calloc(1, sizeof(t_token));
+	token = gc_malloc(&shell->gc, sizeof(t_token));
 	if (!token)
 		return (NULL);
 	token->text = text;
