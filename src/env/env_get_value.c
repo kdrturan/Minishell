@@ -6,11 +6,12 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 18:17:15 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 21:35:03 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
+#include <libft.h>
 
 char	*env_get_value(t_env *env, char *key)
 {

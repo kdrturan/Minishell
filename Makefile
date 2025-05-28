@@ -1,6 +1,6 @@
 NAME = minishell
 
-CFLAGS = -g #-fsanitize=address  #-Wall -Wextra -Werror
+CFLAGS = -g -fsanitize=address  #-Wall -Wextra -Werror
 
 PATH_LIBFT = lib/libft
 
@@ -12,6 +12,7 @@ PATH_UTILS = $(PATH_SRC)/utils
 PATH_ENV = $(PATH_SRC)/env
 PATH_INIT = $(PATH_SRC)/init
 PATH_DEBUG = $(PATH_SRC)/debug
+PATH_GC = $(PATH_SRC)/_GC
 
 PATH_OBJ = obj
 
@@ -21,7 +22,8 @@ PATH_INCLUDE =	-I include \
 				-I $(PATH_LIBFT) -I $(PATH_PARSER) \
 				-I $(PATH_TOKEN) -I $(PATH_SIGNAL) \
 				-I $(PATH_UTILS) -I $(PATH_DEBUG) \
-				-I $(PATH_ENV)   -I $(PATH_INIT)
+				-I $(PATH_ENV)   -I $(PATH_INIT) \
+				-I $(PATH_GC)
 
 SRCS =	$(wildcard $(PATH_SRC)/*.c) \
 		$(wildcard $(PATH_PARSER)/*.c) \
@@ -30,6 +32,7 @@ SRCS =	$(wildcard $(PATH_SRC)/*.c) \
 		$(wildcard $(PATH_UTILS)/*.c) \
 		$(wildcard $(PATH_INIT)/*.c) \
 		$(wildcard $(PATH_ENV)/*.c) \
+		$(wildcard $(PATH_GC)/*.c) \
 		$(wildcard $(PATH_DEBUG)/*.c) 
 
 OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
@@ -78,6 +81,7 @@ $(PATH_OBJ):
 	@mkdir obj/utils
 	@mkdir obj/init
 	@mkdir obj/env
+	@mkdir obj/_GC
 	@mkdir obj/debug
 
 $(PATH_OBJ)/%.o: $(PATH_SRC)/%.c | $(PATH_OBJ)

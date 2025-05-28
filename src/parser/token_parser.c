@@ -6,11 +6,16 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:15:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 18:16:02 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 21:32:53 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+#include <stdlib.h>
+#include <token.h>
+#include <minishell.h>
+#include <libft.h>
+#include <env.h>
 
 char *str_change(char *dst, char *src, size_t idx, size_t len)
 {

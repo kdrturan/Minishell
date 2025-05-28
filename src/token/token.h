@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:10 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 18:23:10 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 21:31:14 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define TOKEN_H
 
 # include <stdlib.h>
-# include <libft.h>
 
 typedef struct s_token		t_token;
 typedef enum e_token_type	t_token_type;

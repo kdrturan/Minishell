@@ -6,21 +6,23 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:57:56 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 18:16:59 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 21:37:45 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
+#include <gc.h>
+#include <libft.h>
 
-t_env	*env_parse(char **env_data)
+t_env	*env_parse(t_shell *shell, char **env_data)
 {
 	t_env	*env;
 	size_t	i;
     char **values;
 
-    env = malloc(sizeof(t_env));
+    env = gc_malloc(&shell->gc, sizeof(t_env));
 	env->count = env_len(env_data, NULL);
-	env->pairs = malloc(sizeof(t_pair) * env->count);
+	env->pairs = gc_malloc(&shell->gc, sizeof(t_pair) * env->count);
     i = 0;
 	while (env_data[i])
 	{
