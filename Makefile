@@ -44,10 +44,20 @@ else
 	LIBS = -lreadline -lhistory -lncurses $(LIBFT)
 endif
 
-all: $(NAME)
+
+all:
+	@{ \
+		$(MAKE) anim &          \
+		anim_pid=$$!;           \
+		$(MAKE) -s $(NAME);       \
+		kill $$anim_pid;        \
+		wait $$anim_pid;        \
+		printf '\033c';         \
+		echo "✅"; \
+	}
 
 $(LIBFT):
-	make -C $(PATH_LIBFT) all
+	@make -C $(PATH_LIBFT) all
 
 $(PATH_OBJ):
 	@mkdir obj
@@ -60,7 +70,7 @@ $(PATH_OBJ):
 	@mkdir obj/debug
 
 $(PATH_OBJ)/%.o: $(PATH_SRC)/%.c | $(PATH_OBJ)
-	$(CC) $(CFLAGS) $(PATH_INCLUDE) -o $@ -c $?
+	@$(CC) $(CFLAGS) $(PATH_INCLUDE) -o $@ -c $?
 
 $(NAME): $(LIBFT) $(OBJS) 
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
@@ -82,5 +92,8 @@ update_libs:
 setup_env:
 	git remote set-url --add --push origin git@github.com:Tuncayarda/Minishell.git
 	git remote set-url --add --push origin git@github.com:kdrturan/Minishell.git
+
+anim:
+	@$(MAKE) -s -C ascii_anim ascii_anim
 
 .PHONY: all clean fclean re

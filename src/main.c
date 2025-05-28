@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 00:49:26 by abturan          ###   ########.fr       */
+/*   Updated: 2025/05/28 16:45:12 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av, char **env_data)
 {
 	t_shell *shell;
 
-	init_shell(&shell, env_data);
+	//init_shell(&shell, env_data);
 	
 	while (1)
 	{
