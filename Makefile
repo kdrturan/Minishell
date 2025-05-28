@@ -91,11 +91,11 @@ $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
 clean:
-	@make -C $(PATH_LIBFT) clean
+	@make -s -C $(PATH_LIBFT) clean
 	@$(RM) -r $(PATH_OBJ) build.log
 
 fclean: clean
-	@make -C $(PATH_LIBFT) fclean
+	@make -s -C $(PATH_LIBFT) fclean
 	@$(RM) -r $(NAME)
 
 re: fclean all
