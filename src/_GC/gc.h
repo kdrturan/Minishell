@@ -27,9 +27,8 @@ struct s_gc {
 };
 
 void	gc_init(t_gc *gc);
-void	*gc_malloc(t_gc *gc, size_t size);
-void	gc_free_all(t_gc *gc);
 void	*gc_track(t_gc *gc, void *ptr);
 void	**gc_track_array(t_gc *gc, void **array);
+void	gc_free_all(t_gc *gc);
 
 #endif

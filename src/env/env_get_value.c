@@ -13,16 +13,16 @@
 #include <env.h>
 #include <libft.h>
 
-char	*env_get_value(t_env *env, char *key)
+char	*env_get_value(t_shell *shell, char *key)
 {
     size_t  i;
 
     i = 0;
-    while (i < env->count)
+    while (i < shell->env->count)
     {
-        if (ft_strncmp(env->pairs[i].key, key, ft_strlen(key)) == 0)
-            return (env->pairs[i].val);
+        if (ft_strncmp(shell->env->pairs[i].key, key, ft_strlen(key)) == 0)
+            return (shell->env->pairs[i].val);
         i++;
     }
-    return (ft_strdup(""));
+    return (gc_track(&shell->gc, ft_strdup("")));
 }

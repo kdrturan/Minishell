@@ -20,9 +20,9 @@ t_env	*env_parse(t_shell *shell, char **env_data)
 	size_t	i;
     char **values;
 
-    env = gc_malloc(&shell->gc, sizeof(t_env));
+    env = gc_track(&shell->gc, malloc(sizeof(t_env)));
 	env->count = env_len(env_data, NULL);
-	env->pairs = gc_malloc(&shell->gc, sizeof(t_pair) * env->count);
+	env->pairs = gc_track(&shell->gc, malloc(sizeof(t_pair) * env->count));
     i = 0;
 	while (env_data[i])
 	{

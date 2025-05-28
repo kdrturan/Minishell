@@ -17,23 +17,6 @@ void	gc_init(t_gc *gc)
 	gc->head = NULL;
 }
 
-void	*gc_malloc(t_gc *gc, size_t size)
-{
-	void	*ptr;
-	t_gc_node	*node;
-	
-	ptr = malloc(size);
-	if (!ptr)
-		return (NULL);
-	node = malloc(sizeof(t_gc_node));
-	if (!node)
-		return (NULL);
-	node->ptr = ptr;
-	node->next = gc->head;
-	gc->head = node;
-	return (ptr);
-}
-
 void	*gc_track(t_gc *gc, void *ptr)
 {
 	t_gc_node	*node;

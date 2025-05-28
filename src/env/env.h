@@ -33,6 +33,6 @@ struct					s_env
 
 t_env					*env_parse(t_shell *shell, char **env_data);
 size_t					env_len(char **env, t_pair *pairs);
-char					*env_get_value(t_env *env, char *key);
+char					*env_get_value(t_shell *shell, char *key);
 
 #endif

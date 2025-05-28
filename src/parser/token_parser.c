@@ -68,7 +68,7 @@ void    dollar_check(t_shell *shell, t_token *token)
                 key = gc_track(&shell->gc, ft_strjoin(key, gc_track(&shell->gc, ft_substr(token->text, i, 1))));
                 i++;
             }
-            expanse = env_get_value(shell->env,key);
+            expanse = env_get_value(shell, key);
             token->text = gc_track(&shell->gc, str_change(token->text,expanse,j,(i - j)));
             return (dollar_check(shell, token));
         }

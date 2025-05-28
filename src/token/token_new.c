@@ -18,7 +18,7 @@ t_token	*token_new(t_shell *shell, t_token_type type, char *text)
 {
 	t_token	*token;
 
-	token = gc_malloc(&shell->gc, sizeof(t_token));
+	token = gc_track(&shell->gc, malloc(sizeof(t_token)));
 	if (!token)
 		return (NULL);
 	token->text = text;
