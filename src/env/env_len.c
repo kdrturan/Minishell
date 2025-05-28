@@ -6,11 +6,11 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:37:40 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 22:03:20 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:17:09 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <env.h>
 
 size_t  env_len(char **env, t_pair *pairs)
 {

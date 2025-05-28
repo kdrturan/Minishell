@@ -39,10 +39,9 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
 	READLINE_PATH := $(shell brew --prefix readline 2>/dev/null)
 	PATH_INCLUDE  += -I $(READLINE_PATH)/include
-	LIBS += -L$(READLINE_PATH)/lib
+	LIBS = -L$(READLINE_PATH)/lib -lreadline -lhistory -lncurses $(LIBFT)
 endif
 
-LIBS = -lreadline -lhistory -lncurses $(LIBFT)
 
 STOP_ANIM = \
 	kill -TERM $$anim_pid 2>/dev/null || true; \
@@ -61,10 +60,8 @@ all:
 		if [ $$status -eq 0 ]; then \
 			printf '\033c'; echo "✅"; rm -f build.log; \
 		else \
-			echo; \
-			echo "❌ ($$status)"; \
-			tail -n 40 build.log; \
-			echo "(Tam log: build.log)"; \
+			printf '\033c'; \
+			tail -n 100 build.log; \
 		fi; \
 		exit $$status; \
 	}

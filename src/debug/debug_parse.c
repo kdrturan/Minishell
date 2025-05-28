@@ -6,11 +6,11 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:10:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 22:24:22 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:24:53 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <debug.h>
 
 static const char	*token_type_to_str(t_token_type type)
 {

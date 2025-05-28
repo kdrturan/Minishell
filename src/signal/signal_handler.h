@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 01:17:52 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 03:01:18 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:14:56 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 # define SIGNAL_HANDLER_H
 
 # include <signal.h>
-# include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
-# include <stdbool.h>
 
 typedef enum e_mode	t_mode;
 

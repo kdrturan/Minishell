@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:48 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 01:13:11 by abturan          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:23:45 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
-#include <stdlib.h>
+
+# include <stdlib.h>
+# include <libft.h>
 
 typedef struct s_pair	t_pair;
 typedef struct s_env	t_env;

@@ -6,11 +6,11 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:45:42 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 22:25:44 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:16:28 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include <init.h>
 
 void	init_shell(t_shell **shell, char **env_data)
 {

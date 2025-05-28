@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_get_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 00:50:54 by abturan          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:17:15 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include <env.h>
 
 char	*env_get_value(t_env *env, char *key)
 {

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:04:55 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 01:18:47 by abturan          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:23:14 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 
 #ifndef PARSER_H
 # define PARSER_H
 
-#include <minishell.h>
-#include <token.h>
-typedef struct s_shell  t_shell;
+# include <minishell.h>
+# include <token.h>
+# include <libft.h>
+
 void	parse(t_shell *shell);
 int		is_white_space(int c);
 void    token_parser(t_shell *shell,t_token **list);

@@ -6,11 +6,11 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 22:19:40 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 22:24:16 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:24:46 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include <debug.h>
 
 void	debug_env_print(t_env *env)
 {

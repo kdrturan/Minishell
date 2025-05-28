@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.embeddedhtml": "html",
         "debug.h": "c",
         "optional": "c",
         "ostream": "c",
@@ -14,6 +15,7 @@
         "parser.h": "c",
         "env.h": "c",
         "token.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "history.h": "c"
     }
 }

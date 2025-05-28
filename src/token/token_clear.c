@@ -6,11 +6,10 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:51:23 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/26 22:29:30 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:13:54 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "token.h"
 
 void	token_clear(t_token **token_list)

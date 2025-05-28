@@ -6,11 +6,11 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:57:56 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 23:12:36 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:16:59 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include <env.h>
 
 t_env	*env_parse(char **env_data)
 {

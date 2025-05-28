@@ -6,8 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:23:34 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 21:36:50 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:16:52 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>

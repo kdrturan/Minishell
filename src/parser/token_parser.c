@@ -1,6 +1,16 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_parser.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 18:15:50 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/28 18:16:02 by tuaydin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
+#include <parser.h>
 
 char *str_change(char *dst, char *src, size_t idx, size_t len)
 {

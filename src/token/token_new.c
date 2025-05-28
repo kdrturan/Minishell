@@ -6,11 +6,10 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:15:11 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/26 22:02:48 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:14:02 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "token.h"
 
 t_token	*token_new(t_token_type type, char *text)
