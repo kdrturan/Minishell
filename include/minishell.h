@@ -15,12 +15,14 @@
 
 #include <gc.h>
 
-typedef struct s_shell  t_shell;
-typedef struct s_env	t_env;
+typedef struct s_shell      t_shell;
+typedef struct s_env	    t_env;
+typedef struct s_token		t_token;
 
 struct  s_shell{
     char    *cmd;
     t_env   *env;
+    t_token *token_list;
     t_gc    gc;
 };
 

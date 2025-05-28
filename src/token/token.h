@@ -37,7 +37,6 @@ enum						e_token_type
 struct						s_token
 {
 	char					*text;
-
 	t_token					*next;
 	t_token					*prev;
 	t_token_type			type;

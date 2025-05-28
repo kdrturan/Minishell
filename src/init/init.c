@@ -19,4 +19,5 @@ void	init_shell(t_shell *shell, char **env_data)
 	if (!shell)
 		return ;
 	shell->env = env_parse(shell, env_data);
+	shell->token_list = NULL;
 }

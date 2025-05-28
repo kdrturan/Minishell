@@ -137,9 +137,9 @@ void    token_parser(t_shell *shell,t_token **list)
     while (tmp)
     {
         if (tmp->type == DQUOTE)
-            dquote_parser(shell ,list,&tmp);
+            dquote_parser(shell ,list, &tmp);
         if (tmp->type == QUOTE)
-            quote_parser(shell ,list,&tmp);
+            quote_parser(shell ,list, &tmp);
         tmp = tmp->next;
     }
 }
