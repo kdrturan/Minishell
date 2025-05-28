@@ -13,11 +13,14 @@
 #include <minishell.h>
 #include <init.h>
 #include <gc.h>
+#include <parser.h>
 #include <readline/history.h>
 #include <readline/readline.h>
 
 int	main(int ac, char **av, char **env_data)
 {
+	(void) av;
+	(void) ac;
 	t_shell shell;
 
 	gc_init(&shell.gc);

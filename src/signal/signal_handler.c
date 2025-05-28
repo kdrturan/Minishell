@@ -10,25 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "signal_handler.h"
+#include <signal_handler.h>
+#include <unistd.h>
+#include <readline/history.h>
+#include <readline/readline.h>
 
 static void	signal_handler(int sig)
 {
-	/*(void) sig;
+	(void) sig;
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	write(1, "\n", 1);
-	rl_redisplay();*/
+	rl_redisplay();
 }
 
 void	set_signals(t_mode mode)
 {
-	/*struct sigaction	sa;
+	struct sigaction	sa;
 
 	if (mode == INTERACTIVE)
 	{
 		sa.sa_handler = signal_handler;
 		sigaction(SIGINT, &sa, NULL);
 		signal(SIGQUIT, SIG_IGN);
-	}*/
+	}
 }

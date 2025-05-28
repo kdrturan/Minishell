@@ -1,6 +1,6 @@
 NAME = minishell
 
-CFLAGS = # -g -fsanitize=address  #-Wall -Wextra -Werror
+CFLAGS =   -Wall -Wextra -Werror # -g -fsanitize=address
 
 PATH_LIBFT = lib/libft
 
@@ -110,5 +110,22 @@ setup_env:
 
 run_valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=valgrind.supp ./minishell
+
+help:
+	@echo ""
+	@echo "╔════════════════════════════════════════════════════════════╗"
+	@echo "║                    Available Make Commands                 ║"
+	@echo "╠════════════════════════════════════════════════════════════╣"
+	@echo "║ make              │ Build the project with ASCII animation ║"
+	@echo "║ make all          │ Same as 'make' (includes animation)    ║"
+	@echo "║ make minishell    │ Compile only the minishell binary      ║"
+	@echo "║ make clean        │ Remove object files and build log      ║"
+	@echo "║ make fclean       │ Clean everything including binary      ║"
+	@echo "║ make re           │ Rebuild the project from scratch       ║"
+	@echo "║ make update_libs  │ Clone/update libft from GitHub         ║"
+	@echo "║ make setup_env    │ Set Git remotes for pushing branches   ║"
+	@echo "║ make run_valgrind │ Run Valgrind with memory checks        ║"
+	@echo "╚════════════════════════════════════════════════════════════╝"
+	@echo ""
 
 .PHONY: all clean fclean re

@@ -18,7 +18,7 @@ size_t  env_len(char **env, t_pair *pairs)
 
     i = 0;
     if (pairs)
-        ;
+        return (i);
     if (env && *env)
     {
         while (env[i])
