@@ -36,22 +36,15 @@ OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
 
 UNAME_S := $(shell uname -s)
 
-UNAME_S := $(shell uname -s)
-
 ifeq ($(UNAME_S),Darwin)
 	READLINE_PATH := $(shell brew --prefix readline 2>/dev/null)
 	PATH_INCLUDE  += -I $(READLINE_PATH)/include
 	LIBS = -L$(READLINE_PATH)/lib -lreadline -lhistory -lncurses $(LIBFT)
-
-	STOP_ANIM = \
-		kill -TERM $$anim_pid 2>/dev/null || true; \
-		pkill -TERM -P $$anim_pid 2>/dev/null || true
-else
-	LIBS = -lreadline -lhistory -lncurses $(LIBFT)
-
-	STOP_ANIM = \
-		kill -TERM -- -$$anim_pid 2>/dev/null || true
 endif
+
+STOP_ANIM = \
+	kill -TERM $$anim_pid 2>/dev/null || true; \
+	pkill -TERM -P $$anim_pid 2>/dev/null || true
 
 all:
 	@{ \
@@ -64,14 +57,12 @@ all:
 		$(STOP_ANIM); \
 		wait $$anim_pid 2>/dev/null || true; \
 		if [ $$status -eq 0 ]; then \
-			printf '\033c'; echo "✅  Derleme tamamlandı"; \
-			rm -f build.log; \
+			printf '\033c'; echo "✅"; rm -f build.log; \
 		else \
 			echo; \
-			echo "❌  Derleme HATA ile bitti ($$status)"; \
-			echo "------ Son 40 satır ------"; \
+			echo "❌ ($$status)"; \
 			tail -n 40 build.log; \
-			echo "(Tüm log: build.log dosyasında)"; \
+			echo "(Tam log: build.log)"; \
 		fi; \
 		exit $$status; \
 	}
@@ -97,7 +88,7 @@ $(NAME): $(LIBFT) $(OBJS)
 
 clean:
 	@make -C $(PATH_LIBFT) clean
-	@$(RM) -r $(PATH_OBJ)
+	@$(RM) -r $(PATH_OBJ) build.log
 
 fclean: clean
 	@make -C $(PATH_LIBFT) fclean
