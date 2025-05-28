@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_get_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/27 23:13:21 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/28 00:50:54 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ char	*env_get_value(t_env *env, char *key)
             return (env->pairs[i].val);
         i++;
     }
-    return (NULL);
+    return (ft_strdup(""));
 }
