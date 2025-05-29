@@ -1,41 +1,26 @@
-NAME = minishell
+NAME        = minishell
 
-CFLAGS =   -Wall -Wextra -Werror # -g -fsanitize=address
+PATH_SRC    = src
+PATH_OBJ    = obj
 
-PATH_LIBFT = lib/libft
+SUBDIRS     = parser signal token utils init env _GC debug
 
-PATH_SRC = src
-PATH_PARSER = $(PATH_SRC)/parser
-PATH_SIGNAL = $(PATH_SRC)/signal
-PATH_TOKEN = $(PATH_SRC)/token
-PATH_UTILS = $(PATH_SRC)/utils
-PATH_ENV = $(PATH_SRC)/env
-PATH_INIT = $(PATH_SRC)/init
-PATH_DEBUG = $(PATH_SRC)/debug
-PATH_GC = $(PATH_SRC)/_GC
+PATH_LIBFT  = lib/libft
+LIBFT       = $(PATH_LIBFT)/libft.a
 
-PATH_OBJ = obj
+SRC_DIRS    = $(PATH_SRC) $(addprefix $(PATH_SRC)/,$(SUBDIRS))
+OBJ_SUBDIRS = $(addprefix $(PATH_OBJ)/,$(SUBDIRS))
 
-LIBFT = $(PATH_LIBFT)/libft.a
+BASE_INC_DIRS = include $(PATH_LIBFT)
+INC_DIRS      = $(addprefix $(PATH_SRC)/,$(SUBDIRS))
+PATH_INCLUDE  = $(addprefix -I ,$(BASE_INC_DIRS) $(INC_DIRS))
 
-PATH_INCLUDE =	-I include \
-				-I $(PATH_LIBFT) -I $(PATH_PARSER) \
-				-I $(PATH_TOKEN) -I $(PATH_SIGNAL) \
-				-I $(PATH_UTILS) -I $(PATH_DEBUG) \
-				-I $(PATH_ENV)   -I $(PATH_INIT) \
-				-I $(PATH_GC)
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
-SRCS =	$(wildcard $(PATH_SRC)/*.c) \
-		$(wildcard $(PATH_PARSER)/*.c) \
-		$(wildcard $(PATH_TOKEN)/*.c) \
-		$(wildcard $(PATH_SIGNAL)/*.c) \
-		$(wildcard $(PATH_UTILS)/*.c) \
-		$(wildcard $(PATH_INIT)/*.c) \
-		$(wildcard $(PATH_ENV)/*.c) \
-		$(wildcard $(PATH_GC)/*.c) \
-		$(wildcard $(PATH_DEBUG)/*.c) 
+vpath %.c $(SRC_DIRS)
 
-OBJS = $(SRCS:$(PATH_SRC)/%.c=$(PATH_OBJ)/%.o)
+SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
+OBJS = $(addprefix $(PATH_OBJ)/,$(notdir $(SRCS:.c=.o)))
 
 UNAME_S := $(shell uname -s)
 
@@ -62,9 +47,9 @@ all:
 		$(STOP_ANIM); \
 		wait $$anim_pid 2>/dev/null || true; \
 		if [ $$status -eq 0 ]; then \
-			printf '\033c'; echo "✅"; rm -f build.log; \
+			printf '\033c'; echo "✅  Build succeeded"; rm -f build.log; \
 		else \
-			printf '\033c'; \
+			printf '\033c'; echo "❌  Build failed. Last 100 lines of log:"; \
 			tail -n 100 build.log; \
 		fi; \
 		exit $$status; \
@@ -74,17 +59,9 @@ $(LIBFT):
 	@make -C $(PATH_LIBFT) all
 
 $(PATH_OBJ):
-	@mkdir obj
-	@mkdir obj/parser
-	@mkdir obj/signal
-	@mkdir obj/token
-	@mkdir obj/utils
-	@mkdir obj/init
-	@mkdir obj/env
-	@mkdir obj/_GC
-	@mkdir obj/debug
+	@mkdir -p $(PATH_OBJ) $(OBJ_SUBDIRS)
 
-$(PATH_OBJ)/%.o: $(PATH_SRC)/%.c | $(PATH_OBJ)
+$(PATH_OBJ)/%.o: %.c | $(PATH_OBJ)
 	@$(CC) $(CFLAGS) $(PATH_INCLUDE) -o $@ -c $?
 
 $(NAME): $(LIBFT) $(OBJS) 
@@ -114,7 +91,7 @@ run_valgrind:
 help:
 	@echo ""
 	@echo "╔════════════════════════════════════════════════════════════╗"
-	@echo "║                    Available Make Commands                 ║"
+	@echo "║                    Available Make Targets                  ║"
 	@echo "╠════════════════════════════════════════════════════════════╣"
 	@echo "║ make              │ Build the project with ASCII animation ║"
 	@echo "║ make all          │ Same as 'make' (includes animation)    ║"
@@ -128,4 +105,4 @@ help:
 	@echo "╚════════════════════════════════════════════════════════════╝"
 	@echo ""
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re update_libs setup_env run_valgrind help
