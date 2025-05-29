@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 21:38:47 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/29 04:44:52 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <init.h>
 #include <gc.h>
 #include <parser.h>
+#include <stdio.h>
 #include <readline/history.h>
 #include <readline/readline.h>
 

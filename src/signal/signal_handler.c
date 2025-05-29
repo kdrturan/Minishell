@@ -6,12 +6,13 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:57 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 18:23:35 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/29 04:45:12 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal_handler.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <readline/history.h>
 #include <readline/readline.h>
 
