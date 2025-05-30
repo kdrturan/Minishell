@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:32:35 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 04:12:18 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <gc.h>
 #include <parser.h>
 #include <token.h>
+#include <env.h>
 #include <stdio.h>
 #include <readline/history.h>
 #include <readline/readline.h>
@@ -29,7 +30,7 @@ int	main(int ac, char **av, char **env_data)
 	init_shell(&shell, env_data);
 	while (1)
 	{
-		shell.cmd = readline("MINISHELL>");
+		shell.cmd = readline(PROMPT);
 		if (shell.cmd == NULL)
 			break ;
 		add_history(shell.cmd);

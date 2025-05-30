@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:48 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:08:25 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 04:13:57 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ struct					s_env
 t_env					*env_parse(
 							t_shell *shell,
 							char **env_data);
+
+void					env_set(
+							t_shell *shell,
+							char *key,
+							char *val);
+
+void					env_add(
+							t_shell *shell,
+							char *key,
+							char *val);
+
+void					env_remove(
+							t_shell *shell,
+							char *key);
 
 size_t					env_len(
 							char **env,

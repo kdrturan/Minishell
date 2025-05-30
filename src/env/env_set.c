@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 04:10:35 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/30 03:48:33 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/30 03:50:34 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include <env.h>
+#include <libft.h>
+#include <string.h>
 
-# define PROMPT "\001\033[1;32m\002🐱 OIIA OIIA$\001\033[0m\002"
-
-# include <gc.h>
-
-typedef struct s_shell		t_shell;
-typedef struct s_env		t_env;
-typedef struct s_token		t_token;
-
-struct	s_shell
+void	env_set(t_shell *shell, char *key, char *val)
 {
-	char					*cmd;
-	t_env					*env;
-	t_token					*token_list;
-	t_gc					gc;
-};
+	size_t	i;
 
-#endif
+	i = 0;
+	while (i < shell->env->count)
+	{
+		if (ft_strncmp(shell->env->pairs[i].key, key, ft_strlen(key) + 1) == 0)
+		{
+			shell->env->pairs[i].val = val;
+			return ;
+		}
+		i++;
+	}
+	env_add(shell, key, val);
+}

@@ -17,6 +17,7 @@
         "token.h": "c",
         "stdlib.h": "c",
         "history.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "gc.h": "c"
     }
 }
