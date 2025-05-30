@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 21:01:26 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 21:06:20 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 03:01:09 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	*gc_track(t_gc *gc, void *ptr)
 	return (ptr);
 }
 
-void **gc_track_array(t_gc *gc, void **array)
+void	**gc_track_array(t_gc *gc, void **array)
 {
-	size_t i;
+	size_t	i;
 
 	if (!array)
 		return (NULL);
@@ -50,12 +50,14 @@ void **gc_track_array(t_gc *gc, void **array)
 
 void	gc_free_all(t_gc *gc)
 {
-	t_gc_node *current;
-	
+	t_gc_node	*current;
+	t_gc_node	*tmp;
+
 	current = gc->head;
-	while (current) {
+	while (current)
+	{
 		free(current->ptr);
-		t_gc_node *tmp = current;
+		tmp = current;
 		current = current->next;
 		free(tmp);
 	}

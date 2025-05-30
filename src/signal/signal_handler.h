@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 01:17:52 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 18:14:56 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 03:08:55 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ enum	e_mode
 	NONINTERACTIVE
 };
 
-void	set_signals(t_mode mode);
+void	set_signals(
+			t_mode mode);
 
 #endif

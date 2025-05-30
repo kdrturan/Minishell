@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 21:32:27 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 03:14:13 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,8 @@
 #include <token.h>
 #include <minishell.h>
 #include <libft.h>
-
-t_token_type	token_seperator(char *value, int i)
-{
-	if(!value)
-		return (NONE);
-	if (value[i] == '\'')
-		return (QUOTE);
-	else if (value[i] == '\"')
-		return (DQUOTE);
-	else if (value[i] == '$')
-		return (DOLLAR);
-	else if (value[i] == '|')
-		return (PIPE);
-	else if (is_white_space(value[i]))
-		return (WS);
-	else if (value[i] == '<')
-	{
-		if (value[i + 1] == '<')
-			return (HEREDOC);
-		return (INPUT);
-	}
-	else if (value[i] == '>')
-	{
-		if (value[i + 1] == '>')
-			return (APPEND);
-		return (OUTPUT);
-	}
-	return (WORD);
-}
+#include <utils.h>
+#include <debug.h>
 
 static void	add_word_token(t_shell *shell, char *in, int *i)
 {
@@ -55,7 +28,6 @@ static void	add_word_token(t_shell *shell, char *in, int *i)
 	val = gc_track(&shell->gc, ft_substr(in, start, *i - start));
 	token_add_back(&shell->token_list, token_new(shell, WORD, val));
 }
-#include"debug.h"
 
 void	parse(t_shell *shell)
 {
@@ -70,12 +42,16 @@ void	parse(t_shell *shell)
 			add_word_token(shell, shell->cmd, &i);
 		else if (type == HEREDOC || type == APPEND)
 		{
-			token_add_back(&shell->token_list, token_new(shell, type, gc_track(&shell->gc, ft_substr(shell->cmd, i, 2))));
+			token_add_back(&shell->token_list,
+				token_new(shell, type,
+					gc_track(&shell->gc, ft_substr(shell->cmd, i, 2))));
 			i += 2;
 		}
 		else
-			token_add_back(&shell->token_list, token_new(shell, type, gc_track(&shell->gc, ft_substr(shell->cmd, i++, 1))));
+			token_add_back(&shell->token_list,
+				token_new(shell, type,
+					gc_track(&shell->gc, ft_substr(shell->cmd, i++, 1))));
 	}
-	token_parser(shell ,&shell->token_list);
+	token_parser(shell);
 	debug_print_token_list(shell->token_list);
 }

@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 21:35:03 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 03:03:25 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 char	*env_get_value(t_shell *shell, char *key)
 {
-    size_t  i;
+	size_t	i;
 
-    i = 0;
-    while (i < shell->env->count)
-    {
-        if (ft_strncmp(shell->env->pairs[i].key, key, ft_strlen(key)) == 0)
-            return (shell->env->pairs[i].val);
-        i++;
-    }
-    return (gc_track(&shell->gc, ft_strdup("")));
+	i = 0;
+	while (i < shell->env->count)
+	{
+		if (ft_strncmp(shell->env->pairs[i].key, key, ft_strlen(key)) == 0)
+			return (shell->env->pairs[i].val);
+		i++;
+	}
+	return (gc_track(&shell->gc, ft_strdup("")));
 }

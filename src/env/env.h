@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:48 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 21:35:46 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 03:08:25 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,16 @@ struct					s_env
 	size_t				count;
 };
 
-t_env					*env_parse(t_shell *shell, char **env_data);
-size_t					env_len(char **env, t_pair *pairs);
-char					*env_get_value(t_shell *shell, char *key);
+t_env					*env_parse(
+							t_shell *shell,
+							char **env_data);
+
+size_t					env_len(
+							char **env,
+							t_pair *pairs);
+
+char					*env_get_value(
+							t_shell *shell,
+							char *key);
 
 #endif

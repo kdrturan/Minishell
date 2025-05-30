@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:10:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 18:24:53 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 03:02:02 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ void	debug_print_token_list(t_token *list)
 		list = list->next;
 	}
 }
-
