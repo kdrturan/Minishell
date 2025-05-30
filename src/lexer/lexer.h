@@ -13,7 +13,7 @@
 #ifndef LEXER_H
 # define LEXER_H
 
-#include <utils.h>
+# include <utils.h>
 
 typedef struct s_shell		t_shell;
 typedef struct s_token		t_token;
@@ -29,14 +29,8 @@ t_token_type	identify_tokens(
 					char *value,
 					int i);
 
-void			process_dquote(
+void			process_quote_token(
 					t_shell *shell,
 					t_token **token);
-
-void			process_quote(
-					t_shell *shell,
-					t_token **token);
-
-void	handle_dollar_token(t_shell *shell, t_token **token);
 
 #endif

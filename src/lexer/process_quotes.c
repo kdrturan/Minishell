@@ -17,66 +17,31 @@
 #include <env.h>
 #include <utils.h>
 
-void	dollar_check_in_dquote(t_shell *shell, t_token *token)
+void	process_quote_token(t_shell *shell, t_token **token)
 {
-	size_t	i = 0;
+	char			*value;
+	t_token			*new_token;
+	t_token			*temp;
+	t_token_type	type;
 
-    (void)shell;
-	while (token->text && token->text[i])
-	{
-		break;
-	}
-}
-
-void	process_dquote(t_shell *shell, t_token **token)
-{
-	char	*value;
-	t_token	*new_token;
-	t_token	*temp;
-
+	type = (*token)->type;
 	temp = *token;
 	new_token = token_new(shell, WORD, NULL);
 	new_token->type = WORD;
 	new_token->prev = temp;
 	temp = temp->next;
 	value = NULL;
-	while (temp->type != DQUOTE)
+	while (temp && temp->type != type)
 	{
-		value = gc_track(&shell->gc, ft_strjoin(value,temp->text));
+		value = gc_track(&shell->gc, ft_strjoin(value, temp->text));
 		temp->text = NULL;
 		temp = temp->next;
 		token_remove(&shell->token_list, temp->prev);
 	}
 	(*token)->next = new_token;
-	temp->prev = new_token;
-	*token = temp;
 	new_token->next = temp;
 	new_token->text = value;
-	dollar_check_in_dquote(shell, new_token);
-}
-
-void	process_quote(t_shell *shell, t_token **token)
-{
-	char	*value;
-	t_token	*new_token;
-	t_token	*temp;
-
-	temp = *token;
-	new_token = token_new(shell, WORD, NULL);
-	new_token->type = WORD;
-	new_token->prev = temp;
-	temp = temp->next;
-	value = NULL;
-	while (temp->type != QUOTE)
-	{
-		value = gc_track(&shell->gc, ft_strjoin(value,temp->text));
-		temp->text = NULL;
-		temp = temp->next;
-		token_remove(&shell->token_list, temp->prev);
-	}
-	(*token)->next = new_token;
-	temp->prev = new_token;
+	if (temp)
+		temp->prev = new_token;
 	*token = temp;
-	new_token->next = temp;
-	new_token->text = value;
 }

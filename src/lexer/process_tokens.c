@@ -20,17 +20,13 @@
 
 void	process_tokens(t_shell *shell)
 {
-	t_token *tmp;
-	
+	t_token	*tmp;
+
 	tmp = shell->token_list;
 	while (tmp)
 	{
-		if (tmp->type == DQUOTE)
-			process_dquote(shell, &tmp);
-		if (tmp->type == QUOTE)
-			process_quote(shell, &tmp);
-		if (tmp->type == DOLLAR)
-			handle_dollar_token(shell, &tmp);
+		if (tmp->type == DQUOTE || tmp->type == QUOTE)
+			process_quote_token(shell, &tmp);
 		tmp = tmp->next;
 	}
 }
