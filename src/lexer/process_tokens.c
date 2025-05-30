@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_get_value.c                                    :+:      :+:    :+:   */
+/*   process_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 22:20:57 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/28 18:15:50 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/30 23:04:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <env.h>
+#include <lexer.h>
+#include <stdlib.h>
+#include <token.h>
+#include <minishell.h>
 #include <libft.h>
+#include <env.h>
+#include <utils.h>
 
-char	*env_get_value(t_shell *shell, char *key)
+void	process_tokens(t_shell *shell)
 {
-	size_t	i;
-
-	i = 0;
-	if (!key)
-		return (NULL);
-	while (i < shell->env->count)
+	t_token *tmp;
+	
+	tmp = shell->token_list;
+	while (tmp)
 	{
-		if (ft_strncmp(shell->env->pairs[i].key, key, ft_strlen(key) + 1) == 0)
-			return (shell->env->pairs[i].val);
-		i++;
+		if (tmp->type == DQUOTE)
+			process_dquote(shell, &tmp);
+		if (tmp->type == QUOTE)
+			process_quote(shell, &tmp);
+		if (tmp->type == DOLLAR)
+			handle_dollar_token(shell, &tmp);
+		tmp = tmp->next;
 	}
-	return (gc_track(&shell->gc, ft_strdup("")));
 }
- 

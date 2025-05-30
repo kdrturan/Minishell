@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:57 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/29 04:45:12 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 20:47:33 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <libft.h>
 
 static void	signal_handler(int sig)
 {
@@ -29,6 +30,7 @@ void	set_signals(t_mode mode)
 {
 	struct sigaction	sa;
 
+	ft_memset(&sa, 0, sizeof(sa));
 	if (mode == INTERACTIVE)
 	{
 		sa.sa_handler = signal_handler;

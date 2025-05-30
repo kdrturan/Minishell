@@ -1,66 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_parser.c                                     :+:      :+:    :+:   */
+/*   process_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 18:15:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 17:45:21 by kdrturan         ###   ########.fr       */
+/*   Created: 2025/05/30 22:41:01 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/30 23:10:09 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <stdlib.h>
+#include <lexer.h>
 #include <token.h>
 #include <minishell.h>
 #include <libft.h>
 #include <env.h>
 #include <utils.h>
 
-void	dollar_parse(t_shell *shell, t_token **token)
-{
-	char *expanse;
-	
-	(*token) = (*token)->next;
-	//token_remove(&shell->token_list, (*token)->prev);
-	if ((*token)->type == WORD)
-	{
-		expanse = env_get_value(shell, (*token)->text);
-		(*token)->text = expanse;
-	}
-}
-
 void	dollar_check_in_dquote(t_shell *shell, t_token *token)
 {
-	size_t	i;
-	size_t	j;
-	char	*expanse;
-	char	*key;
+	size_t	i = 0;
 
-	key = NULL;
-	i = 0;
-	j = 0;
+    (void)shell;
 	while (token->text && token->text[i])
 	{
-		if (token->text[i] == '$')
-		{
-			j = i;
-			i++;
-			while (token->text[i] != '\0' && is_valid_export_name(token->text, i, j) == true)
-			{
-				key = gc_track(&shell->gc,ft_strjoin(key, gc_track(&shell->gc, ft_substr(token->text, i, 1))));
-				i++;
-			}
-			expanse = env_get_value(shell, key);
-			token->text = gc_track(&shell->gc, str_change(token->text,expanse,j,(i - j)));
-			return (dollar_check_in_dquote(shell, token));
-		}
-		i++;
+		break;
 	}
 }
 
-void	dquote_parser(t_shell *shell, t_token **token)
+void	process_dquote(t_shell *shell, t_token **token)
 {
 	char	*value;
 	t_token	*new_token;
@@ -87,7 +55,7 @@ void	dquote_parser(t_shell *shell, t_token **token)
 	dollar_check_in_dquote(shell, new_token);
 }
 
-void	quote_parser(t_shell *shell, t_token **token)
+void	process_quote(t_shell *shell, t_token **token)
 {
 	char	*value;
 	t_token	*new_token;
@@ -99,7 +67,7 @@ void	quote_parser(t_shell *shell, t_token **token)
 	new_token->prev = temp;
 	temp = temp->next;
 	value = NULL;
-	while (temp->type != DQUOTE)
+	while (temp->type != QUOTE)
 	{
 		value = gc_track(&shell->gc, ft_strjoin(value,temp->text));
 		temp->text = NULL;
@@ -111,22 +79,4 @@ void	quote_parser(t_shell *shell, t_token **token)
 	*token = temp;
 	new_token->next = temp;
 	new_token->text = value;
-}
-
-void	token_parser(t_shell *shell)
-{
-	t_token *tmp;
-	
-	tmp = shell->token_list;
-	while (tmp)
-	{
-		if (tmp->type == DQUOTE)
-			dquote_parser(shell, &tmp);
-		if (tmp->type == QUOTE)
-			quote_parser(shell, &tmp);
-		if (tmp->type == DOLLAR)
-			dollar_parse(shell, &tmp);
-			
-		tmp = tmp->next;
-	}
 }

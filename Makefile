@@ -3,7 +3,7 @@ NAME        = minishell
 PATH_SRC    = src
 PATH_OBJ    = obj
 
-SUBDIRS     = parser signal token utils init env _GC debug
+SUBDIRS     = signal token utils init env _GC debug lexer
 
 PATH_LIBFT  = lib/libft
 LIBFT       = $(PATH_LIBFT)/libft.a
@@ -15,7 +15,7 @@ BASE_INC_DIRS = include $(PATH_LIBFT)
 INC_DIRS      = $(addprefix $(PATH_SRC)/,$(SUBDIRS))
 PATH_INCLUDE  = $(addprefix -I ,$(BASE_INC_DIRS) $(INC_DIRS))
 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = #-Wall -Wextra -Werror -g #-fsanitize=address
 
 vpath %.c $(SRC_DIRS)
 

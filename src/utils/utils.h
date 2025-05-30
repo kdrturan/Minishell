@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 17:30:18 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 00:31:06 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*str_change(
 			size_t len);
 
 
-bool	is_valid_export_name(char *value, int i, int j);
+bool	is_valid_export_char(char c);
+bool	is_special_param(char c);
 
 
 #endif

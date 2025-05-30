@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:04:55 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 17:31:18 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/30 23:04:42 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef LEXER_H
+# define LEXER_H
 
 #include <utils.h>
 
@@ -19,14 +19,24 @@ typedef struct s_shell		t_shell;
 typedef struct s_token		t_token;
 typedef enum e_token_type	t_token_type;
 
-void			parse(
+void			lexer_run(
 					t_shell *shell);
 
-void			token_parser(
+void			process_tokens(
 					t_shell *shell);
 
-t_token_type	token_seperator(
+t_token_type	identify_tokens(
 					char *value,
 					int i);
+
+void			process_dquote(
+					t_shell *shell,
+					t_token **token);
+
+void			process_quote(
+					t_shell *shell,
+					t_token **token);
+
+void	handle_dollar_token(t_shell *shell, t_token **token);
 
 #endif

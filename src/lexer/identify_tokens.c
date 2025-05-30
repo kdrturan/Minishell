@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_seperator.c                                  :+:      :+:    :+:   */
+/*   identify_tokens.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 03:14:14 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:25:32 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 20:48:51 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <token.h>
 #include <utils.h>
 
-t_token_type	token_seperator(char *value, int i)
+t_token_type	identify_tokens(char *value, int i)
 {
 	if (!value)
 		return (NONE);
