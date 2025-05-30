@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:15:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:17:40 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 17:45:21 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,20 @@
 #include <env.h>
 #include <utils.h>
 
-void	dollar_check(t_shell *shell, t_token *token)
+void	dollar_parse(t_shell *shell, t_token **token)
+{
+	char *expanse;
+	
+	(*token) = (*token)->next;
+	//token_remove(&shell->token_list, (*token)->prev);
+	if ((*token)->type == WORD)
+	{
+		expanse = env_get_value(shell, (*token)->text);
+		(*token)->text = expanse;
+	}
+}
+
+void	dollar_check_in_dquote(t_shell *shell, t_token *token)
 {
 	size_t	i;
 	size_t	j;
@@ -28,20 +41,20 @@ void	dollar_check(t_shell *shell, t_token *token)
 	key = NULL;
 	i = 0;
 	j = 0;
-	while (token->text[i])
+	while (token->text && token->text[i])
 	{
 		if (token->text[i] == '$')
 		{
 			j = i;
 			i++;
-			while (token->text[i] != '\0' && token_seperator(token->text, i) == WORD)
+			while (token->text[i] != '\0' && is_valid_export_name(token->text, i, j) == true)
 			{
 				key = gc_track(&shell->gc,ft_strjoin(key, gc_track(&shell->gc, ft_substr(token->text, i, 1))));
 				i++;
 			}
 			expanse = env_get_value(shell, key);
 			token->text = gc_track(&shell->gc, str_change(token->text,expanse,j,(i - j)));
-			return (dollar_check(shell, token));
+			return (dollar_check_in_dquote(shell, token));
 		}
 		i++;
 	}
@@ -71,7 +84,7 @@ void	dquote_parser(t_shell *shell, t_token **token)
 	*token = temp;
 	new_token->next = temp;
 	new_token->text = value;
-	dollar_check(shell, new_token);
+	dollar_check_in_dquote(shell, new_token);
 }
 
 void	quote_parser(t_shell *shell, t_token **token)
@@ -111,6 +124,9 @@ void	token_parser(t_shell *shell)
 			dquote_parser(shell, &tmp);
 		if (tmp->type == QUOTE)
 			quote_parser(shell, &tmp);
+		if (tmp->type == DOLLAR)
+			dollar_parse(shell, &tmp);
+			
 		tmp = tmp->next;
 	}
 }

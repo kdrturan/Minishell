@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   utils_validate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 05:04:55 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 17:31:18 by kdrturan         ###   ########.fr       */
+/*   Created: 2025/05/30 17:16:17 by kdrturan          #+#    #+#             */
+/*   Updated: 2025/05/30 17:30:26 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
-
 #include <utils.h>
 
-typedef struct s_shell		t_shell;
-typedef struct s_token		t_token;
-typedef enum e_token_type	t_token_type;
-
-void			parse(
-					t_shell *shell);
-
-void			token_parser(
-					t_shell *shell);
-
-t_token_type	token_seperator(
-					char *value,
-					int i);
-
-#endif
+bool	is_valid_export_name(char *value, int i, int j)
+{
+	if (!value)
+		return (false);
+	if (!(i - j) && ft_isdigit(value[i]))
+		return (false);
+	if (ft_isalnum(value[i]) || value[i] == '_') 
+		return (true);
+	return (false);
+}

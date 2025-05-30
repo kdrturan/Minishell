@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:25:13 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/30 17:48:10 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <utils.h>
-#include <libft.h>
 
 int	is_white_space(int c)
 {
