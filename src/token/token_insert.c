@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 18:42:21 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 19:33:58 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 20:07:17 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	token_insert(t_token **token_list, t_token *pos, t_token *new_list)
 	t_token	*new_last;
 
 	if (!token_list || !new_list)
-		return;
+		return ;
 	new_last = token_last(new_list);
 	if (!*token_list || !pos)
 	{
@@ -28,7 +28,7 @@ void	token_insert(t_token **token_list, t_token *pos, t_token *new_list)
 		}
 		*token_list = new_list;
 		new_list->prev = NULL;
-		return;
+		return ;
 	}
 	new_last->next = pos->next;
 	if (pos->next)

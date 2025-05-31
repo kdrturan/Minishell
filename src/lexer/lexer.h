@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:04:55 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 14:14:37 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 20:11:28 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <libft.h>
 # include <debug.h>
 # include <env.h>
-
 
 typedef struct s_shell		t_shell;
 typedef struct s_token		t_token;

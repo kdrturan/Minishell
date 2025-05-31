@@ -21,6 +21,7 @@
         "libft.h": "c",
         "gc.h": "c",
         "unistd.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "utils.h": "c"
     }
 }

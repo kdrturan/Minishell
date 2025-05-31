@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:10 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 18:46:39 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 20:06:28 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void						token_add_back(
 
 void						token_clean(
 								t_token **token_list);
-
 
 t_token						*token_last(
 								t_token *token_list);

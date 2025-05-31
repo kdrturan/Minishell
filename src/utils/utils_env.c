@@ -6,20 +6,20 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 03:21:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 13:41:41 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 20:07:01 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <utils.h>
 
-bool	will_eat(char *c)
+bool	will_eat(char c)
 {
 	if (ft_isdigit(c))
 		return (true);
 	if (c == '#' || c == '@' || c == '*' || c == '!')
 		return (true);
 	return (false);
-}	
+}
 
 int	get_valid_key_length(t_token *dollar)
 {

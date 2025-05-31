@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 14:10:58 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 20:11:38 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lexer.h>
-
 
 static void	add_word_token(t_shell *shell, char *in, int *i)
 {

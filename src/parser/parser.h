@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:21:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 14:14:31 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:57:53 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@
 void	parser_run(t_shell *shell);
 void	parse_preprocess(t_shell *shell);
 void	handle_dollar(t_shell *shell, t_token *dollar);
+void	merge_words(t_shell *shell);
 
 #endif

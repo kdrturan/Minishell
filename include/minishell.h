@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 04:10:35 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 20:13:11 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # define PROMPT "\001\033[1;32m\002🐱 OIIA OIIA$\001\033[0m\002"
+# define WHITESPACES " \t\n\v\f\r"
 
 # include <gc.h>
 

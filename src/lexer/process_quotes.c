@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:41:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 15:56:13 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 20:12:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	process_quote_token(t_shell *shell, t_token **token)
 	t_token			*new_token;
 	t_token			*temp;
 	t_token_type	type;
-	
+
 	type = (*token)->type;
 	temp = *token;
 	new_token = token_new(shell, WORD, NULL);

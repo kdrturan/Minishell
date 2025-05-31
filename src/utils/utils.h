@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 13:46:24 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 20:03:59 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int		get_valid_key_length(
 			t_token *dollar);
 
 bool	will_eat(
-			char *c);
+			char c);
 
 #endif
