@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:10 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 18:26:37 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:46:39 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ void						token_clean(
 								t_token **token_list);
 
 
-t_token	*token_last(t_token *token_list);
+t_token						*token_last(
+								t_token *token_list);
+
+void						token_insert(
+								t_token **token_list,
+								t_token *pos,
+								t_token *new_list);
 
 #endif

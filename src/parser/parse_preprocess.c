@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_preprocess.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:48:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 15:58:20 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:18:31 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

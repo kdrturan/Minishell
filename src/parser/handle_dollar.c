@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:43:05 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 18:34:57 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:25:00 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-
+#include <debug.h>
 
 static void expand_special(t_shell *shell, t_token *dollar)
 {
@@ -30,49 +30,41 @@ static void expand_special(t_shell *shell, t_token *dollar)
 
 
 
-static  void env_insert_token(t_shell *shell, t_token *dollar, char* key)
+static void env_insert_token(t_shell *shell, t_token *dollar, char *key)
 {
-    t_token** head;
-    t_token* new;
-    size_t i;
-    size_t j;
-    size_t k;
-    char *flag;
+	char	*val;
+	size_t	i = 0;
+	t_token	*insert = NULL;
 
-    k = 0;
-    flag = NULL;
-    head = NULL;
-    (*head) == NULL;
-    j = 0;
-    i = 0;
-    dollar->text = env_get_value(shell, key);
-    if (!dollar->text)
-        return;
-    while (dollar->text[i])
-    {
-        if (is_white_space(dollar->text[i]))
-        {
-            new = token_new(shell, WS, ft_strdup(" "));
-            token_add_back(head,new);
-            j = ++i;
-            while (dollar->text[i] && !is_white_space(dollar->text[i]))
-                i++;
-            new =token_new(shell, WORD, ft_substr(dollar->text, j, (i - j)));
-            token_add_back(head,new);
-        }
-        if (!dollar->text[i])
-            break;;
-        i++;
-    }
-    (*head)->prev = dollar->prev;
-    dollar->prev->next = (*head);
-    token_last((*head))->next = dollar->next;
-    dollar->next->next = token_last((*head));
+	val = env_get_value(shell, key);
+	if (!val)
+		return;
+	while (val[i])
+	{
+		if (is_white_space(val[i]))
+		{
+			size_t start = i;
+			while (val[i] && is_white_space(val[i]))
+				i++;
+			token_add_back(&insert,
+				token_new(shell, WS,
+					gc_track(&shell->gc, ft_substr(val, start, i - start))));
+		}
+		else
+		{
+			size_t start = i;
+			while (val[i] && !is_white_space(val[i]))
+				i++;
+			token_add_back(&insert,
+				token_new(shell, WORD,
+					gc_track(&shell->gc, ft_substr(val, start, i - start))));
+		}
+	}
+	printf("-----INSERT-----\n");
+	debug_print_token_list(insert);
+	token_remove(&shell->token_list, dollar);
+	token_insert(&shell->token_list, dollar->prev, insert);
 }
-
-
-
-
 
 
 
