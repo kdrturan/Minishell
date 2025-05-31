@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 16:03:46 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:53:29 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int main(int ac, char **av, char **env_data)
 	(void)ac;
 	gc_init(&shell.gc);
 	init_shell(&shell, env_data);
+	env_add(&shell, "a", "ls -la");
 	while (1)
 	{
 		shell.cmd = readline(PROMPT);
