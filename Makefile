@@ -15,7 +15,7 @@ BASE_INC_DIRS = include $(PATH_LIBFT)
 INC_DIRS      = $(addprefix $(PATH_SRC)/,$(SUBDIRS))
 PATH_INCLUDE  = $(addprefix -I ,$(BASE_INC_DIRS) $(INC_DIRS))
 
-CFLAGS =  -Wall -Wextra -Werror  #-g -fsanitize=address
+CFLAGS = -g -fsanitize=address # -Wall -Wextra -Werror  
 
 vpath %.c $(SRC_DIRS)
 
@@ -105,4 +105,4 @@ help:
 	@echo "╚════════════════════════════════════════════════════════════╝"
 	@echo ""
 
-.PHONY: all clean fclean re update_libs setup_env run_valgrind help
+.PHONY: all clean fclean re update_libs setup_env run_valgrind fsanitize help 

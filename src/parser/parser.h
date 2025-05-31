@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:21:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 19:57:53 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/01 02:15:14 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,27 @@
 # include <utils.h>
 # include <env.h>
 
-void	parser_run(t_shell *shell);
-void	parse_preprocess(t_shell *shell);
-void	handle_dollar(t_shell *shell, t_token *dollar);
-void	merge_words(t_shell *shell);
+typedef	struct s_cmd	t_cmd;
+
+struct	s_cmd
+{
+	char	**args;
+};
+
+void	parser_run(
+			t_shell *shell);
+
+void	parse_preprocess(
+			t_shell *shell);
+
+void	handle_dollar(
+			t_shell *shell,
+			t_token *dollar);
+
+void	merge_words_br(
+			t_shell *shell);
+
+void	merge_words_ar(
+			t_shell *shell);
 
 #endif

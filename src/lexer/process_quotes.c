@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:41:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 20:12:21 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/01 01:03:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	process_quote_token(t_shell *shell, t_token **token)
 	new_token->type = WORD;
 	new_token->prev = temp;
 	temp = temp->next;
-	value = NULL;
+	value = gc_track(&shell->gc, ft_strdup(""));
 	while (temp && temp->type != type)
 	{
 		value = gc_track(&shell->gc, ft_strjoin(value, temp->text));

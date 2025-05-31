@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 20:11:38 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/01 01:27:34 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,22 @@ void	lexer_run(t_shell *shell)
 	int				i;
 
 	i = 0;
-	while (shell->cmd[i])
+	while (shell->input[i])
 	{
-		type = identify_tokens(shell->cmd, i);
+		type = identify_tokens(shell->input, i);
 		if (type == WORD)
-			add_word_token(shell, shell->cmd, &i);
+			add_word_token(shell, shell->input, &i);
 		else if (type == HEREDOC || type == APPEND)
 		{
 			token_add_back(&shell->token_list,
 				token_new(shell, type,
-					gc_track(&shell->gc, ft_substr(shell->cmd, i, 2))));
+					gc_track(&shell->gc, ft_substr(shell->input, i, 2))));
 			i += 2;
 		}
 		else
 			token_add_back(&shell->token_list,
 				token_new(shell, type,
-					gc_track(&shell->gc, ft_substr(shell->cmd, i++, 1))));
+					gc_track(&shell->gc, ft_substr(shell->input, i++, 1))));
 	}
 	process_tokens(shell);
 }

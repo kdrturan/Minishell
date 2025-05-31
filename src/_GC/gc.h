@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 20:59:51 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:00:14 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/01 01:55:56 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,18 @@ struct s_gc
 	t_gc_node	*head;
 };
 
-void	gc_init(t_gc *gc);
-void	*gc_track(t_gc *gc, void *ptr);
-void	**gc_track_array(t_gc *gc, void **array);
-void	gc_free_all(t_gc *gc);
+void	gc_init(
+			t_gc *gc);
+
+void	*gc_track(
+			t_gc *gc,
+			void *ptr);
+
+void	**gc_track_array(
+			t_gc *gc,
+			void **array);
+
+void	gc_free_all(
+			t_gc *gc);
 
 #endif

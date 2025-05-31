@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 20:13:11 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/01 01:26:45 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_token		t_token;
 
 struct	s_shell
 {
-	char					*cmd;
+	char					*input;
 	t_env					*env;
 	t_token					*token_list;
 	t_gc					gc;
