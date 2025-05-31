@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_get_value.c                                    :+:      :+:    :+:   */
+/*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 02:45:16 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/31 03:21:09 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/31 03:31:59 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <env.h>
-#include <libft.h>
+#include <utils.h>
 
-char	*env_get_value(t_shell *shell, char *key)
+int	get_valid_key_length(t_token *dollar)
 {
-	size_t	i;
+	const char	*text;
+	int			i;
 
-	i = 0;
-	if (!key)
-		return (gc_track(&shell->gc, ft_strdup("")));
-	while (i < shell->env->count)
+	if (!dollar || dollar->type != DOLLAR)
+		return (0);
+	if (!dollar->next || dollar->next->type != WORD || !dollar->next->text)
+		return (0);
+	text = dollar->next->text;
+	if (!(ft_isalpha(text[0]) || text[0] == '_'))
+		return (0);
+	i = 1;
+	while (text[i])
 	{
-		if (ft_strncmp(shell->env->pairs[i].key, key, ft_strlen(key) + 1) == 0)
-			return (shell->env->pairs[i].val);
+		if (!(ft_isalnum(text[i]) || text[i] == '_'))
+			break ;
 		i++;
 	}
-	return (gc_track(&shell->gc, ft_strdup("")));
+	return (i);
 }

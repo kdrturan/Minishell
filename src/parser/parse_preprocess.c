@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   parse_preprocess.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 03:32:06 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/31 02:48:33 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/31 03:03:11 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <parser.h>
 
-# include <stdlib.h>
-# include <stdbool.h>
-# include <token.h>
-# include <libft.h>
+void	parse_preprocess(t_shell *shell)
+{
+	t_token *token;
 
-int		is_white_space(
-			int c);
-
-char	*str_change(
-			char *dst,
-			char *src,
-			size_t idx,
-			size_t len);
-
-int		get_valid_key_length(t_token *dollar);
-			
-#endif
+	token = shell->token_list;
+	while (token)
+	{
+		if (token->type == DOLLAR)
+			handle_dollar(shell, token);
+		token = token->next;
+	}
+}

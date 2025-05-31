@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 20:23:05 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 02:52:59 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #include <init.h>
 #include <gc.h>
 #include <lexer.h>
+#include <parser.h>
 #include <token.h>
 #include <env.h>
 #include <stdio.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-
+#include <debug.h>
 int	main(int ac, char **av, char **env_data)
 {
 	t_shell	shell;
@@ -35,7 +36,11 @@ int	main(int ac, char **av, char **env_data)
 			break ;
 		add_history(shell.cmd);
 		lexer_run(&shell);
-		//parser func.
+		printf("-----TOKENS AFTER LEXER-----\n");
+		debug_print_token_list(shell.token_list);
+		parser_run(&shell);
+		printf("-----TOKENS AFTER PARSER-----\n");
+		debug_print_token_list(shell.token_list);
 		//execution func.
 		token_clean(&shell.token_list);
 		free(shell.cmd);

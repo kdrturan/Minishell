@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_validate.c                                   :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 17:16:17 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/05/31 00:30:56 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/31 02:21:19 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/31 03:03:04 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <utils.h>
+#ifndef PARSER_H
+# define PARSER_H
 
-bool	is_valid_export_char(char c)
-{
-	return (ft_isalnum(c) || c == '_');
-}
+#include <minishell.h>
+#include <token.h>
 
-bool	is_special_param(char c)
-{
-	return (c == '?' || c == '$');
-}
+void	parser_run(t_shell *shell);
+void	parse_preprocess(t_shell *shell);
+void	handle_dollar(t_shell *shell, t_token *dollar);
+
+#endif

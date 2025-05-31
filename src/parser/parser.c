@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 03:32:06 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/31 02:38:54 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/05/31 02:53:17 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <parser.h>
 
-# include <stdlib.h>
-# include <stdbool.h>
-# include <token.h>
-# include <libft.h>
-
-int		is_white_space(
-			int c);
-
-char	*str_change(
-			char *dst,
-			char *src,
-			size_t idx,
-			size_t len);
-
-int		get_valid_key_length(t_token *dollar);
-			
-#endif
+void	parser_run(t_shell *shell)
+{
+	parse_preprocess(shell);
+}

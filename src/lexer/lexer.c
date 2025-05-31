@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 21:11:47 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 02:43:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	lexer_run(t_shell *shell)
 					gc_track(&shell->gc, ft_substr(shell->cmd, i++, 1))));
 	}
 	process_tokens(shell);
-	debug_print_token_list(shell->token_list);
 }
