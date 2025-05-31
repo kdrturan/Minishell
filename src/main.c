@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 20:14:02 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 20:28:03 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	main(int ac, char **av, char **env_data)
 	init_shell(&shell, env_data);
 	while (1)
 	{
-		shell.cmd = readline(PROMPT);
-		shell.cmd = ft_strtrim(shell.cmd, WHITESPACES);
+		shell.cmd = ft_strtrim(gc_track(&shell.gc, readline(PROMPT)), 
+				WHITESPACES);
 		if (shell.cmd == NULL)
 			break ;
 		add_history(shell.cmd);
