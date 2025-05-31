@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:15:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 23:04:21 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 13:18:47 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	process_tokens(t_shell *shell)
 	tmp = shell->token_list;
 	while (tmp)
 	{
-		if (tmp->type == DQUOTE || tmp->type == QUOTE)
+		if (tmp->type == QUOTE)
 			process_quote_token(shell, &tmp);
 		tmp = tmp->next;
 	}
