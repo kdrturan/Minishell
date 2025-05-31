@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:45:42 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 20:46:05 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:11:50 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <init.h>
-#include <env.h>
-#include <signal_handler.h>
 
 void	init_shell(t_shell *shell, char **env_data)
 {

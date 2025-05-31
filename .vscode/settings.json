@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.c": "c",
         "*.embeddedhtml": "html",
         "debug.h": "c",
         "optional": "c",
@@ -18,6 +19,8 @@
         "stdlib.h": "c",
         "history.h": "c",
         "libft.h": "c",
-        "gc.h": "c"
+        "gc.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c"
     }
 }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_remove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 03:55:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 04:01:12 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:12:13 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
-#include <libft.h>
 
 void	env_remove(t_shell *shell, char *key)
 {

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_get_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 02:45:16 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:12:33 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
-#include <libft.h>
 
 char	*env_get_value(t_shell *shell, char *key)
 {

@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   token_remove.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:58:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/28 18:13:31 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:34:19 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "token.h"
-
+#include <stdio.h>
 void	token_remove(t_token **head, t_token *node)
 {
 	if (!head || !*head || !node)
-		return ;
+	return ;
+	if ((*head) == node)
+
+		*head = ((*head)->next);
 	if (node->prev)
 		node->prev->next = node->next;
 	else

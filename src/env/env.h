@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:22:48 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 04:13:57 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:12:41 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <stdlib.h>
 # include <minishell.h>
+# include <libft.h>
+# include <string.h>
+# include <gc.h>
 
 typedef struct s_pair	t_pair;
 typedef struct s_env	t_env;

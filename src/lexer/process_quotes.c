@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   process_quotes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 22:41:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 23:10:09 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:56:13 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lexer.h>
-#include <token.h>
-#include <minishell.h>
-#include <libft.h>
-#include <env.h>
-#include <utils.h>
 
 void	process_quote_token(t_shell *shell, t_token **token)
 {
@@ -23,7 +18,7 @@ void	process_quote_token(t_shell *shell, t_token **token)
 	t_token			*new_token;
 	t_token			*temp;
 	t_token_type	type;
-
+	
 	type = (*token)->type;
 	temp = *token;
 	new_token = token_new(shell, WORD, NULL);

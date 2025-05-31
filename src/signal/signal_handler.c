@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:57 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 20:47:33 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:13:41 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal_handler.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <readline/history.h>
-#include <readline/readline.h>
-#include <libft.h>
 
 static void	signal_handler(int sig)
 {

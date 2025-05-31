@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   debug_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 22:19:40 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:01:54 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:12:50 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <debug.h>
-#include <stdio.h>
 
 void	debug_env_print(t_env *env)
 {

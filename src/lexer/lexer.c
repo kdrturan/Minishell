@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 02:43:21 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:10:58 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lexer.h>
-#include <token.h>
-#include <minishell.h>
-#include <libft.h>
-#include <utils.h>
-#include <debug.h>
+
 
 static void	add_word_token(t_shell *shell, char *in, int *i)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:10 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:31:30 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:14:14 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <minishell.h>
+# include <libft.h>
+# include <gc.h>
 
 typedef struct s_token		t_token;
 typedef enum e_token_type	t_token_type;

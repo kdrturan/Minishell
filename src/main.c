@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 02:52:59 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 16:03:46 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,21 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 #include <debug.h>
-int	main(int ac, char **av, char **env_data)
-{
-	t_shell	shell;
 
-	(void) av;
-	(void) ac;
+int main(int ac, char **av, char **env_data)
+{
+	t_shell shell;
+
+	(void)av;
+	(void)ac;
 	gc_init(&shell.gc);
 	init_shell(&shell, env_data);
 	while (1)
 	{
 		shell.cmd = readline(PROMPT);
+		shell.cmd = ft_strtrim(shell.cmd, "\t ");
 		if (shell.cmd == NULL)
-			break ;
+			break;
 		add_history(shell.cmd);
 		lexer_run(&shell);
 		printf("-----TOKENS AFTER LEXER-----\n");
@@ -41,7 +43,7 @@ int	main(int ac, char **av, char **env_data)
 		parser_run(&shell);
 		printf("-----TOKENS AFTER PARSER-----\n");
 		debug_print_token_list(shell.token_list);
-		//execution func.
+		// execution func.
 		token_clean(&shell.token_list);
 		free(shell.cmd);
 	}

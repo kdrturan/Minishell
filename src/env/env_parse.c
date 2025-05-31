@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:57:56 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:03:56 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:12:20 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
-#include <gc.h>
-#include <libft.h>
 
 t_env	*env_parse(t_shell *shell, char **env_data)
 {

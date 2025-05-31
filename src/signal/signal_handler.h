@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 01:17:52 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:08:55 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:13:16 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <signal.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <libft.h>
 
 typedef enum e_mode	t_mode;
 

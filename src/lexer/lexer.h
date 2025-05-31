@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:04:55 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 23:04:42 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 14:14:37 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define LEXER_H
 
 # include <utils.h>
+# include <token.h>
+# include <minishell.h>
+# include <libft.h>
+# include <debug.h>
+# include <env.h>
+
 
 typedef struct s_shell		t_shell;
 typedef struct s_token		t_token;

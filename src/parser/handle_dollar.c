@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:43:05 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 13:55:27 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 15:33:53 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <unistd.h>
-#include <utils.h>
-#include <libft.h>
-#include <env.h>
 
 static void expand_special(t_shell *shell, t_token *dollar)
 {
@@ -52,9 +48,11 @@ static void expand_word(t_shell *shell, t_token *dollar)
 
 void    handle_dollar(t_shell *shell, t_token *dollar)
 {
-    if (!dollar || !dollar->next || !dollar->next->text)
+    if (!dollar || !dollar->next)
         return ;
-    if (dollar->next->type == DOLLAR
+    if (dollar->next->type == DQUOTE || dollar->next->type == QUOTE)
+        token_remove(&shell->token_list, dollar);
+    else if (dollar->next->type == DOLLAR
         || *(dollar->next->text) == '?'
         || *(dollar->next->text) == '-'
         || will_eat(*(dollar->next->text)))
