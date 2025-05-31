@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_remove.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:58:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 15:34:19 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:33:46 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	token_remove(t_token **head, t_token *node)
 	if (!head || !*head || !node)
 	return ;
 	if ((*head) == node)
-
 		*head = ((*head)->next);
 	if (node->prev)
 		node->prev->next = node->next;

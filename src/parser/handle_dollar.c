@@ -6,12 +6,11 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:43:05 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 19:25:00 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/05/31 19:44:28 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <debug.h>
 
 static void expand_special(t_shell *shell, t_token *dollar)
 {
@@ -28,45 +27,47 @@ static void expand_special(t_shell *shell, t_token *dollar)
     token_remove(shell->token_list, dollar->next);
 }
 
-
-
-static void env_insert_token(t_shell *shell, t_token *dollar, char *key)
+static t_token	*tokenize_env_value(t_shell *s, char *val)
 {
-	char	*val;
-	size_t	i = 0;
-	t_token	*insert = NULL;
+	t_token	*ins;
+	size_t	i;
+	size_t	start;
 
-	val = env_get_value(shell, key);
-	if (!val)
-		return;
+	ins = NULL;
+	i = 0;
 	while (val[i])
 	{
+		start = i;
 		if (is_white_space(val[i]))
 		{
-			size_t start = i;
 			while (val[i] && is_white_space(val[i]))
 				i++;
-			token_add_back(&insert,
-				token_new(shell, WS,
-					gc_track(&shell->gc, ft_substr(val, start, i - start))));
+			token_add_back(&ins, token_new(s, WS,
+				gc_track(&s->gc, ft_substr(val, start, i - start))));
 		}
 		else
 		{
-			size_t start = i;
 			while (val[i] && !is_white_space(val[i]))
 				i++;
-			token_add_back(&insert,
-				token_new(shell, WORD,
-					gc_track(&shell->gc, ft_substr(val, start, i - start))));
+			token_add_back(&ins, token_new(s, WORD,
+				gc_track(&s->gc, ft_substr(val, start, i - start))));
 		}
 	}
-	printf("-----INSERT-----\n");
-	debug_print_token_list(insert);
+	return (ins);
+}
+
+void	env_insert_token(t_shell *shell, t_token *dollar, char *key)
+{
+	t_token	*insert;
+
+	dollar->text = env_get_value(shell, key);
+	if (!dollar->text)
+		return ;
+	dollar->text = dollar->text;
+	insert = tokenize_env_value(shell, dollar->text);
 	token_remove(&shell->token_list, dollar);
 	token_insert(&shell->token_list, dollar->prev, insert);
 }
-
-
 
 static void expand_word(t_shell *shell, t_token *dollar)
 {
