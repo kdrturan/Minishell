@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:10 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 14:14:14 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:26:37 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void						token_add_back(
 
 void						token_clean(
 								t_token **token_list);
+
+
+t_token	*token_last(t_token *token_list);
 
 #endif

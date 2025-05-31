@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_add_back.c                                   :+:      :+:    :+:   */
+/*   token_last.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 20:39:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 18:25:38 by kdrturan         ###   ########.fr       */
+/*   Created: 2025/05/31 18:25:43 by kdrturan          #+#    #+#             */
+/*   Updated: 2025/05/31 18:26:12 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "token.h"
+#include <token.h>
 
-void	token_add_back(t_token **token_list, t_token *token)
+t_token	*token_last(t_token *token_list)
 {
-	t_token	*last;
+	t_token	*l_ptr;
 
-	if (!token_list || !(*token_list))
-	{
-		*token_list = token;
-		return ;
-	}
-	last = token_last(*token_list);
-	last->next = token;
-	token->prev = last;
+	if (!token_list)
+		return (NULL);
+	l_ptr = token_list;
+	while (l_ptr->next != NULL)
+		l_ptr = l_ptr->next;
+	return (l_ptr);
 }

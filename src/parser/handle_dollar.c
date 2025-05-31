@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:43:05 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 16:56:57 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/05/31 18:34:57 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void expand_special(t_shell *shell, t_token *dollar)
 
 static  void env_insert_token(t_shell *shell, t_token *dollar, char* key)
 {
+    t_token** head;
     t_token* new;
     size_t i;
     size_t j;
@@ -40,6 +41,8 @@ static  void env_insert_token(t_shell *shell, t_token *dollar, char* key)
 
     k = 0;
     flag = NULL;
+    head = NULL;
+    (*head) == NULL;
     j = 0;
     i = 0;
     dollar->text = env_get_value(shell, key);
@@ -50,19 +53,21 @@ static  void env_insert_token(t_shell *shell, t_token *dollar, char* key)
         if (is_white_space(dollar->text[i]))
         {
             new = token_new(shell, WS, ft_strdup(" "));
-            i++;
-            j = i;
+            token_add_back(head,new);
+            j = ++i;
             while (dollar->text[i] && !is_white_space(dollar->text[i]))
                 i++;
-             new =token_new(shell, WORD, ft_substr(dollar->text, j, (i - j)));
+            new =token_new(shell, WORD, ft_substr(dollar->text, j, (i - j)));
+            token_add_back(head,new);
         }
         if (!dollar->text[i])
-        {
-            return;
-        }
+            break;;
         i++;
     }
-    
+    (*head)->prev = dollar->prev;
+    dollar->prev->next = (*head);
+    token_last((*head))->next = dollar->next;
+    dollar->next->next = token_last((*head));
 }
 
 
