@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   redir_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 05:09:59 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/01 18:02:28 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/01 16:52:38 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/01 16:58:29 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include <parser.h>
 
-# include <stdio.h>
-# include <env.h>
-# include <token.h>
-# include <parser.h>
-
-void	debug_print_token_list(
-			t_token *list);
-
-void	debug_env_print(
-			t_env *env);
-
-void	debug_print_cmd(
-			const t_cmd *cmd);
-
-#endif
+t_redir	*redir_new(t_shell *shell, t_redir_type type, char *target)
+{
+	t_redir	*redir;
+	
+	if (!shell)
+		return (NULL);
+	redir = gc_track(&shell->gc, malloc(sizeof(t_redir)));
+	if (!redir)
+		return (NULL);
+	redir->type = type;
+	redir->target = target;
+	redir->next = NULL;
+}

@@ -3,7 +3,7 @@ NAME        = minishell
 PATH_SRC    = src
 PATH_OBJ    = obj
 
-SUBDIRS     = signal token utils init env _GC debug lexer parser
+SUBDIRS     = signal token utils init env _GC debug lexer parser parser/cmd_utils
 
 PATH_LIBFT  = lib/libft
 LIBFT       = $(PATH_LIBFT)/libft.a
@@ -20,7 +20,10 @@ CFLAGS = -g -fsanitize=address # -Wall -Wextra -Werror
 vpath %.c $(SRC_DIRS)
 
 SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
-OBJS = $(addprefix $(PATH_OBJ)/,$(notdir $(SRCS:.c=.o)))
+
+OBJS = $(patsubst $(PATH_SRC)/%, \
+                  $(PATH_OBJ)/%, \
+                  $(SRCS:.c=.o))
 
 UNAME_S := $(shell uname -s)
 
@@ -61,8 +64,8 @@ $(LIBFT):
 $(PATH_OBJ):
 	@mkdir -p $(PATH_OBJ) $(OBJ_SUBDIRS)
 
-$(PATH_OBJ)/%.o: %.c | $(PATH_OBJ)
-	@$(CC) $(CFLAGS) $(PATH_INCLUDE) -o $@ -c $?
+$(PATH_OBJ)/%.o: $(PATH_SRC)/%.c | $(PATH_OBJ)
+	@$(CC) $(CFLAGS) $(PATH_INCLUDE) -o $@ -c $<
 
 $(NAME): $(LIBFT) $(OBJS) 
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)

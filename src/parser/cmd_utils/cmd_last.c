@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   cmd_last.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 05:09:59 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/01 18:02:28 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/01 17:52:58 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/01 17:54:52 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include <parser.h>
 
-# include <stdio.h>
-# include <env.h>
-# include <token.h>
-# include <parser.h>
+t_cmd	*cmd_last(t_cmd *cmd_list)
+{
+	t_cmd *l_ptr;
 
-void	debug_print_token_list(
-			t_token *list);
-
-void	debug_env_print(
-			t_env *env);
-
-void	debug_print_cmd(
-			const t_cmd *cmd);
-
-#endif
+	if (!cmd_list)
+		return (NULL);
+	l_ptr = cmd_list;
+	while (l_ptr->next != NULL)
+		l_ptr = l_ptr->next;
+	return (l_ptr);
+}

@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   redir_add_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 05:09:59 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/01 18:02:28 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/01 17:51:04 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/01 17:55:27 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include <parser.h>
 
-# include <stdio.h>
-# include <env.h>
-# include <token.h>
-# include <parser.h>
+void	redir_add_back(t_redir **redir_list, t_redir *redir)
+{
+	t_redir	*last;
 
-void	debug_print_token_list(
-			t_token *list);
-
-void	debug_env_print(
-			t_env *env);
-
-void	debug_print_cmd(
-			const t_cmd *cmd);
-
-#endif
+	if (!redir_list || !(*redir_list))
+	{
+		*redir_list = redir;
+		return ;
+	}
+	last = redir_last(*redir_list);
+	last->next = redir;
+}
