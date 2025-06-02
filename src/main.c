@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/01 01:42:23 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/02 18:24:32 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ int	main(int ac, char **av, char **env_data)
 		parser_run(&shell);
 		printf("-----TOKENS AFTER PARSE-----\n");
 		debug_print_token_list(shell.token_list);
+		debug_print_cmd_list(shell.cmd_list);
 		// execution func.
 		token_clean(&shell.token_list);
+		cmd_clean(&shell.cmd_list);
 		free(shell.input);
 	}
 	gc_free_all(&shell.gc);

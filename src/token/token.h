@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:10 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 20:06:28 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/02 22:08:53 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ typedef enum e_token_type	t_token_type;
 
 enum						e_token_type
 {
-	WORD,
-	PIPE,
+	INPUT,
+	OUTPUT,
 	HEREDOC,
 	APPEND,
+	WORD,
+	PIPE,
 	QUOTE,
 	DQUOTE,
 	DOLLAR,
-	INPUT,
-	OUTPUT,
 	WS,
 	NONE
 };

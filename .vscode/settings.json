@@ -22,6 +22,7 @@
         "gc.h": "c",
         "unistd.h": "c",
         "stdio.h": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "chrono": "c"
     }
 }

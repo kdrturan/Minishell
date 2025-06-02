@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 17:58:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/01 18:01:35 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 00:53:37 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static const char	*redir_type_to_str(t_redir_type type)
 {
-	if (type == R_OUT)
+	if (type == OUTPUT)
 		return (">");
-	if (type == R_OUT_APPEND)
+	if (type == APPEND)
 		return (">>");
-	if (type == R_IN)
+	if (type == INPUT)
 		return ("<");
-	if (type == R_HEREDOC)
+	if (type == HEREDOC)
 		return ("<<");
 	return ("?");
 }
@@ -29,14 +29,18 @@ void	debug_print_redir(const t_redir *redir)
 {
 	while (redir)
 	{
-		printf("    [redir] %-3s -> \"%s\"\n",
-			redir_type_to_str(redir->type),
-			redir->target ? redir->target : "(null)");
+		printf("    [redir] %-3s -> \"",
+			redir_type_to_str(redir->type));
+		if (redir->target)
+			printf("%s", redir->target);
+		else
+			printf("(null)");
+		printf("\"\n");
 		redir = redir->next;
 	}
 }
 
-void	debug_print_cmd(const t_cmd *cmd)
+void	debug_print_cmd_list(const t_cmd *cmd)
 {
 	int	i;
 

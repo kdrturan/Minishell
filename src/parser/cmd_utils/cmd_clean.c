@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir_last.c                                       :+:      :+:    :+:   */
+/*   cmd_clean.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/01 17:53:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 00:54:16 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/02 18:20:30 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/02 18:24:15 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-t_redir	*redir_last(t_redir *redir_list)
+void	cmd_clean(t_cmd	**cmd_list)
 {
-	t_redir	*l_ptr;
+	t_cmd	*current;
+	t_cmd	*next;
 
-	if (!redir_list)
-		return (NULL);
-	l_ptr = redir_list;
-	while (l_ptr->next != NULL)
-		l_ptr = l_ptr->next;
-	return (l_ptr);
+	if (!cmd_list || !*cmd_list)
+		return ;
+	current = *cmd_list;
+	while (current)
+	{
+		next = current->next;
+		current->next = NULL;
+		current = next;
+	}
+	*cmd_list = NULL;
 }

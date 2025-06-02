@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/01 16:33:49 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 00:53:03 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_shell		t_shell;
 typedef struct s_env		t_env;
 typedef struct s_token		t_token;
-typedef	struct s_cmd		t_cmd;
+typedef struct s_cmd		t_cmd;
 
 struct	s_shell
 {
