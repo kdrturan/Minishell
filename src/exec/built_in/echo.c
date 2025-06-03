@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:41:22 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/04 01:56:28 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/03 18:12:27 by abturan           #+#    #+#             */
+/*   Updated: 2025/06/04 01:43:58 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exec.h>
+#include<exec.h>
 
-void	env(t_shell *shell)
+void    echo(t_shell *shell,t_cmd *cmd)
 {
-	pid_t	pid;
-	pid = fork();
-	if (pid == 0)
-	{
-		size_t	i;
+    size_t i;
+    int flag;
 
-		i = 0;
-		while (i < shell->env->count)
-		{
-			printf("%s=%s\n", shell->env->pairs[i].key, shell->env->pairs[i].val);
-			i++;
-		}
-	}
-	
+    flag = 0;
+    i = 1;
+    while (cmd->args[i])
+    {
+        if (!ft_strncmp(cmd->args[i], "-n", 3))
+            flag = 1;
+        else
+            printf("%s ",cmd->args[i]);
+        i++;
+    }
+    if (flag == 0)   
+        printf("\n");
 }
