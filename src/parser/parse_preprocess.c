@@ -6,11 +6,40 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:48:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/01 01:42:58 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 16:24:51 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+
+static void	mark_here_dollars(t_shell *shell)
+{
+	t_token	*token;
+
+	token = shell->token_list;
+	while (token)
+	{
+		if (token->type == HEREDOC)
+		{
+			token = token->next;
+			while (token && token->type != DOLLAR)
+				token = token->next;
+			if (token && token->type == DOLLAR)
+			{
+				if (token->next && token->next->type == WORD)
+				{
+					token_insert(&shell, token->next,
+						token_new(shell, WORD, gc_track(&shell->gc, ft_strjoin("$", token->next->text))));
+					token_remove(&shell->token_list, token->next);
+				}
+				token_remove(&shell->token_list, token);
+			}
+			else
+				break;
+		}
+		token = token->next;
+	}
+}
 
 static void	remove_quotes(t_shell *shell)
 {
@@ -38,6 +67,7 @@ void	parse_preprocess(t_shell *shell)
 	t_token	*token;
 
 	token = shell->token_list;
+	mark_here_dollars(shell);
 	while (token)
 	{
 		if (token->type == DOLLAR)
