@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:52:38 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 00:54:10 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 05:17:05 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_redir	*redir_new(t_shell *shell, t_redir_type type, char *target)
 	if (!redir)
 		return (NULL);
 	redir->type = type;
-	redir->target = target;
+	redir->target = NULL;
+	if (target)
+		redir->target = gc_track(&shell->gc, ft_strdup(target));
 	redir->next = NULL;
 }

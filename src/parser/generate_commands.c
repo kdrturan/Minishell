@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 18:03:49 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 00:57:33 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 05:18:19 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static t_redir	*get_redir(t_shell *shell, t_token *token)
 	t_redir			*redir;
 	t_redir_type	type;
 
+	redir = NULL;
 	while (token && (token->type != PIPE))
 	{
 		type = token->type;
