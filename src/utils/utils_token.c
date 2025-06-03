@@ -1,42 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   utils_token.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 14:30:44 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/03 14:28:36 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/03 14:30:26 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <utils.h>
 
-# include <stdlib.h>
-# include <stdbool.h>
-# include <token.h>
-# include <libft.h>
-
-int		is_white_space(
-			int c);
-
-char	*str_change(
-			char *dst,
-			char *src,
-			size_t idx,
-			size_t len);
-
-int		get_valid_key_length(
-			t_token *dollar);
-
-bool	will_eat(
-			char c);
-
-bool	validate_input(
-			char *input);
-
-t_token	*skip_ws(
-			t_token *tok);
-
-#endif
+t_token	*skip_ws(t_token *tok)
+{
+	while (tok && tok->type == WS)
+		tok = tok->next;
+	return (tok);
+}

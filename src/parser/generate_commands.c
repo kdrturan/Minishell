@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 18:03:49 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 14:16:09 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 14:30:09 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,25 @@ static char	**get_args(t_shell *shell)
 	return (args);
 }
 
-static void	add_redir(t_shell *shell, t_token **token,
-		t_redir **redir, t_redir_type type)
+static void	add_redir(t_shell *sh, t_token **tok,
+						t_redir **lst, t_redir_type type)
 {
-	while (token && *token && (*token)->type != PIPE)
-	{
-		if ((*token)->type == WORD)
-		{
-			redir_add_back(redir, redir_new(shell, type, (*token)->text));
-			if ((*token)->next)
-			{
-				(*token) = (*token)->next;
-				token_remove(&shell->token_list, (*token)->prev);
-			}
-			else
-				token_remove(&shell->token_list, (*token));
-			break ;
-		}
-		(*token) = (*token)->next;
-		token_remove(&shell->token_list, (*token)->prev);
-	}
+	t_token	*op;
+	t_token	*target;
+
+	op = *tok;
+	*tok = (*tok)->next;
+	token_remove(&sh->token_list, op);
+	*tok = skip_ws(*tok);
+	if (!*tok || (*tok)->type == PIPE)
+		return ;
+	target = *tok;
+	if (target->type != WORD)
+		return ;
+	redir_add_back(lst, redir_new(sh, type, target->text));
+	*tok = target->next;
+	token_remove(&sh->token_list, target);
+	return ;
 }
 
 static t_redir	*get_redir(t_shell *shell, t_token *token)
@@ -78,7 +77,10 @@ static t_redir	*get_redir(t_shell *shell, t_token *token)
 		type = token->type;
 		if (type == INPUT || type == OUTPUT
 			|| type == HEREDOC || type == APPEND)
+		{
 			add_redir(shell, &token, &redir, type);
+			continue ;
+		}
 		token = token->next;
 	}
 	return (redir);
