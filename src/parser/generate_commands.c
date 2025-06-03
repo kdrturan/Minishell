@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 18:03:49 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 05:18:19 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 14:16:09 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	**get_args(t_shell *shell)
 static void	add_redir(t_shell *shell, t_token **token,
 		t_redir **redir, t_redir_type type)
 {
-	while (token && (*token)->type != PIPE)
+	while (token && *token && (*token)->type != PIPE)
 	{
 		if ((*token)->type == WORD)
 		{
@@ -89,6 +89,8 @@ void	generate_commands(t_shell *shell)
 	t_redir	*redir;
 	char	**args;
 
+	args = NULL;
+	redir = NULL;
 	while (shell->token_list)
 	{
 		redir = get_redir(shell, shell->token_list);

@@ -6,20 +6,18 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 17:53:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 00:54:16 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 13:57:52 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-t_redir	*redir_last(t_redir *redir_list)
+t_redir *redir_last(t_redir *redir)
 {
-	t_redir	*l_ptr;
-
-	if (!redir_list)
+	if (!redir)
 		return (NULL);
-	l_ptr = redir_list;
-	while (l_ptr->next != NULL)
-		l_ptr = l_ptr->next;
-	return (l_ptr);
+	while (redir->next)
+		redir = redir->next;
+	return (redir);
 }
+
