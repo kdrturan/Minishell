@@ -6,7 +6,7 @@
 /*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:23 by abturan           #+#    #+#             */
-/*   Updated: 2025/06/03 20:04:08 by abturan          ###   ########.fr       */
+/*   Updated: 2025/06/03 20:16:08 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void cd(t_shell *shell, t_cmd *cmd)
     }
     if (chdir(cmd->args[1]) == -1)
         return;
-    if (getcwd(NULL, 0) != NULL)
+    if (gc_track(&shell->gc ,getcwd(NULL, 0) != NULL))
     {
-        buff =  getcwd(NULL, 0);
+        buff =  gc_track(&shell->gc ,getcwd(NULL, 0) != NULL);
         env_set(shell, "PWD", buff);
         env_set(shell, "OLDPWD", tmp);
     }
