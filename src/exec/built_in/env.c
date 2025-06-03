@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:36:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 18:13:29 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/03 17:41:22 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/03 17:49:59 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	exec(t_shell *shell)
+void	env(t_shell *shell)
 {
-	t_cmd   *cmds;
+	size_t	i;
 
-	cmds = shell->cmd_list;
-	while (cmds)
+	i = 0;
+	while (i < shell->env->count)
 	{
-		if (!ft_strncmp("env", cmds->args[0], ft_strlen(cmds->args[0]) + 1))
-			env(shell);
-		else if (!ft_strncmp("export", cmds->args[0], ft_strlen(cmds->args[0] + 1)))
-			export(shell, cmds);
-		else if (!ft_strncmp("unset", cmds->args[0], ft_strlen(cmds->args[0] + 1)))
-			unset(shell, cmds);
-		cmds = cmds->next;
-	}    
+		printf("%s=%s\n", shell->env->pairs[i].key, shell->env->pairs[i].val);
+		i++;
+	}
 }

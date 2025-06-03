@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:36:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 18:13:29 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/03 17:53:36 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/03 18:03:56 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	exec(t_shell *shell)
+void	export(t_shell *shell, t_cmd *cmd)
 {
-	t_cmd   *cmds;
+	char	**arg;
 
-	cmds = shell->cmd_list;
-	while (cmds)
+	arg = NULL;
+	if (cmd->args[1])
 	{
-		if (!ft_strncmp("env", cmds->args[0], ft_strlen(cmds->args[0]) + 1))
-			env(shell);
-		else if (!ft_strncmp("export", cmds->args[0], ft_strlen(cmds->args[0] + 1)))
-			export(shell, cmds);
-		else if (!ft_strncmp("unset", cmds->args[0], ft_strlen(cmds->args[0] + 1)))
-			unset(shell, cmds);
-		cmds = cmds->next;
-	}    
+		arg = gc_track_array(&shell->gc, ft_split(cmd->args[1], '='));
+		if (!arg)
+			return ;
+		env_set(shell, arg[0], arg[1]);
+	}
 }

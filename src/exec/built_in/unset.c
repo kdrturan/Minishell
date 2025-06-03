@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:36:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 18:13:29 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/03 18:05:52 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/03 18:12:54 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	exec(t_shell *shell)
+void	unset(t_shell *shell, t_cmd *cmd)
 {
-	t_cmd   *cmds;
-
-	cmds = shell->cmd_list;
-	while (cmds)
+	if (cmd->args[1])
 	{
-		if (!ft_strncmp("env", cmds->args[0], ft_strlen(cmds->args[0]) + 1))
-			env(shell);
-		else if (!ft_strncmp("export", cmds->args[0], ft_strlen(cmds->args[0] + 1)))
-			export(shell, cmds);
-		else if (!ft_strncmp("unset", cmds->args[0], ft_strlen(cmds->args[0] + 1)))
-			unset(shell, cmds);
-		cmds = cmds->next;
-	}    
+		env_remove(shell, cmd->args[1]);
+	}
 }

@@ -3,7 +3,7 @@ NAME        = minishell
 PATH_SRC    = src
 PATH_OBJ    = obj
 
-SUBDIRS     = signal token utils init env _GC debug lexer parser parser/cmd_utils parser/redir_utils
+SUBDIRS     = signal token utils init env _GC debug lexer parser parser/cmd_utils parser/redir_utils exec exec/built_in
 
 PATH_LIBFT  = lib/libft
 LIBFT       = $(PATH_LIBFT)/libft.a
