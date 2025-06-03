@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 14:14:07 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 19:21:54 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 #include <debug.h>
+# include<exec.h>
+
 
 int	main(int ac, char **av, char **env_data)
 {
@@ -52,6 +54,7 @@ int	main(int ac, char **av, char **env_data)
 		debug_print_token_list(shell.token_list);
 		debug_print_cmd_list(shell.cmd_list);
 		// execution func.
+		cd(&shell, shell.cmd_list);
 		token_clean(&shell.token_list);
 		cmd_clean(&shell.cmd_list);
 		free(shell.input);

@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 18:00:15 by abturan          ###   ########.fr       */
+/*   Created: 2025/06/03 18:12:27 by abturan           #+#    #+#             */
+/*   Updated: 2025/06/03 18:30:07 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
 
-# define PROMPT "\001\033[1;32m\002🐱 OIIA OIIA$\001\033[0m\002"
-# define WHITESPACES " \t\n\v\f\r"
-
-# include <gc.h>
+#include<exec.h>
 
 
-typedef struct s_shell		t_shell;
-typedef struct s_env		t_env;
-typedef struct s_token		t_token;
-typedef struct s_cmd		t_cmd;
-
-struct	s_shell
+void    echo(t_shell *shell,t_cmd *cmd)
 {
-	char					*input;
-	t_env					*env;
-	t_token					*token_list;
-	t_cmd					*cmd_list;
-	t_gc					gc;
-};
+    size_t i;
+    int flag;
 
-#endif
+    flag = 0;
+    i = 1;
+    while (cmd->args[i])
+    {
+        if (!ft_strncmp(cmd->args[i], "-n", 3))
+            flag = 1;
+        else
+            printf("%s ",cmd->args[i]);
+        i++;
+    }
+    if (flag == 0)   
+        printf("\n");
+}

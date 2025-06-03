@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 18:00:15 by abturan          ###   ########.fr       */
+/*   Created: 2025/06/03 18:12:29 by abturan           #+#    #+#             */
+/*   Updated: 2025/06/03 19:22:28 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# define PROMPT "\001\033[1;32m\002🐱 OIIA OIIA$\001\033[0m\002"
-# define WHITESPACES " \t\n\v\f\r"
-
-# include <gc.h>
 
 
-typedef struct s_shell		t_shell;
-typedef struct s_env		t_env;
-typedef struct s_token		t_token;
-typedef struct s_cmd		t_cmd;
 
-struct	s_shell
-{
-	char					*input;
-	t_env					*env;
-	t_token					*token_list;
-	t_cmd					*cmd_list;
-	t_gc					gc;
-};
+#ifndef EXEC_H
+# define EXEC_H
+
+# include<stdio.h>
+# include<minishell.h>
+# include<parser.h>
+#include <unistd.h>
+
+void    echo(t_shell *shell,t_cmd *cmd);
+void cd(t_shell *shell, t_cmd *cmd);
 
 #endif
