@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:48:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 16:24:51 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/03 17:11:19 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ static void	mark_here_dollars(t_shell *shell)
 		{
 			token = token->next;
 			while (token && token->type != DOLLAR)
+			{
+				if (token->type == WORD)
+					return;
 				token = token->next;
+			}
 			if (token && token->type == DOLLAR)
 			{
 				if (token->next && token->next->type == WORD)
