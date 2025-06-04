@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 17:55:28 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/04 17:50:12 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ int	main(int ac, char **av, char **env_data)
 			continue;
 		}
 		lexer_run(&shell);
+		printf("-----LEXER------\n");
+		debug_print_token_list(shell.token_list);
 		parser_run(&shell);
+		printf("-----PARSE------\n");
+		debug_print_token_list(shell.token_list);
 		debug_print_cmd_list(shell.cmd_list);
 		exec(&shell);
 		token_clean(&shell.token_list);

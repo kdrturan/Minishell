@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 01:25:22 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 15:58:32 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/04 17:27:00 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	validate_input(char *input)
 	while (input[i])
 	{
 		if (input[i] == '"' || input[i] == '\'')
-			quote_count++;
+			;//quote_count++;
 		i++;
 	}
 	if (quote_count % 2 != 0)

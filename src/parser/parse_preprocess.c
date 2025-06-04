@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:48:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/04 16:32:31 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/04 18:00:58 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,33 @@ static void	remove_quotes(t_shell *shell)
 void	parse_preprocess(t_shell *shell)
 {
 	t_token	*token;
+	char	*value;
 
+	value = NULL;
 	token = shell->token_list;
 	mark_here_dollars(shell);
 	while (token)
 	{
-		if (token->type == DOLLAR)
-			handle_dollar(shell, token);
+		if (token->type == DQUOTE && token->next)
+		{
+			token = token->next;
+			while (token && token->type != DQUOTE)
+			{
+				if (token->type == DOLLAR)
+					handle_dollar(shell, token);
+				token = token->next;
+			}
+		}
+		if (token->type == QUOTE && token->next)
+		{
+			token = token->next;
+			while (token && token->type != QUOTE)
+			{
+				value = gc_track(&shell->gc, ft_strjoin(value, token->text));
+				token = token->next;
+				token_remove(&shell->token_list, token->prev);
+			}
+		}
 		token = token->next;
 	}
 	merge_words_br(shell);
