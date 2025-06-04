@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:36:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/04 02:03:44 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/04 16:33:34 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	exec(t_shell *shell)
 	cmds = shell->cmd_list;
 	while (cmds)
 	{
-		printf("[child] pid: %d\n", getpid());
 		if (!ft_strncmp("env", cmds->args[0], ft_strlen(cmds->args[0]) + 1))
 			env(shell);
 		else if (!ft_strncmp("export", cmds->args[0], ft_strlen(cmds->args[0] + 1)))

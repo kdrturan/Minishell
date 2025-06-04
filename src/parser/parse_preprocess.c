@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:48:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 17:11:19 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/04 16:32:31 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	mark_here_dollars(t_shell *shell)
 			{
 				if (token->next && token->next->type == WORD)
 				{
-					token_insert(&shell, token->next,
+					token_insert(&shell->token_list, token->next,
 						token_new(shell, WORD, gc_track(&shell->gc, ft_strjoin("$", token->next->text))));
 					token_remove(&shell->token_list, token->next);
 				}

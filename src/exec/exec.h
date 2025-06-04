@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/04 01:51:41 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/04 16:35:51 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <env.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <stdio.h>
 
 void	exec(t_shell *shell);
 void	env(t_shell *shell);
