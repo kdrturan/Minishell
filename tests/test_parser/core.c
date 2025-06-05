@@ -23,25 +23,25 @@ END_TEST
 
 START_TEST(test_single_argument_command)
 {
-    t_shell shell;
+	t_shell shell;
 
-    ft_bzero(&shell, sizeof(t_shell));
-    gc_init(&shell.gc);
-    init_shell(&shell, g_envp);
+	ft_bzero(&shell, sizeof(t_shell));
+	gc_init(&shell.gc);
+	init_shell(&shell, g_envp);
 
-    shell.input = ft_strdup("whoami");
+	shell.input = ft_strdup("whoami");
 
-    lexer_run(&shell);
-    parser_run(&shell);
+	lexer_run(&shell);
+	parser_run(&shell);
 
-    ck_assert_ptr_nonnull(shell.cmd_list);
-    ck_assert_str_eq(shell.cmd_list->args[0], "whoami");
-    ck_assert_ptr_null(shell.cmd_list->args[1]);
+	ck_assert_ptr_nonnull(shell.cmd_list);
+	ck_assert_str_eq(shell.cmd_list->args[0], "whoami");
+	ck_assert_ptr_null(shell.cmd_list->args[1]);
 
-    cmd_clean(&shell.cmd_list);
-    token_clean(&shell.token_list);
-    free(shell.input);
-    gc_free_all(&shell.gc);
+	cmd_clean(&shell.cmd_list);
+	token_clean(&shell.token_list);
+	free(shell.input);
+	gc_free_all(&shell.gc);
 }
 END_TEST
 
@@ -287,11 +287,11 @@ Suite *parser_core_suite(void)
 	tcase_add_test(tc_core, test_simple_echo_args);
 	tcase_add_test(tc_core, test_ls_with_flag);
 	tcase_add_test(tc_core, test_cat_multiple_files);
-    tcase_add_test(tc_core, test_empty_input_should_fail);
-    tcase_add_test(tc_core, test_single_argument_command);
-    tcase_add_test(tc_core, test_multiple_spaces_between_args);
-    tcase_add_test(tc_core, test_tab_characters_between_args);
-    tcase_add_test(tc_core, test_leading_trailing_spaces);
+	tcase_add_test(tc_core, test_empty_input_should_fail);
+	tcase_add_test(tc_core, test_single_argument_command);
+	tcase_add_test(tc_core, test_multiple_spaces_between_args);
+	tcase_add_test(tc_core, test_tab_characters_between_args);
+	tcase_add_test(tc_core, test_leading_trailing_spaces);
 	tcase_add_test(tc_core, test_mixed_tabs_and_spaces);
 	tcase_add_test(tc_core, test_echo_with_trailing_spaces);
 	tcase_add_test(tc_core, test_long_argument_list);

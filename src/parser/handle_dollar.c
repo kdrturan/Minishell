@@ -73,19 +73,23 @@ static void	expand_word(t_shell *shell, t_token *dollar)
 {
 	size_t	len;
 	char	*key;
+	char	*rest;
+	t_token	*orig_key;
 
 	len = get_valid_key_length(dollar);
-	if (len == ft_strlen(dollar->next->text))
-		env_insert_token(shell, dollar, dollar->next->text);
-	else
+	if (len == 0)
+		return ;
+	key = gc_track(&shell->gc, ft_substr(dollar->next->text, 0, len));
+	orig_key = dollar->next;
+	env_insert_token(shell, dollar, key);
+	rest = orig_key->text + len;
+	if (*rest)
 	{
-		key = gc_track(&shell->gc, ft_substr(dollar->next->text, 0, len));
-		env_insert_token(shell, dollar, key);
-		dollar->next->text = gc_track(&shell->gc,
-				ft_substr(dollar->next->text, len,
-					ft_strlen(dollar->next->text) - len));
+		t_token *rest_tok = token_new(shell, WORD,
+				gc_track(&shell->gc, ft_strdup(rest)));
+		token_insert(&shell->token_list, orig_key->prev, rest_tok);
 	}
-	token_remove(&shell->token_list, dollar->next);
+	token_remove(&shell->token_list, orig_key);
 }
 
 void	handle_dollar(t_shell *shell, t_token *dollar)

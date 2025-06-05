@@ -46,11 +46,7 @@ int	main(int ac, char **av, char **env_data)
 			continue;
 		}
 		lexer_run(&shell);
-		printf("-----LEXER------\n");
-		debug_print_token_list(shell.token_list);
 		parser_run(&shell);
-		printf("-----PARSE------\n");
-		debug_print_token_list(shell.token_list);
 		debug_print_cmd_list(shell.cmd_list);
 		exec(&shell);
 		token_clean(&shell.token_list);

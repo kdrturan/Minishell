@@ -15,5 +15,10 @@
 extern char **g_envp; 
 
 Suite *parser_core_suite(void);
+Suite *parser_quote_suite(void);
+Suite *parser_expand_suite(void);
+Suite *parser_redir_suite(void);
+Suite *parser_pipe_suite(void);
+Suite *parser_mix_suite(void);
 
 #endif
