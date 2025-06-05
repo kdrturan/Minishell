@@ -94,7 +94,7 @@ run_valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=valgrind.supp ./minishell
 
 TEST_NAME = test_parser
-TEST_SRC  = tests/test_parser.c
+TEST_SRC  = $(wildcard tests/test_parser/*.c)
 TEST_OBJS = $(filter-out $(PATH_OBJ)/main.o, $(OBJS))
 
 test_parse: $(LIBFT) $(TEST_OBJS)
