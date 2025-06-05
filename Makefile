@@ -111,6 +111,7 @@ help:
 	@echo "║ make              │ Build the project with ASCII animation ║"
 	@echo "║ make all          │ Same as 'make' (includes animation)    ║"
 	@echo "║ make minishell    │ Compile only the minishell binary      ║"
+	@echo "║ make test_parse   │ Build and run unit tests               ║"
 	@echo "║ make clean        │ Remove object files and build log      ║"
 	@echo "║ make fclean       │ Clean everything including binary      ║"
 	@echo "║ make re           │ Rebuild the project from scratch       ║"
