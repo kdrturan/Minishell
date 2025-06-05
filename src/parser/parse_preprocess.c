@@ -52,11 +52,25 @@ static void	mark_here_dollars(t_shell *shell)
 	}
 }
 
+static void process_dollars(t_shell *shell)
+{
+	t_token	*token;
+
+	token = shell->token_list;
+	while (token)
+	{
+		if (token->type == DOLLAR)
+			handle_dollar(shell, token);
+		token = token->next;
+	}
+}
+
 void	parse_preprocess(t_shell *shell)
 {
 	mark_here_dollars(shell);
 	process_double_quotes(shell);
 	process_single_quotes(shell);
+	process_dollars(shell);
 	merge_words_br(shell);
 	remove_quotes(shell);
 	merge_words_ar(shell);
