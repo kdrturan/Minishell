@@ -20,5 +20,6 @@ Suite *parser_expand_suite(void);
 Suite *parser_redir_suite(void);
 Suite *parser_pipe_suite(void);
 Suite *parser_mix_suite(void);
+Suite *validate_input_suite(void);
 
 #endif

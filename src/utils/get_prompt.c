@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   get_prompt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 21:45:42 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 14:03:39 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/06 02:36:57 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/06 02:37:11 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <init.h>
+#include <utils.h>
 
-void	init_shell(t_shell *shell, char **env_data)
+char	*get_prompt(int status)
 {
-	if (!shell)
-		return ;
-	shell->env = env_parse(shell, env_data);
-	shell->token_list = NULL;
-	shell->cmd_list = NULL;
-	shell->exit_status = 0;
-	set_signals(INTERACTIVE);
+	if (status == 0)
+		return ("\001\033[1;32m\002🐱 OIIA OIIA$\001\033[0m\002 ");
+	else
+		return ("\001\033[1;31m\002🐱 OIIA OIIA$\001\033[0m\002 ");
 }

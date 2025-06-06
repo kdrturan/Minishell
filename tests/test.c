@@ -15,6 +15,7 @@ int main(int argc, char **argv, char **envp)
     srunner_add_suite(sr, parser_redir_suite());
     srunner_add_suite(sr, parser_pipe_suite());
     srunner_add_suite(sr, parser_mix_suite());
+    srunner_add_suite(sr, validate_input_suite());
 
     srunner_run_all(sr, CK_NORMAL);
     number_failed = srunner_ntests_failed(sr);

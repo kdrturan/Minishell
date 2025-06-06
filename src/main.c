@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/04 17:50:12 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/06 02:49:02 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ int	main(int ac, char **av, char **env_data)
 	init_shell(&shell, env_data);
 	while (1)
 	{
-		shell.input = ft_strtrim(gc_track(&shell.gc, readline(PROMPT)), 
+		shell.input = ft_strtrim(gc_track(&shell.gc, readline(get_prompt(shell.exit_status))), 
 				WHITESPACES);
 		if (shell.input == NULL)
 			break ;
 		add_history(shell.input);
-		if (!validate_input(shell.input))
+		if (!validate_input(&shell, shell.input))
 		{
-			printf("invalid input\n");
+			ft_putendl_fd("syntax error", STDERR_FILENO);
 			free(shell.input);
 			continue;
 		}

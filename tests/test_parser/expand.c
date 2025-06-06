@@ -152,6 +152,59 @@ START_TEST(test_expand_unset_var)
 }
 END_TEST
 
+START_TEST(test_expand_pid)
+{
+    t_shell shell;
+
+    ft_bzero(&shell, sizeof(shell));
+    gc_init(&shell.gc);
+    init_shell(&shell, g_envp);
+
+    shell.input = ft_strdup("echo $$");
+
+    lexer_run(&shell);
+    parser_run(&shell);
+
+    char *expected = gc_track(&shell.gc, ft_itoa(getpid()));
+
+    ck_assert_ptr_nonnull(shell.cmd_list);
+    ck_assert_str_eq(shell.cmd_list->args[1], expected);
+    ck_assert_ptr_null(shell.cmd_list->args[2]);
+
+    cmd_clean(&shell.cmd_list);
+    token_clean(&shell.token_list);
+    free(shell.input);
+    gc_free_all(&shell.gc);
+}
+END_TEST
+
+START_TEST(test_expand_exit_status)
+{
+    t_shell shell;
+
+    ft_bzero(&shell, sizeof(shell));
+    gc_init(&shell.gc);
+    init_shell(&shell, g_envp);
+
+    shell.exit_status = 42;
+    shell.input = ft_strdup("echo $?");
+
+    lexer_run(&shell);
+    parser_run(&shell);
+
+    char *expected = gc_track(&shell.gc, ft_itoa(42));
+
+    ck_assert_ptr_nonnull(shell.cmd_list);
+    ck_assert_str_eq(shell.cmd_list->args[1], expected);
+    ck_assert_ptr_null(shell.cmd_list->args[2]);
+
+    cmd_clean(&shell.cmd_list);
+    token_clean(&shell.token_list);
+    free(shell.input);
+    gc_free_all(&shell.gc);
+}
+END_TEST
+
 Suite *parser_expand_suite(void)
 {
     Suite *s;
@@ -166,6 +219,8 @@ Suite *parser_expand_suite(void)
     tcase_add_test(tc_expand, test_expand_concat);
     tcase_add_test(tc_expand, test_expand_multiple);
     tcase_add_test(tc_expand, test_expand_unset_var);
+    tcase_add_test(tc_expand, test_expand_pid);
+    tcase_add_test(tc_expand, test_expand_exit_status);
 
     suite_add_tcase(s, tc_expand);
     return s;

@@ -30,6 +30,7 @@ struct	s_shell
 	t_token					*token_list;
 	t_cmd					*cmd_list;
 	t_gc					gc;
+	int						exit_status;
 };
 
 #endif
