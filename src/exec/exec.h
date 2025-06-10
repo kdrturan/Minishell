@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/10 14:40:57 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:56:52 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	pwd(t_shell *shell, t_cmd *cmd);
 void	echo(t_shell *shell,t_cmd *cmd);
 void	cd(t_shell *shell, t_cmd *cmd);
 void execute_pipeline(t_shell *shell);
-char *exec_cmd(t_shell *shell,t_cmd *cmd);
+char *find_in_path(t_shell *shell,t_cmd *cmd);
+void	main_process(int *prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd);
+void	wait_childs(t_shell *shell);
+int builtin_functions(t_shell *shell, t_cmd *cmd);
 
 #endif

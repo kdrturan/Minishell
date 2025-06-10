@@ -24,6 +24,7 @@
         "stdio.h": "c",
         "utils.h": "c",
         "chrono": "c",
-        "wait.h": "c"
+        "wait.h": "c",
+        "exec.h": "c"
     }
 }

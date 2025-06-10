@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/10 15:39:08 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:01:51 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,10 @@ void execute_pipeline(t_shell *shell)
 		}
 		commands->pid = fork();
 		if (commands->pid == 0)
-		{
 			child_process(prev_fd, shell, commands, pipe_fd);
-		}
 		else
-		{
-			if (prev_fd != -1)
-				close(prev_fd);
-			if (commands->next)
-			{
-				close(pipe_fd[1]); 
-				prev_fd = pipe_fd[0]; 
-			}
-		}
+			main_process(&prev_fd, shell, commands, pipe_fd);
 		commands = commands->next;
 	}
-	
-	while (wait(NULL) > 0);
+	wait_childs(shell);
 }

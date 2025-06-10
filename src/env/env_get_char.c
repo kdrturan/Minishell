@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_get_char.c                                     :+:      :+:    :+:   */
+/*   env_cast_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,14 @@
 
 #include <env.h>
 
-char	**env_get_char(t_shell *shell)
+char **env_cast_char(t_shell *shell)
 {
-	size_t	i;
+	size_t i;
 	char **value;
 	char *temp;
 
 	i = 0;
-	value = gc_track(&shell->gc, malloc(sizeof(char*) * (shell->env->count + 1)));
+	value = gc_track(&shell->gc, malloc(sizeof(char *) * (shell->env->count + 1)));
 	while (i < shell->env->count)
 	{
 		temp = ft_strjoin(shell->env->pairs[i].key, "=");

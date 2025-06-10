@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:21:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/10 13:53:39 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:11:48 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct	s_cmd
 {
 	char			**args;
 	t_redir			*redir;
+	int				status;
 	pid_t			pid;
 	t_cmd			*next;
 };
