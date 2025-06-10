@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 18:00:15 by abturan          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:40:29 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # define WHITESPACES " \t\n\v\f\r"
 
 # include <gc.h>
-
 
 typedef struct s_shell		t_shell;
 typedef struct s_env		t_env;
@@ -31,6 +30,7 @@ struct	s_shell
 	t_token					*token_list;
 	t_cmd					*cmd_list;
 	t_gc					gc;
+	int						exit_status;
 };
 
 #endif

@@ -15,7 +15,7 @@ BASE_INC_DIRS = include $(PATH_LIBFT)
 INC_DIRS      = $(addprefix $(PATH_SRC)/,$(SUBDIRS))
 PATH_INCLUDE  = $(addprefix -I ,$(BASE_INC_DIRS) $(INC_DIRS))
 
-CFLAGS = #-g -fsanitize=address # -Wall -Wextra -Werror  
+CFLAGS = -g -fsanitize=address # -Wall -Wextra -Werror  
 
 vpath %.c $(SRC_DIRS)
 
@@ -29,11 +29,13 @@ UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
 	READLINE_PATH := $(shell brew --prefix readline 2>/dev/null)
-	PATH_INCLUDE  += -I$(READLINE_PATH)/include
-	LIBS = -L$(READLINE_PATH)/lib -lreadline -lhistory -lncurses $(LIBFT)
+	CHECK_PREFIX  := $(shell brew --prefix check 2>/dev/null)
+	PATH_INCLUDE  += -I$(READLINE_PATH)/include -I$(CHECK_PREFIX)/include
+	LIBS = -L$(READLINE_PATH)/lib -L$(CHECK_PREFIX)/lib -lcheck -lreadline -lhistory -lncurses $(LIBFT)
 else ifeq ($(UNAME_S),Linux)
-	PATH_INCLUDE  += -I/usr/include -I/usr/include/readline
-	LIBS = -lreadline -lhistory -lncurses $(LIBFT)
+	CHECK_PREFIX  := /usr
+	PATH_INCLUDE  += -I/usr/include -I/usr/include/readline -I$(CHECK_PREFIX)/include
+	LIBS = -L$(CHECK_PREFIX)/lib -lcheck -lreadline -lhistory -lncurses $(LIBFT)
 endif
 
 STOP_ANIM = \
@@ -91,6 +93,16 @@ setup_env:
 run_valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=valgrind.supp ./minishell
 
+TEST_NAME = test_parser
+TEST_SRC  = $(wildcard tests/test_parser/*.c) tests/test.c
+TEST_OBJS = $(filter-out $(PATH_OBJ)/main.o, $(OBJS))
+
+test_parse: $(LIBFT) $(TEST_OBJS)
+	@$(CC) $(CFLAGS) $(TEST_SRC) $(TEST_OBJS) -o $(TEST_NAME) \
+		$(PATH_INCLUDE) $(LIBS)
+	@./$(TEST_NAME)
+	@rm -f $(TEST_NAME)
+
 help:
 	@echo ""
 	@echo "╔════════════════════════════════════════════════════════════╗"
@@ -99,6 +111,7 @@ help:
 	@echo "║ make              │ Build the project with ASCII animation ║"
 	@echo "║ make all          │ Same as 'make' (includes animation)    ║"
 	@echo "║ make minishell    │ Compile only the minishell binary      ║"
+	@echo "║ make test_parse   │ Build and run unit tests               ║"
 	@echo "║ make clean        │ Remove object files and build log      ║"
 	@echo "║ make fclean       │ Clean everything including binary      ║"
 	@echo "║ make re           │ Rebuild the project from scratch       ║"

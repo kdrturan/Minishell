@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:21:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 00:58:35 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:53:39 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct	s_cmd
 {
 	char			**args;
 	t_redir			*redir;
+	pid_t			pid;
 	t_cmd			*next;
 };
 
@@ -65,5 +66,9 @@ t_cmd	*cmd_new(t_shell *shell, char **args, t_redir *redir);
 t_cmd	*cmd_last(t_cmd *cmd_list);
 void	cmd_add_back(t_cmd **cmd_list, t_cmd *cmd);
 void	cmd_clean(t_cmd	**cmd_list);
+
+void	process_single_quotes(t_shell *shell);
+void	process_double_quotes(t_shell *shell);
+void	remove_quotes(t_shell *shell);
 
 #endif

@@ -23,6 +23,7 @@
         "unistd.h": "c",
         "stdio.h": "c",
         "utils.h": "c",
-        "chrono": "c"
+        "chrono": "c",
+        "wait.h": "c"
     }
 }

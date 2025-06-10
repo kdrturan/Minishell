@@ -19,5 +19,6 @@ void	init_shell(t_shell *shell, char **env_data)
 	shell->env = env_parse(shell, env_data);
 	shell->token_list = NULL;
 	shell->cmd_list = NULL;
+	shell->exit_status = 0;
 	set_signals(INTERACTIVE);
 }

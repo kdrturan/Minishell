@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:23 by abturan           #+#    #+#             */
-/*   Updated: 2025/06/03 20:16:08 by abturan          ###   ########.fr       */
+/*   Updated: 2025/06/04 16:35:31 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<exec.h>
 
-void cd(t_shell *shell, t_cmd *cmd)
+void    cd(t_shell *shell, t_cmd *cmd)
 {
     char *buff;
     char *tmp;
 
-    tmp = cmd->args;
+    tmp = *cmd->args;
     if (cmd->args[1] == NULL)
     {
         chdir(env_get_value(shell ,"HOME"));
@@ -27,9 +27,9 @@ void cd(t_shell *shell, t_cmd *cmd)
     }
     if (chdir(cmd->args[1]) == -1)
         return;
-    if (gc_track(&shell->gc ,getcwd(NULL, 0) != NULL))
+    buff =  gc_track(&shell->gc ,getcwd(NULL, 0));
+    if (buff != NULL)
     {
-        buff =  gc_track(&shell->gc ,getcwd(NULL, 0) != NULL);
         env_set(shell, "PWD", buff);
         env_set(shell, "OLDPWD", tmp);
     }

@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_get_value.c                                    :+:      :+:    :+:   */
+/*   env_get_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/10 11:33:25 by kdrturan         ###   ########.fr       */
+/*   Created: 2025/06/10 11:30:59 by kdrturan          #+#    #+#             */
+/*   Updated: 2025/06/10 15:17:13 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
 
-char	*env_get_value(t_shell *shell, char *key)
+char	**env_get_char(t_shell *shell)
 {
 	size_t	i;
+	char **value;
+	char *temp;
 
 	i = 0;
-	if (!key)
-		return (gc_track(&shell->gc, ft_strdup("")));
+	value = gc_track(&shell->gc, malloc(sizeof(char*) * (shell->env->count + 1)));
 	while (i < shell->env->count)
 	{
-		if (ft_strncmp(shell->env->pairs[i].key, key, ft_strlen(key) + 1) == 0)
-			return (shell->env->pairs[i].val);
+		temp = ft_strjoin(shell->env->pairs[i].key, "=");
+		if (shell->env->pairs[i].val)
+			value[i] = gc_track(&shell->gc, ft_strjoin(temp, shell->env->pairs[i].val));
+		else
+			value[i] = temp;
+		free(temp);
 		i++;
 	}
-	return (gc_track(&shell->gc, ft_strdup("")));
+	value[i] = NULL;
+	return (value);
 }

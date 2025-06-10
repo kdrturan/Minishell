@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 14:30:44 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/06 02:55:45 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdbool.h>
 # include <token.h>
 # include <libft.h>
+# include <env.h>
 
 int		is_white_space(
 			int c);
@@ -34,9 +35,13 @@ bool	will_eat(
 			char c);
 
 bool	validate_input(
+			t_shell *shell,
 			char *input);
 
 t_token	*skip_ws(
 			t_token *tok);
+
+char	*get_prompt(
+			int status);
 
 #endif

@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   get_prompt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 05:04:55 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/04 17:39:50 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/06/06 02:36:57 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/06 02:37:11 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#include <utils.h>
 
-# include <utils.h>
-# include <token.h>
-# include <minishell.h>
-# include <libft.h>
-# include <debug.h>
-# include <env.h>
-
-typedef struct s_shell		t_shell;
-typedef struct s_token		t_token;
-typedef enum e_token_type	t_token_type;
-
-void			lexer_run(
-					t_shell *shell);
-
-t_token_type	identify_tokens(
-					char *value,
-					int i);
-
-#endif
+char	*get_prompt(int status)
+{
+	if (status == 0)
+		return ("\001\033[1;32m\002🐱 OIIA OIIA$\001\033[0m\002 ");
+	else
+		return ("\001\033[1;31m\002🐱 OIIA OIIA$\001\033[0m\002 ");
+}

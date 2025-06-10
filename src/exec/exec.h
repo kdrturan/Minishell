@@ -3,25 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 18:12:29 by abturan           #+#    #+#             */
-/*   Updated: 2025/06/03 19:22:28 by abturan          ###   ########.fr       */
+/*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/10 14:40:57 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-
 
 #ifndef EXEC_H
 # define EXEC_H
 
-# include<stdio.h>
-# include<minishell.h>
-# include<parser.h>
-#include <unistd.h>
+# include <minishell.h>
+# include <parser.h>
+# include <libft.h>
+# include <env.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <stdio.h>
 
-void    echo(t_shell *shell,t_cmd *cmd);
-void cd(t_shell *shell, t_cmd *cmd);
+void	exec(t_shell *shell);
+void	env(t_shell *shell);
+void	export(t_shell *shell, t_cmd *cmd);
+void	unset(t_shell *shell, t_cmd *cmd);
+void	pwd(t_shell *shell, t_cmd *cmd);
+void	echo(t_shell *shell,t_cmd *cmd);
+void	cd(t_shell *shell, t_cmd *cmd);
+void execute_pipeline(t_shell *shell);
+char *exec_cmd(t_shell *shell,t_cmd *cmd);
 
 #endif

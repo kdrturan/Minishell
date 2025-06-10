@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:27 by abturan           #+#    #+#             */
-/*   Updated: 2025/06/03 18:30:07 by abturan          ###   ########.fr       */
+/*   Updated: 2025/06/04 01:43:58 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include<exec.h>
-
 
 void    echo(t_shell *shell,t_cmd *cmd)
 {
