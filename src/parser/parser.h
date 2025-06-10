@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:21:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/05 02:37:10 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:53:39 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct	s_cmd
 {
 	char			**args;
 	t_redir			*redir;
+	pid_t			pid;
 	t_cmd			*next;
 };
 

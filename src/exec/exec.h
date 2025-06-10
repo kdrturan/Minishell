@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/04 16:35:51 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/10 14:40:57 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ void	unset(t_shell *shell, t_cmd *cmd);
 void	pwd(t_shell *shell, t_cmd *cmd);
 void	echo(t_shell *shell,t_cmd *cmd);
 void	cd(t_shell *shell, t_cmd *cmd);
+void execute_pipeline(t_shell *shell);
+char *exec_cmd(t_shell *shell,t_cmd *cmd);
 
 #endif

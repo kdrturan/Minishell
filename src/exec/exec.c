@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:36:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/04 16:33:34 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/10 14:20:02 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
+#include <unistd.h>
 
-void	exec(t_shell *shell)
+void exec(t_shell *shell)
 {
-	t_cmd	*cmds;
+	t_cmd *cmds;
 
 	cmds = shell->cmd_list;
+	execute_pipeline(shell);
+
 	while (cmds)
 	{
 		if (!cmds->args || !cmds->args[0])

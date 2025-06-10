@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 21:22:48 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 14:12:41 by kdrturan         ###   ########.fr       */
+/*   Created: 2025/06/10 16:38:15 by kdrturan          #+#    #+#             */
+/*   Updated: 2025/06/10 16:38:18 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,12 @@ size_t					env_len(
 char					*env_get_value(
 							t_shell *shell,
 							char *key);
+
+
+
+char	**env_get_char(t_shell *shell);
+void cmd_run(t_shell *shell, t_cmd *cmd);
+void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd);
+
 
 #endif
