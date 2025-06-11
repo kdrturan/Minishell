@@ -6,23 +6,23 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/10 20:02:42 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:36:10 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<exec.h>
+#include <exec.h>
 
 void	wait_childs(t_shell *shell)
 {
-	t_cmd* commands;
-	
+	t_cmd	*commands;
+
 	commands = shell->cmd_list;
-    while (commands)
-    {
-        if (commands->pid > 0)         
-            waitpid(commands->pid, &commands->status, 0);
-        commands = commands->next;
-    }
+	while (commands)
+	{
+		if (commands->pid > 0)
+			waitpid(commands->pid, &commands->status, 0);
+		commands = commands->next;
+	}
 }
 
 void	main_process(int *prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
@@ -31,8 +31,8 @@ void	main_process(int *prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 		close(*prev_fd);
 	if (cmd->next)
 	{
-		close(pipe_fd[1]); 
-		*prev_fd = pipe_fd[0]; 
+		close(pipe_fd[1]);
+		*prev_fd = pipe_fd[0];
 	}
 }
 
@@ -49,7 +49,9 @@ void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 		dup2(pipe_fd[1], STDOUT_FILENO);
 		close(pipe_fd[1]);
 	}
-	if (builtin_functions(shell,cmd))
+	if (cmd->redir)
+		manage_redir(cmd);
+	if (builtin_functions(shell, cmd))
 		cmd_run(shell, cmd);
 	exit(1);
 }

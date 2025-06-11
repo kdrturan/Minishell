@@ -6,14 +6,14 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:36:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/10 20:08:48 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:36:03 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 #include <unistd.h>
 
-void exec(t_shell *shell)
+void	exec(t_shell *shell)
 {
 	execute_pipeline(shell);
 }

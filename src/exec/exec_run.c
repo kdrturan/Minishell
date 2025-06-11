@@ -6,13 +6,13 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/10 20:09:14 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:35:58 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-int builtin_functions(t_shell *shell, t_cmd *cmd)
+int	builtin_functions(t_shell *shell, t_cmd *cmd)
 {
 	if (!ft_strncmp("env", cmd->args[0], ft_strlen(cmd->args[0])))
 		env(shell);
@@ -31,26 +31,27 @@ int builtin_functions(t_shell *shell, t_cmd *cmd)
 	return (0);
 }
 
-void cmd_run(t_shell *shell, t_cmd *cmd)
+void	cmd_run(t_shell *shell, t_cmd *cmd)
 {
-	char **environ;
-	char *full_path;
-	int execve_val;
+	char	**env;
+	char	*full_path;
+	int		execve_val;
 
-	environ = env_cast_char(shell);
+	env = env_cast_char(shell);
 	full_path = find_in_path(shell, cmd);
 	if (full_path)
 	{
-		execve_val = execve(full_path, cmd->args, environ);
+		execve_val = execve(full_path, cmd->args, env);
 		if (execve_val == -1)
 		{
 			perror("command not found");
 			exit(127);
 		}
 	}
+	perror("command not found");
 }
 
-char *find_in_path(t_shell *shell, t_cmd *cmd)
+char	*find_in_path(t_shell *shell, t_cmd *cmd)
 {
 	int is_exist;
 	char **full_path;

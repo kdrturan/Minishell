@@ -6,19 +6,18 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/10 20:01:51 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:35:51 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<exec.h>
+#include <exec.h>
 
+void	execute_pipeline(t_shell *shell)
+{
+	t_cmd	*commands;
+	int		pipe_fd[2];
+	int		prev_fd;
 
-void execute_pipeline(t_shell *shell)
-{	
-	t_cmd* commands;
-	int pipe_fd[2];
-	int prev_fd;
-	
 	prev_fd = -1;
 	commands = shell->cmd_list;
 	while (commands)
