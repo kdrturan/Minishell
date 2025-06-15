@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   gc.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 21:01:26 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/01 02:02:07 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/11 19:45:37 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <gc.h>
+#include <minishell.h>
 
-void	gc_init(t_gc *gc)
+void	gc_init(t_gc *gc, t_gc *exec_gc)
 {
 	gc->head = NULL;
+	exec_gc->head = NULL;
 }
 
 void	*gc_track(t_gc *gc, void *ptr)

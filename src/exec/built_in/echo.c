@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:27 by abturan           #+#    #+#             */
-/*   Updated: 2025/06/04 01:43:58 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:01:02 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<exec.h>
 
-void    echo(t_shell *shell,t_cmd *cmd)
+void    echo(t_cmd *cmd)
 {
     size_t i;
     int flag;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 20:09:06 by abturan           #+#    #+#             */
-/*   Updated: 2025/06/04 16:37:14 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:01:46 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<exec.h>
 
-void    pwd(t_shell *shell, t_cmd *cmd)
+void    pwd(t_shell *shell)
 {
     printf("%s\n", (char *)gc_track(&shell->gc, getcwd(NULL, 0)));
 }

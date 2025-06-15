@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/10 16:40:29 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:29:28 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ struct	s_shell
 	t_token					*token_list;
 	t_cmd					*cmd_list;
 	t_gc					gc;
+	t_gc					exec_gc;
 	int						exit_status;
 };
 

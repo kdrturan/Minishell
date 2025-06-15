@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/06 02:49:02 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/11 19:44:22 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av, char **env_data)
 
 	(void)av;
 	(void)ac;
-	gc_init(&shell.gc);
+	gc_init(&shell.gc, &shell.exec_gc);
 	init_shell(&shell, env_data);
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/11 16:36:10 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/11 19:59:16 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	wait_childs(t_shell *shell)
 	}
 }
 
-void	main_process(int *prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
+void	main_process(int *prev_fd, t_cmd *cmd, int *pipe_fd)
 {
 	if (*prev_fd != -1)
 		close(*prev_fd);
@@ -53,5 +53,6 @@ void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 		manage_redir(cmd);
 	if (builtin_functions(shell, cmd))
 		cmd_run(shell, cmd);
+	gc_free_all(&shell->exec_gc);
 	exit(1);
 }

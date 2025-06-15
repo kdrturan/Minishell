@@ -1,2 +1,15 @@
 elma
 elmas
+Makefile
+ascii_anim
+hi.txt
+include
+lib
+merhaba.txt
+minishell
+obj
+out1
+sonuc.txt
+src
+tests
+valgrind.supp
