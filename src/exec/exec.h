@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/11 20:02:01 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/15 14:47:27 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <libft.h>
 # include <minishell.h>
 # include <parser.h>
-# include <readline/readline.h>
 # include <stdio.h>
+# include <readline/readline.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 

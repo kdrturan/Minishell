@@ -27,7 +27,6 @@ char **env_cast_char(t_shell *shell)
 			value[i] = gc_track(&shell->gc, ft_strjoin(temp, shell->env->pairs[i].val));
 		else
 			value[i] = temp;
-		free(temp);
 		i++;
 	}
 	value[i] = NULL;
