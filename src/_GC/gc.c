@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 21:01:26 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/11 19:45:37 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:10:29 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	gc_free_all(t_gc *gc)
 {
 	t_gc_node	*current;
 	t_gc_node	*tmp;
-
 	current = gc->head;
 	while (current)
 	{

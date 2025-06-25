@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/15 14:47:27 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/25 16:29:07 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 # include <libft.h>
 # include <minishell.h>
 # include <parser.h>
-# include <stdio.h>
 # include <readline/readline.h>
+# include <stdio.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 
-void	exec(t_shell *shell);
+int		exec(t_shell *shell);
 void	env(t_shell *shell);
 void	export(t_shell *shell, t_cmd *cmd);
 void	unset(t_shell *shell, t_cmd *cmd);
@@ -37,5 +37,5 @@ void	wait_childs(t_shell *shell);
 int		builtin_functions(t_shell *shell, t_cmd *cmd);
 void	handle_heredoc(t_cmd *cmd);
 void	manage_redir(t_cmd *cmd);
-
+int		is_builtin(t_cmd *cmd);
 #endif

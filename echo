@@ -1,0 +1,10 @@
+Makefile
+ascii_anim
+echo
+include
+lib
+minishell
+obj
+src
+tests
+valgrind.supp

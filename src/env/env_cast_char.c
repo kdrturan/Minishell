@@ -22,7 +22,7 @@ char **env_cast_char(t_shell *shell)
 	value = gc_track(&shell->gc, malloc(sizeof(char *) * (shell->env->count + 1)));
 	while (i < shell->env->count)
 	{
-		temp = ft_strjoin(shell->env->pairs[i].key, "=");
+		temp = gc_track(&shell->gc, ft_strjoin(shell->env->pairs[i].key, "="));
 		if (shell->env->pairs[i].val)
 			value[i] = gc_track(&shell->gc, ft_strjoin(temp, shell->env->pairs[i].val));
 		else

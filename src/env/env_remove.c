@@ -6,7 +6,7 @@
 /*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 03:55:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 14:12:13 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:04:31 by kdrturan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	env_remove(t_shell *shell, char *key)
 		return ;
 	i = 0;
 	j = 0;
-	while (i < env->count)
+	while (i < env->count - 1)
 	{
 		if (ft_strncmp(env->pairs[i].key, key, ft_strlen(key) + 1) != 0)
 		{
