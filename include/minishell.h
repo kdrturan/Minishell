@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/11 19:29:28 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:15:03 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define PROMPT "\001\033[1;32m\002🐱 OIIA OIIA$\001\033[0m\002"
+# define PROMPT "\001\033[1;32m\002🐱 OIIA $>\001\033[0m\002"
 # define WHITESPACES " \t\n\v\f\r"
 
 # include <gc.h>

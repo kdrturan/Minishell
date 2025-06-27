@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/25 16:29:34 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/27 18:03:20 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av, char **env_data)
 		}
 		lexer_run(&shell);
 		parser_run(&shell);
-		debug_print_cmd_list(shell.cmd_list);
+		//debug_print_cmd_list(shell.cmd_list);
 		if (exec(&shell))
 			break ;
 		token_clean(&shell.token_list);

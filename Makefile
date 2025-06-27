@@ -35,7 +35,7 @@ ifeq ($(UNAME_S),Darwin)
 else ifeq ($(UNAME_S),Linux)
 	CHECK_PREFIX  := /usr
 	PATH_INCLUDE  += -I/usr/include -I/usr/include/readline -I$(CHECK_PREFIX)/include
-	LIBS = -L$(CHECK_PREFIX)/lib -lcheck -lreadline -lhistory -lncurses $(LIBFT)
+	LIBS = -L$(CHECK_PREFIX)/lib -lreadline -lhistory -lncurses $(LIBFT) #-lcheck 
 endif
 
 STOP_ANIM = \
