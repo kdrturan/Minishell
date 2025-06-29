@@ -15,7 +15,7 @@ BASE_INC_DIRS = include $(PATH_LIBFT)
 INC_DIRS      = $(addprefix $(PATH_SRC)/,$(SUBDIRS))
 PATH_INCLUDE  = $(addprefix -I ,$(BASE_INC_DIRS) $(INC_DIRS))
 
-CFLAGS = -g -fsanitize=address  -Wall -Wextra -Werror  
+CFLAGS = -Wall -Wextra -Werror  
 
 vpath %.c $(SRC_DIRS)
 
@@ -31,11 +31,11 @@ ifeq ($(UNAME_S),Darwin)
 	READLINE_PATH := $(shell brew --prefix readline 2>/dev/null)
 	CHECK_PREFIX  := $(shell brew --prefix check 2>/dev/null)
 	PATH_INCLUDE  += -I$(READLINE_PATH)/include -I$(CHECK_PREFIX)/include
-	LIBS = -L$(READLINE_PATH)/lib -L$(CHECK_PREFIX)/lib -lcheck -lreadline -lhistory -lncurses $(LIBFT)
+	LIBS = -L$(READLINE_PATH)/lib -L$(CHECK_PREFIX)/lib -lreadline -lhistory -lncurses $(LIBFT)
 else ifeq ($(UNAME_S),Linux)
 	CHECK_PREFIX  := /usr
 	PATH_INCLUDE  += -I/usr/include -I/usr/include/readline -I$(CHECK_PREFIX)/include
-	LIBS = -L$(CHECK_PREFIX)/lib -lreadline -lhistory -lncurses $(LIBFT) #-lcheck 
+	LIBS = -L$(CHECK_PREFIX)/lib -lreadline -lhistory -lncurses $(LIBFT)
 endif
 
 STOP_ANIM = \
@@ -111,7 +111,6 @@ help:
 	@echo "║ make              │ Build the project with ASCII animation ║"
 	@echo "║ make all          │ Same as 'make' (includes animation)    ║"
 	@echo "║ make minishell    │ Compile only the minishell binary      ║"
-	@echo "║ make test_parse   │ Build and run unit tests               ║"
 	@echo "║ make clean        │ Remove object files and build log      ║"
 	@echo "║ make fclean       │ Clean everything including binary      ║"
 	@echo "║ make re           │ Rebuild the project from scratch       ║"
@@ -121,4 +120,4 @@ help:
 	@echo "╚════════════════════════════════════════════════════════════╝"
 	@echo ""
 
-.PHONY: all clean fclean re update_libs setup_env run_valgrind fsanitize help 
+.PHONY: all clean fclean re update_libs setup_env run_valgrind help 

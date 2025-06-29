@@ -25,6 +25,7 @@
         "utils.h": "c",
         "chrono": "c",
         "wait.h": "c",
-        "exec.h": "c"
+        "exec.h": "c",
+        "string_view": "c"
     }
 }

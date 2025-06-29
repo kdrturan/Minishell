@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:38:15 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/10 20:06:48 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/29 18:48:24 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void env_add(
 	char *key,
 	char *val);
 
-void env_remove(
+t_env *env_remove(
 	t_shell *shell,
-	char *key);
+	char *key,
+ 	t_gc	*gc);
 
 size_t env_len(
 	char **env,

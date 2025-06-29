@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 03:36:20 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 03:44:43 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/05/30 03:48:33 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/06/29 18:35:25 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	env_add(t_shell *shell, char *key, char *val)
 	t_pair	*new_pairs;
 	size_t	i;
 
-	new_pairs = gc_track(&shell->gc,
+	new_pairs = gc_track(&shell->env_gc,
 			malloc(sizeof(t_pair) * (shell->env->count + 1)));
 	if (!new_pairs)
 		return ;
@@ -28,8 +28,8 @@ void	env_add(t_shell *shell, char *key, char *val)
 		new_pairs[i].val = shell->env->pairs[i].val;
 		i++;
 	}
-	new_pairs[i].key = key;
-	new_pairs[i].val = val;
+	new_pairs[i].key = gc_track(&shell->env_gc, ft_strdup(key));
+	new_pairs[i].val = gc_track(&shell->env_gc, ft_strdup(val));
 	shell->env->pairs = new_pairs;
 	shell->env->count++;
 }

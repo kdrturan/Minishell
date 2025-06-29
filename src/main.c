@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/29 16:21:56 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/29 17:54:18 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av, char **env_data)
 
 	(void)av;
 	(void)ac;
-	gc_init(&shell.gc, &shell.exec_gc);
+	gc_init(&shell);
 	init_shell(&shell, env_data);
 	while (1)
 	{
@@ -52,8 +52,9 @@ int	main(int ac, char **av, char **env_data)
 			break ;
 		token_clean(&shell.token_list);
 		cmd_clean(&shell.cmd_list);
+		gc_free_all(&shell.gc);
 		free(shell.input);
 	}
-	gc_free_all(&shell.gc);
+	gc_free_all(&shell.env_gc);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_get_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 22:54:37 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/10 11:33:25 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/29 18:59:43 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ char	*env_get_value(t_shell *shell, char *key)
 
 	i = 0;
 	if (!key)
-		return (gc_track(&shell->gc, ft_strdup("")));
+		return ("");
 	while (i < shell->env->count)
 	{
 		if (ft_strncmp(shell->env->pairs[i].key, key, ft_strlen(key) + 1) == 0)
 			return (shell->env->pairs[i].val);
 		i++;
 	}
-	return (gc_track(&shell->gc, ft_strdup("")));
+	return ("");
 }

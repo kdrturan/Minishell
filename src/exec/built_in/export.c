@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:53:36 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/29 17:17:32 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/29 18:16:24 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ void	export(t_shell *shell, t_cmd *cmd)
 	arg = NULL;
 	if (cmd->args[1])
 	{
-		arg = (char **)gc_track_array(&shell->gc, (void **)ft_split(cmd->args[1], '='));
+		arg = (char **)gc_track_array(&shell->env_gc,
+				(void **)ft_split(cmd->args[1], '='));
 		if (!arg)
 		return ;
 		if (ft_strchr(cmd->args[1], '=') && arg && !arg[1])
-			arg[1] = gc_track(&shell->gc, ft_strdup(""));
+			arg[1] = gc_track(&shell->env_gc, ft_strdup(""));
 		env_set(shell, arg[0], arg[1]);
 	}
 	else

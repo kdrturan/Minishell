@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/23 16:15:03 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/29 18:28:37 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ struct	s_shell
 	t_token					*token_list;
 	t_cmd					*cmd_list;
 	t_gc					gc;
+	t_gc					env_gc;
 	t_gc					exec_gc;
 	int						exit_status;
 };
