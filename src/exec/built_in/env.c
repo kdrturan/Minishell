@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:41:22 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/27 21:08:12 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/29 16:38:02 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	env(t_shell *shell)
 	i = 0;
 	while (i < shell->env->count)
 	{
-		printf("%s=%s\n", shell->env->pairs[i].key, shell->env->pairs[i].val);
+		if (shell->env->pairs[i].val)
+			printf("%s=%s\n", shell->env->pairs[i].key, shell->env->pairs[i].val);
 		i++;
 	}
 }

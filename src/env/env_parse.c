@@ -3,31 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   env_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:57:56 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 14:12:20 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/06/29 17:23:31 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
 
+void	env_parse_line(t_shell *shell, t_pair *pair, char *line)
+{
+	char	*eq;
+	size_t	len;
+
+	eq = ft_strchr(line, '=');
+	if (eq)
+	{
+		len = eq - line;
+		pair->key = gc_track(&shell->gc, ft_substr(line, 0, len));
+		pair->val = gc_track(&shell->gc, ft_strdup(eq + 1));
+	}
+	else
+	{
+		pair->key = gc_track(&shell->gc, ft_strdup(line));
+		pair->val = NULL;
+	}
+}
+
 t_env	*env_parse(t_shell *shell, char **env_data)
 {
 	t_env	*env;
 	size_t	i;
-	char	**values;
 
 	env = gc_track(&shell->gc, malloc(sizeof(t_env)));
 	env->count = env_len(env_data, NULL);
-	env->pairs = gc_track(&shell->gc, malloc(sizeof(t_pair) * env->count));
+	env->pairs = gc_track(&shell->gc,
+			malloc(sizeof(t_pair) * env->count));
 	i = 0;
 	while (env_data[i])
 	{
-		values = (char **)gc_track_array(&shell->gc,
-				(void **)ft_split(env_data[i], '='));
-		env->pairs[i].key = values[0];
-		env->pairs[i].val = values[1];
+		env_parse_line(shell, &env->pairs[i], env_data[i]);
 		i++;
 	}
 	return (env);
