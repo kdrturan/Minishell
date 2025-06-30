@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 03:48:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/29 18:35:25 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/06/30 23:50:04 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	env_add(t_shell *shell, char *key, char *val)
 		i++;
 	}
 	new_pairs[i].key = gc_track(&shell->env_gc, ft_strdup(key));
-	new_pairs[i].val = gc_track(&shell->env_gc, ft_strdup(val));
+	if (val)
+		new_pairs[i].val = gc_track(&shell->env_gc, ft_strdup(val));
+	else
+		new_pairs[i].val = NULL;
 	shell->env->pairs = new_pairs;
 	shell->env->count++;
 }
