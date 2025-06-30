@@ -6,13 +6,13 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:57:56 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/29 17:27:49 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/01 00:08:32 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <env.h>
 
-void	env_parse_line(t_shell *shell, t_pair *pair, char *line)
+static void	env_parse_line(t_shell *shell, t_pair *pair, char *line)
 {
 	char	*eq;
 	size_t	len;

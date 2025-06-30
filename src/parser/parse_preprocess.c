@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:48:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/05 02:36:35 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/01 00:36:24 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	parse_preprocess(t_shell *shell)
 {
 	mark_here_dollars(shell);
 	process_double_quotes(shell);
-	process_single_quotes(shell);
+	process_quotes(shell);
 	process_dollars(shell);
 	merge_words_br(shell);
 	remove_quotes(shell);

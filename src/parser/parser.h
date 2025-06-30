@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:21:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/10 17:11:48 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/07/01 00:36:33 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_cmd	*cmd_last(t_cmd *cmd_list);
 void	cmd_add_back(t_cmd **cmd_list, t_cmd *cmd);
 void	cmd_clean(t_cmd	**cmd_list);
 
-void	process_single_quotes(t_shell *shell);
+void	process_quotes(t_shell *shell);
 void	process_double_quotes(t_shell *shell);
 void	remove_quotes(t_shell *shell);
 

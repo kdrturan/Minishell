@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 20:59:51 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/29 17:32:47 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/01 00:20:59 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-typedef struct s_shell		t_shell;
+typedef struct s_shell	t_shell;
 typedef struct s_gc		t_gc;
 
 typedef struct s_gc_node
