@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/25 17:50:09 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/07/02 02:56:49 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	cmd_run(t_shell *shell, t_cmd *cmd)
 			(void **)env_cast_char(shell));
 	full_path = find_in_path(shell, cmd);
 	if (full_path)
-		execve(full_path, cmd->args, env);
+		shell->exit_status = execve(full_path, cmd->args, env);
 	else
-		execve(cmd->args[0], cmd->args, env);
+		shell->exit_status = execve(cmd->args[0], cmd->args, env);
 }
 
 char	*find_in_path(t_shell *shell, t_cmd *cmd)
