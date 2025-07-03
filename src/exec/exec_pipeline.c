@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/29 16:24:46 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/03 17:22:48 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	execute_pipeline(t_shell *shell)
 		}
 		if (!shell->cmd_list->next && is_builtin(commands))
 		{
-			manage_redir(commands);
+			manage_redir(commands->redir);
 			flag = builtin_functions(shell, commands);
 		}
 		else

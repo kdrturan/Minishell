@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/02 02:45:21 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/03 17:24:37 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*find_in_path(t_shell *shell, t_cmd *cmd);
 void	main_process(int *prev_fd, t_cmd *cmd, int *pipe_fd);
 void	wait_childs(t_shell *shell);
 int		builtin_functions(t_shell *shell, t_cmd *cmd);
-void	handle_heredoc(t_cmd *cmd);
-void	manage_redir(t_cmd *cmd);
+void	handle_heredoc(t_redir *redir);
+void	manage_redir(t_redir *redir);
 int		is_builtin(t_cmd *cmd);
 #endif

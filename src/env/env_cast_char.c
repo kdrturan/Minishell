@@ -12,22 +12,22 @@
 
 #include <env.h>
 
-char **env_cast_char(t_shell *shell)
+char	**env_cast_char(t_shell *shell)
 {
-	size_t i;
-	char **value;
-	char *temp;
+	size_t	i;
+	char	**value;
+	char	*temp;
 
 	i = 0;
-	value = gc_track(&shell->env_gc,
-				malloc(sizeof(char *) * (shell->env->count + 1)));
+	value = gc_track(&shell->env_gc, malloc(sizeof(char *) * (shell->env->count
+					+ 1)));
 	while (i < shell->env->count)
 	{
-		temp = gc_track(&shell->env_gc,
-					ft_strjoin(shell->env->pairs[i].key, "="));
+		temp = gc_track(&shell->env_gc, ft_strjoin(shell->env->pairs[i].key,
+					"="));
 		if (shell->env->pairs[i].val)
-			value[i] = gc_track(&shell->env_gc,
-							ft_strjoin(temp, shell->env->pairs[i].val));
+			value[i] = gc_track(&shell->env_gc, ft_strjoin(temp,
+						shell->env->pairs[i].val));
 		else
 			value[i] = temp;
 		i++;

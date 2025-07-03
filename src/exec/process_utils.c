@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/25 16:05:51 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:23:20 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 		close(pipe_fd[1]);
 	}
 	if (cmd->redir)
-		manage_redir(cmd);
+		manage_redir(cmd->redir);
 	if (builtin_functions(shell, cmd))
 		cmd_run(shell, cmd);
 	gc_free_all(&shell->exec_gc);

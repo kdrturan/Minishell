@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:41:22 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/29 16:38:02 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/03 18:19:15 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	env(t_shell *shell)
 	while (i < shell->env->count)
 	{
 		if (shell->env->pairs[i].val)
-			printf("%s=%s\n", shell->env->pairs[i].key, shell->env->pairs[i].val);
+			printf("%s=%s\n", shell->env->pairs[i].key,
+				shell->env->pairs[i].val);
 		i++;
 	}
 }
