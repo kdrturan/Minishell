@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:35:13 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 13:58:31 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/03 19:20:39 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_cmd	*cmd_new(t_shell *shell, char **args, t_redir *redir)
 	cmd->args = args;
 	cmd->redir = redir;
 	cmd->next = NULL;
+	cmd->status = 0;
 	return (cmd);
 }

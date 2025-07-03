@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:51:09 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/03 18:19:41 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/04 00:23:15 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
+
+void	manage_redir_main(t_redir *redir)
+{
+	int	fd;
+
+	while (redir)
+	{
+		if (redir->type == OUTPUT || redir->type == APPEND)
+		{
+			if (redir->type == APPEND)
+				fd = open(redir->target, O_CREAT | O_WRONLY | O_APPEND, 0644);
+			else
+				fd = open(redir->target, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+			dup2(fd, STDOUT_FILENO);
+		}
+		else if (redir->type == INPUT)
+		{
+			fd = open(redir->target, O_RDONLY);
+			dup2(fd, STDIN_FILENO);
+		}
+		else
+			close(fd);
+		redir = redir->next;
+	}
+}
 
 void	manage_redir(t_redir *redir)
 {
@@ -39,6 +64,23 @@ void	manage_redir(t_redir *redir)
 	}
 }
 
+void	handle_heredoc_main(t_redir *redir)
+{	char	*tmp;
+
+	while (1)
+	{
+		tmp = readline("> ");
+		if (!tmp || !ft_strncmp(tmp, redir->target, ft_strlen(redir->target)
+				+ 1))
+		{
+			free(tmp);
+			break ;
+		}
+		free(tmp);
+	}
+}
+
+
 void	handle_heredoc(t_redir *redir)
 {
 	char	*tmp;
@@ -46,6 +88,7 @@ void	handle_heredoc(t_redir *redir)
 	t_redir	*redirtmp;
 	int		flag;
 
+	set_signals(HEREDOCSIGNAL);
 	flag = 1;
 	redirtmp = redir;
 	pipe(pipefd);

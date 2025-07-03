@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/02 02:58:42 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/03 23:14:05 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #include <token.h>
 #include <utils.h>
 
+int globalll;
+
 int	main(int ac, char **av, char **env_data)
 {
 	t_shell	shell;
@@ -34,6 +36,7 @@ int	main(int ac, char **av, char **env_data)
 	init_shell(&shell, env_data);
 	while (1)
 	{
+		globalll = 0;
 		shell.input = ft_strtrim(gc_track(&shell.gc,
 					readline(get_prompt(shell.exit_status))), WHITESPACES);
 		if (shell.input == NULL)
@@ -47,14 +50,14 @@ int	main(int ac, char **av, char **env_data)
 		}
 		lexer_run(&shell);
 		parser_run(&shell);
-		debug_print_cmd_list(shell.cmd_list);
+		//debug_print_cmd_list(shell.cmd_list);
 		if (exec(&shell))
 			break ;
+		set_signals(INTERACTIVE);
 		token_clean(&shell.token_list);
 		cmd_clean(&shell.cmd_list);
 		gc_free_all(&shell.gc);
 		free(shell.input);
-		shell.exit_status = 0;
 	}
 	gc_free_all(&shell.env_gc);
 	return (0);

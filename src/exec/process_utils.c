@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/03 17:23:20 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/03 23:40:23 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ void	wait_childs(t_shell *shell)
 	{
 		if (commands->pid > 0)
 			waitpid(commands->pid, &commands->status, 0);
+		if ((commands->status & 0x7F) == 0)
+			shell->exit_status = (commands->status >> 8) & 0xFF;
+		// else
+		// 	shell->exit_status = commands->status & 0x7F;
 		commands = commands->next;
 	}
 }
@@ -38,6 +42,7 @@ void	main_process(int *prev_fd, t_cmd *cmd, int *pipe_fd)
 
 void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 {
+	set_signals(NONINTERACTIVE);
 	if (prev_fd != -1)
 	{
 		dup2(prev_fd, STDIN_FILENO);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/03 17:24:37 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/04 00:21:35 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # include <readline/readline.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <signal.h>
+# include <signal_handler.h>
+
+
 
 int		exec(t_shell *shell);
 void	env(t_shell *shell);
@@ -38,4 +42,7 @@ int		builtin_functions(t_shell *shell, t_cmd *cmd);
 void	handle_heredoc(t_redir *redir);
 void	manage_redir(t_redir *redir);
 int		is_builtin(t_cmd *cmd);
+void	manage_redir_main(t_redir *redir);
+void	handle_heredoc_main(t_redir *redir);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 01:17:52 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/31 14:13:16 by kdrturan         ###   ########.fr       */
+/*   Updated: 2025/07/03 23:50:10 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef enum e_mode	t_mode;
 enum	e_mode
 {
 	INTERACTIVE,
-	NONINTERACTIVE
+	NONINTERACTIVE,
+	HEREDOCSIGNAL
 };
 
 void	set_signals(
