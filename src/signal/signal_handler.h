@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 01:17:52 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/03 23:50:10 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 16:42:32 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ typedef enum e_mode	t_mode;
 
 enum	e_mode
 {
-	INTERACTIVE,
-	NONINTERACTIVE,
-	HEREDOCSIGNAL
+	S_MAIN,
+	S_CHILD,
+	S_HEREDOC
 };
 
 void	set_signals(

@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 15:45:25 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 17:15:25 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	execute_pipeline(t_shell *shell)
 		}
 		else
 		{
-			set_signals(NONINTERACTIVE);
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
 			commands->pid = fork();
 		}
 		if (flag && commands->pid == 0)

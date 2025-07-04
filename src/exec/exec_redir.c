@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:51:09 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 00:23:15 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 16:43:34 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	handle_heredoc(t_redir *redir)
 	t_redir	*redirtmp;
 	int		flag;
 
-	set_signals(HEREDOCSIGNAL);
+	set_signals(S_HEREDOC);
 	flag = 1;
 	redirtmp = redir;
 	pipe(pipefd);

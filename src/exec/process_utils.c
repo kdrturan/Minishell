@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 04:01:03 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 17:49:20 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ void	wait_childs(t_shell *shell)
 		if ((commands->status & 0x7F) == 0)
 			commands->status  = (commands->status >> 8) & 0xFF;
 		else
-		 	commands->status  = 128 + (commands->status & 0x7F);
+		{
+			commands->status  = 128 + (commands->status & 0x7F);
+			ft_putstr_fd("\n", 1);
+		}
 		shell->exit_status = commands->status ;
-		printf("%d\n",commands->status);
 		commands = commands->next;
 	}
 }
@@ -44,6 +46,7 @@ void	main_process(int *prev_fd, t_cmd *cmd, int *pipe_fd)
 
 void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 {
+	set_signals(S_CHILD);
 	if (prev_fd != -1)
 	{
 		dup2(prev_fd, STDIN_FILENO);
