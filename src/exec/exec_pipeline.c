@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 00:21:43 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 04:01:00 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	execute_pipeline(t_shell *shell)
 		{
 			set_signals(NONINTERACTIVE);
 			commands->pid = fork();
-			
 		}
 		if (flag && commands->pid == 0)
 			child_process(prev_fd, shell, commands, pipe_fd);

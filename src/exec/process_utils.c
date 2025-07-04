@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/03 23:40:23 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 04:01:03 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	wait_childs(t_shell *shell)
 		if (commands->pid > 0)
 			waitpid(commands->pid, &commands->status, 0);
 		if ((commands->status & 0x7F) == 0)
-			shell->exit_status = (commands->status >> 8) & 0xFF;
-		// else
-		// 	shell->exit_status = commands->status & 0x7F;
+			commands->status  = (commands->status >> 8) & 0xFF;
+		else
+		 	commands->status  = 128 + (commands->status & 0x7F);
+		shell->exit_status = commands->status ;
+		printf("%d\n",commands->status);
 		commands = commands->next;
 	}
 }
@@ -42,7 +44,6 @@ void	main_process(int *prev_fd, t_cmd *cmd, int *pipe_fd)
 
 void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 {
-	set_signals(NONINTERACTIVE);
 	if (prev_fd != -1)
 	{
 		dup2(prev_fd, STDIN_FILENO);
@@ -59,5 +60,5 @@ void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 	if (builtin_functions(shell, cmd))
 		cmd_run(shell, cmd);
 	gc_free_all(&shell->exec_gc);
-	exit(1);
+	exit(0);
 }
