@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/04 16:42:42 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 18:30:44 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int	main(int ac, char **av, char **env_data)
 		if (shell.input == NULL)
 			break ;
 		add_history(shell.input);
-		if (!validate_input(&shell, shell.input))
+		/*if (!validate_input(&shell, shell.input))
 		{
 			ft_putendl_fd("syntax error", STDERR_FILENO);
 			free(shell.input);
 			continue ;
-		}
+		}*/
 		lexer_run(&shell);
 		parser_run(&shell);
 		//debug_print_cmd_list(shell.cmd_list);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:43:05 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/06 03:02:36 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 18:48:37 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ static void	expand_special(t_shell *shell, t_token *dollar)
 	if (dollar->next->type == DOLLAR)
 		dollar->text = gc_track(&shell->gc, ft_itoa(getpid()));
 	else if (*(dollar->next->text) == '?')
+	{
 		dollar->text = gc_track(&shell->gc, ft_itoa(shell->exit_status));
+		dollar->next->text = gc_track(&shell->gc, ft_strdup(dollar->next->text + 1));
+		return ;
+	}
 	else if (*(dollar->next->text) == '-')
 		dollar->text = gc_track(&shell->gc, ft_strdup("himBHs"));
 	else if (will_eat(*(dollar->next->text)))
@@ -111,7 +115,10 @@ void	handle_dollar(t_shell *shell, t_token *dollar)
 		return ;
 	}
 	if (dollar->next->type == DQUOTE || dollar->next->type == QUOTE)
-		token_remove(&shell->token_list, dollar);
+	{
+		dollar->type = WORD;
+		dollar->text = gc_track(&shell->gc, ft_strdup("$"));
+	}
 	else if (dollar->next->type == DOLLAR
 		|| *(dollar->next->text) == '?'
 		|| *(dollar->next->text) == '-'

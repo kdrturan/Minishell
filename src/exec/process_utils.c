@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 17:49:20 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 19:29:47 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ void	wait_childs(t_shell *shell)
 			commands->status  = (commands->status >> 8) & 0xFF;
 		else
 		{
+			if (commands->status != 13)
+				ft_putstr_fd("\n", 1);
 			commands->status  = 128 + (commands->status & 0x7F);
-			ft_putstr_fd("\n", 1);
+
 		}
 		shell->exit_status = commands->status ;
 		commands = commands->next;

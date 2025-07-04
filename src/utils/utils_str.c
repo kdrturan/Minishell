@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/05/30 22:27:19 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 19:49:17 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,25 @@ char	*str_change(char *dst, char *src, size_t idx, size_t len)
 		value[m++] = dst[k++];
 	value[alloc_len] = '\0';
 	return (value);
+}
+
+
+bool	ft_isnumeric(const char *str)
+{
+	int	i;
+
+	if (!str || *str == '\0')
+		return (false);
+	i = 0;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	if (str[i] == '\0')
+		return (false);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (false);
+		i++;
+	}
+	return (true);
 }

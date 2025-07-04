@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:27 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/04 16:26:52 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 18:06:57 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	echo(t_cmd *cmd)
 		i = 1;
 	while (cmd->args[i])
 	{
-		printf("%s ", cmd->args[i]);
+		printf("%s", cmd->args[i]);
+		if (cmd->args[i + 1])
+			printf(" ");
 		i++;
 	}
 	if (flag == 0)

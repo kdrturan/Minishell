@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 15:36:27 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 19:54:25 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	builtin_functions(t_shell *shell, t_cmd *cmd)
 			echo(cmd);
 		else if (!ft_strncmp("cd", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
 			cd(shell, cmd);
+		else if (!ft_strncmp("exit", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
+			ft_exit(shell, cmd);
 		else
 			return (1);
 	}

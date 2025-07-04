@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:23 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/04 16:26:49 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 19:39:28 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,28 @@ static void check_error(t_shell *shell, t_cmd *cmd)
 	{
 		if (errno == ENOENT)
 		{
-			ft_putstr_fd("OIIA OIIA",2);
+			ft_putstr_fd("OIIA OIIA:",2);
 			ft_putstr_fd(" cd: ",2);
 			ft_putstr_fd(cmd->args[1] ,2);
-			ft_putstr_fd(": No such file or directory.\n",2);
+			ft_putstr_fd(": No such file or directory\n",2);
 		}
 		else if (errno == ENOTDIR)
 		{
-			ft_putstr_fd("OIIA OIIA",2);
+			ft_putstr_fd("OIIA OIIA:",2);
 			ft_putstr_fd(" cd: ",2);
 			ft_putstr_fd(cmd->args[1],2);
-			ft_putstr_fd(": Not a directory.\n",2);
+			ft_putstr_fd(": Not a directory\n",2);
 		}
 		else if (errno == EACCES)
 		{
-			ft_putstr_fd("OIIA OIIA",2);
+			ft_putstr_fd("OIIA OIIA:",2);
 			ft_putstr_fd(" cd: ",2);
 			ft_putstr_fd(cmd->args[1],2);
-			ft_putstr_fd(": Permission denied.\n",2);
+			ft_putstr_fd(": Permission denied\n",2);
 		}
-		else 
-			return;
 	}
+	else
+		return;
 	shell->exit_status = 1;
 }
 

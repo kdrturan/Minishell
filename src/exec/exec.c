@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:36:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/03 23:37:14 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 19:09:51 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ int	exec(t_shell *shell)
 	t_cmd *cmds;
 
 	cmds = shell->cmd_list; 
-	if (shell->cmd_list && shell->cmd_list->args[0]
-		&& !ft_strncmp("exit", shell->cmd_list->args[0],
-			ft_strlen(shell->cmd_list->args[0]) + 1))
-		return (printf("exit\n"), 1);
 	execute_pipeline(shell);
 	while (cmds)
 	{

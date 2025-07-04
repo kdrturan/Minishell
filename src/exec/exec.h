@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/04 15:35:58 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 19:07:58 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	manage_redir(t_redir *redir);
 int		is_builtin(t_cmd *cmd);
 void	manage_redir_main(t_redir *redir);
 void	handle_heredoc_main(t_redir *redir);
+void    ft_exit(t_shell *shell, t_cmd *cmd);
 
 #endif

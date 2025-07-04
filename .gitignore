@@ -53,3 +53,4 @@ dkms.conf
 
 minishell
 build.log
+minishell_tester/
