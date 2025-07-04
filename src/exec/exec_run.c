@@ -6,11 +6,14 @@
 /*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 19:54:25 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/04 21:08:37 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <stdio.h>
 
 int	builtin_functions(t_shell *shell, t_cmd *cmd)
 {
@@ -40,10 +43,44 @@ int	builtin_functions(t_shell *shell, t_cmd *cmd)
 	return (0);
 }
 
+int check(char *path, int status)
+{
+	struct stat st;
+
+	ft_putstr_fd("OIIA OIIA: ", 2);
+
+	if (stat(path, &st) == -1)
+	{
+		ft_putstr_fd("No such file or directory\n", 2);
+		return (127);
+	}
+
+	if (S_ISDIR(st.st_mode))
+	{
+		ft_putstr_fd("Is a directory\n", 2);
+		return (126);
+	}
+
+	if (access(path, X_OK) == -1)
+	{
+		ft_putstr_fd("Permission denied\n", 2);
+		return (126);
+	}
+
+	if (status == 1)
+	{
+		ft_putstr_fd("command not found\n", 2);
+		return (127);
+	}
+
+	return (0); // her şey yolundaysa
+}
+
 void	cmd_run(t_shell *shell, t_cmd *cmd)
 {
 	char	**env;
 	char	*full_path;
+	int		exit_code;
 
 	full_path = NULL;
 	env = (char **)gc_track_array(&shell->exec_gc,
@@ -54,7 +91,8 @@ void	cmd_run(t_shell *shell, t_cmd *cmd)
 		shell->exit_status = execve(full_path, cmd->args, env);
 	else
 		shell->exit_status = execve(cmd->args[0], cmd->args, env);
-	exit(127);
+	exit_code = check(full_path, shell->exit_status);
+	exit(exit_code);
 }
 
 char	*find_in_path(t_shell *shell, t_cmd *cmd)
@@ -73,7 +111,7 @@ char	*find_in_path(t_shell *shell, t_cmd *cmd)
 		full_path[i] = gc_track(&shell->exec_gc, ft_strjoin(full_path[i], "/"));
 		full_path[i] = gc_track(&shell->exec_gc, ft_strjoin(full_path[i],
 					cmd->args[0]));
-		is_exist = access(full_path[i], F_OK | X_OK);
+		is_exist = access(full_path[i], F_OK);
 		if (!is_exist)
 			return (full_path[i]);
 		i++;
