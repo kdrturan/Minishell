@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:53:36 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/03 18:21:50 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/04 16:06:18 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
+
+static bool checkError(t_shell *shell, t_cmd *cmd)
+{
+	if (cmd && cmd->args && cmd->args[1])
+	{
+		if (access(cmd->args[1], F_OK) == 0)
+		{
+			ft_putstr_fd("export: ", STDERR_FILENO);
+			ft_putstr_fd("‘", STDERR_FILENO);
+			ft_putstr_fd(cmd->args[1], STDERR_FILENO);
+			ft_putstr_fd("’", STDERR_FILENO);
+			ft_putstr_fd(": not a valid identifier\n", STDERR_FILENO);
+			shell->exit_status = 1;
+		}
+		return (true);
+	}
+	return (false);
+}
 
 void	export(t_shell *shell, t_cmd *cmd)
 {
@@ -19,6 +37,8 @@ void	export(t_shell *shell, t_cmd *cmd)
 
 	i = 0;
 	arg = NULL;
+	if (checkError(shell, cmd))
+		return ;
 	if (cmd->args[1])
 	{
 		arg = (char **)gc_track_array(&shell->env_gc,

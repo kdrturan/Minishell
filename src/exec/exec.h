@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/04 00:21:35 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:35:58 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 
 
 int		exec(t_shell *shell);
-void	env(t_shell *shell);
+void	env(t_shell *shell, t_cmd *cmd);
 void	export(t_shell *shell, t_cmd *cmd);
 void	unset(t_shell *shell, t_cmd *cmd);
-void	pwd(t_shell *shell);
+void	pwd(t_shell *shell, t_cmd *cmd);
 void	echo(t_cmd *cmd);
 void	cd(t_shell *shell, t_cmd *cmd);
 void	execute_pipeline(t_shell *shell);

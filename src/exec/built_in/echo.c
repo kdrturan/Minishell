@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:27 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/03 18:20:31 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/04 16:24:14 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,25 @@ void	echo(t_cmd *cmd)
 	int		flag;
 
 	flag = 0;
-	i = 1;
+	i = 0;
+	while (cmd->args[1][i])
+	{
+		if (cmd->args[1][i] == '-' && cmd->args[1][++i] && cmd->args[1][i] == 'n')
+		{
+			while (cmd->args[1][i] == 'n')
+				i++;
+			if (cmd->args[1][i] == '\0')
+				flag = 1;
+		}
+		i++;
+	}
+	if (flag)
+		i = 2;
+	else
+		i = 1;
 	while (cmd->args[i])
 	{
-		if (!ft_strncmp(cmd->args[i], "-n", 3))
-			flag = 1;
-		else
-			printf("%s ", cmd->args[i]);
+		printf("%s ", cmd->args[i]);
 		i++;
 	}
 	if (flag == 0)

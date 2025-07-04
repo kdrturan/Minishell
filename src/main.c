@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/03 23:14:05 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:44:53 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 #include <token.h>
 #include <utils.h>
 
-int globalll;
 
 int	main(int ac, char **av, char **env_data)
 {
@@ -36,7 +35,6 @@ int	main(int ac, char **av, char **env_data)
 	init_shell(&shell, env_data);
 	while (1)
 	{
-		globalll = 0;
 		shell.input = ft_strtrim(gc_track(&shell.gc,
 					readline(get_prompt(shell.exit_status))), WHITESPACES);
 		if (shell.input == NULL)

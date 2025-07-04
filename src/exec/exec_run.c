@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/03 19:28:49 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:36:27 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	builtin_functions(t_shell *shell, t_cmd *cmd)
 	if (cmd->args[0])
 	{
 		if (!ft_strncmp("env", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
-			env(shell);
+			env(shell, cmd);
 		else if (!ft_strncmp("export", cmd->args[0],
 				ft_strlen(cmd->args[0]) + 1))
 			export(shell, cmd);
@@ -25,7 +25,7 @@ int	builtin_functions(t_shell *shell, t_cmd *cmd)
 				ft_strlen(cmd->args[0]) + 1))
 			unset(shell, cmd);
 		else if (!ft_strncmp("pwd", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
-			pwd(shell);
+			pwd(shell, cmd);
 		else if (!ft_strncmp("echo", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
 			echo(cmd);
 		else if (!ft_strncmp("cd", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
