@@ -49,6 +49,7 @@ void	export(t_shell *shell, t_cmd *cmd)
 
 	i = 1;
 	start = i;
+	shell->exit_status = 0;
 	while (cmd->args[i])
 	{
 		eq = ft_strchr(cmd->args[i], '=');

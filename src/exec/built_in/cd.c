@@ -15,6 +15,15 @@
 
 static void check_error(t_shell *shell, t_cmd *cmd)
 {
+	if (cmd && cmd->args && cmd->args[1] && cmd->args[2])
+	{
+		ft_putstr_fd("OIIA OIIA:",2);
+		ft_putstr_fd(" cd: ",2);
+		ft_putstr_fd(cmd->args[1] ,2);
+		ft_putstr_fd(": too many arguments\n",2);
+		shell->exit_status = 1;
+		return ;
+	}
 	if (chdir(cmd->args[1]) == -1)
 	{
 		if (errno == ENOENT)
