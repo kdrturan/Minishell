@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:27 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/04 18:06:57 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/07 01:35:33 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	echo(t_cmd *cmd)
+void	echo(t_shell *shell, t_cmd *cmd)
 {
 	size_t	i;
 	int		flag;
 
 	flag = 0;
 	i = 0;
-	while (cmd->args[1][i])
+	while (cmd && cmd->args && cmd->args[1] && cmd->args[1][i])
 	{
 		if (cmd->args[1][i] == '-' && cmd->args[1][++i] && cmd->args[1][i] == 'n')
 		{
@@ -43,4 +43,8 @@ void	echo(t_cmd *cmd)
 	}
 	if (flag == 0)
 		printf("\n");
+	free(shell->input);
+	gc_free_all(&shell->gc);
+	gc_free_all(&shell->env_gc);
+	exit(0);
 }

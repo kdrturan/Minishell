@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 21:08:37 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/07 00:11:06 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	builtin_functions(t_shell *shell, t_cmd *cmd)
 		else if (!ft_strncmp("pwd", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
 			pwd(shell, cmd);
 		else if (!ft_strncmp("echo", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
-			echo(cmd);
+			echo(shell, cmd);
 		else if (!ft_strncmp("cd", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
 			cd(shell, cmd);
 		else if (!ft_strncmp("exit", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
@@ -43,38 +43,61 @@ int	builtin_functions(t_shell *shell, t_cmd *cmd)
 	return (0);
 }
 
-int check(char *path, int status)
+void	handle_error(t_cmd *cmd, int* status)
+{
+	struct stat statbuf;
+
+	if (errno == EACCES)
+	{
+		if (stat(cmd->args[0], &statbuf) == 0 && S_ISDIR(statbuf.st_mode))
+			print_error(true, cmd->args[0], NULL, E_FILE2);
+		else
+			print_error(true, cmd->args[0], NULL, E_PERM0);
+		*status = 126;
+	}
+	else if (errno == ENOENT)
+	{
+		print_error(true, cmd->args[0], NULL, E_CMD0);
+		*status = 127;
+	}
+	else
+		*status = 1;
+}
+
+void	pre_check(char *cmd, int *status)
 {
 	struct stat st;
 
-	ft_putstr_fd("OIIA OIIA: ", 2);
-
-	if (stat(path, &st) == -1)
+	if (cmd && ft_strchr(cmd, '/'))
 	{
-		ft_putstr_fd("No such file or directory\n", 2);
-		return (127);
+		if (stat(cmd, &st) == 0)
+		{
+			if (S_ISDIR(st.st_mode))
+			{
+				print_error(true, cmd, NULL, E_FILE2);
+				*status = 126;
+			}
+			else if (access(cmd, X_OK) == -1)
+			{
+				print_error(true, cmd, NULL, E_PERM0);
+				*status = 126;
+			}
+		}
+		else
+		{
+			print_error(true, cmd, NULL, E_FILE0);
+			*status = 127;
+		}
 	}
-
-	if (S_ISDIR(st.st_mode))
+	else if (access(cmd, F_OK) == 0)
 	{
-		ft_putstr_fd("Is a directory\n", 2);
-		return (126);
+		print_error(true, cmd, NULL, E_CMD0);
+		*status = 127;
 	}
-
-	if (access(path, X_OK) == -1)
-	{
-		ft_putstr_fd("Permission denied\n", 2);
-		return (126);
-	}
-
-	if (status == 1)
-	{
-		ft_putstr_fd("command not found\n", 2);
-		return (127);
-	}
-
-	return (0); // her şey yolundaysa
+	else
+		*status = 0;
 }
+
 
 void	cmd_run(t_shell *shell, t_cmd *cmd)
 {
@@ -83,16 +106,21 @@ void	cmd_run(t_shell *shell, t_cmd *cmd)
 	int		exit_code;
 
 	full_path = NULL;
-	env = (char **)gc_track_array(&shell->exec_gc,
-			(void **)env_cast_char(shell));
+	pre_check(cmd->args[0], &shell->exit_status);
+	env = env_cast_char(shell);
 	if (cmd->args[0])
 		full_path = find_in_path(shell, cmd);
 	if (full_path)
-		shell->exit_status = execve(full_path, cmd->args, env);
+		execve(full_path, cmd->args, env);
 	else
-		shell->exit_status = execve(cmd->args[0], cmd->args, env);
-	exit_code = check(full_path, shell->exit_status);
-	exit(exit_code);
+		execve(cmd->args[0], cmd->args, env);
+	if (!shell->exit_status)
+		handle_error(cmd, &shell->exit_status);
+	free(shell->input);
+	gc_free_all(&shell->gc);
+	gc_free_all(&shell->env_gc);
+	gc_free_all(&shell->exec_gc);
+	exit(shell->exit_status);
 }
 
 char	*find_in_path(t_shell *shell, t_cmd *cmd)
@@ -100,10 +128,10 @@ char	*find_in_path(t_shell *shell, t_cmd *cmd)
 	int		is_exist;
 	char	**full_path;
 	char	*path;
+	
 	size_t	i;
-
 	i = 0;
-	path = gc_track(&shell->exec_gc, env_get_value(shell, "PATH"));
+	path = env_get_value(shell, "PATH");
 	full_path = (char **)gc_track_array(&shell->exec_gc, (void **)ft_split(path,
 				':'));
 	while (full_path[i])

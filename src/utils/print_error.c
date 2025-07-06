@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 18:05:52 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/06 18:45:06 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/07/06 23:46:08 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/07/07 00:19:18 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exec.h>
+#include <utils.h>
 
-void	unset(t_shell *shell, t_cmd *cmd)
+void print_error(bool b_flag, char *sec0, char *sec1, const char *error)
 {
-	t_gc	new_gc;
-	t_env	*new_env;
-
-	if (cmd->args[1])
-	{
-		new_gc.head = NULL;
-		new_env = env_remove(shell, cmd->args[1], &new_gc);
-		gc_free_all(&shell->env_gc);
-		shell->env_gc = new_gc;
-		shell->env = new_env;
-		shell->exit_status = 0;
-	}
+    if (b_flag)
+        ft_putstr_fd("OIIA OIIA: ",2);
+	ft_putstr_fd(sec0,2);
+    if (sec1)
+        ft_putstr_fd(": ",2);
+	ft_putstr_fd(sec1 ,2);
+	ft_putstr_fd(error,2);
 }

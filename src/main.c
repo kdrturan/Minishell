@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/04 18:30:44 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/07 00:37:22 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,5 @@ int	main(int ac, char **av, char **env_data)
 	gc_free_all(&shell.env_gc);
 	return (0);
 }
+
+// echo <"../minishell_tester/test_files/infile_big" | echo <"../minishell_tester/test_files/infile" 

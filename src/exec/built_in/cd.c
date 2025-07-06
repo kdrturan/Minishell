@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:23 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/04 19:39:28 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/07 00:03:03 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,18 @@ static void check_error(t_shell *shell, t_cmd *cmd)
 {
 	if (cmd && cmd->args && cmd->args[1] && cmd->args[2])
 	{
-		ft_putstr_fd("OIIA OIIA:",2);
-		ft_putstr_fd(" cd: ",2);
-		ft_putstr_fd(cmd->args[1] ,2);
-		ft_putstr_fd(": too many arguments\n",2);
+		print_error(true, cmd->args[0], cmd->args[1], E_ARG0);
 		shell->exit_status = 1;
 		return ;
 	}
-	if (chdir(cmd->args[1]) == -1)
+	if (cmd && cmd->args && cmd->args[1] && chdir(cmd->args[1]) == -1)
 	{
 		if (errno == ENOENT)
-		{
-			ft_putstr_fd("OIIA OIIA:",2);
-			ft_putstr_fd(" cd: ",2);
-			ft_putstr_fd(cmd->args[1] ,2);
-			ft_putstr_fd(": No such file or directory\n",2);
-		}
+			print_error(true, cmd->args[0], cmd->args[1], E_FILE0);
 		else if (errno == ENOTDIR)
-		{
-			ft_putstr_fd("OIIA OIIA:",2);
-			ft_putstr_fd(" cd: ",2);
-			ft_putstr_fd(cmd->args[1],2);
-			ft_putstr_fd(": Not a directory\n",2);
-		}
+			print_error(true, cmd->args[0], cmd->args[1], E_FILE1);
 		else if (errno == EACCES)
-		{
-			ft_putstr_fd("OIIA OIIA:",2);
-			ft_putstr_fd(" cd: ",2);
-			ft_putstr_fd(cmd->args[1],2);
-			ft_putstr_fd(": Permission denied\n",2);
-		}
+			print_error(true, cmd->args[0], cmd->args[1], E_PERM0);
 	}
 	else
 		return;

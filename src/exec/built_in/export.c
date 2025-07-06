@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:53:36 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/05 16:45:08 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/07 00:06:30 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,6 @@ static bool	is_valid_key(char *key)
 	return (true);
 }
 
-static bool error_msg(t_shell *shell, char *arg)
-{
-	ft_putstr_fd("bash: ", STDERR_FILENO);
-	ft_putstr_fd("export: ", STDERR_FILENO);
-	ft_putstr_fd("‘", STDERR_FILENO);
-	ft_putstr_fd(arg, STDERR_FILENO);
-	ft_putstr_fd("’", STDERR_FILENO);
-	ft_putstr_fd(": not a valid identifier\n", STDERR_FILENO);
-	shell->exit_status = 1;
-}
-
 void	export(t_shell *shell, t_cmd *cmd)
 {
 	size_t	i;
@@ -55,7 +44,8 @@ void	export(t_shell *shell, t_cmd *cmd)
 		eq = ft_strchr(cmd->args[i], '=');
 		if (eq == cmd->args[i] && ft_strlen(cmd->args[i]) == 1)
 		{
-			error_msg(shell, cmd->args[i]);
+			print_error(true, cmd->args[0], cmd->args[i], E_ARG2);
+			shell->exit_status = 1;
 			i++;
 			continue;
 		}
@@ -64,7 +54,8 @@ void	export(t_shell *shell, t_cmd *cmd)
 			key = gc_track(&shell->env_gc, ft_substr(cmd->args[i], 0, eq - cmd->args[i]));
 			if (!is_valid_key(key))
 			{
-				error_msg(shell, cmd->args[i]);
+				print_error(true, cmd->args[0], cmd->args[i], E_ARG2);
+			shell->exit_status = 1;
 				i++;
 				continue;
 			}
@@ -80,7 +71,10 @@ void	export(t_shell *shell, t_cmd *cmd)
 				env_set(shell, key, val);
 			}
 			else
-				error_msg(shell, cmd->args[i]);
+			{
+				print_error(true, cmd->args[0], cmd->args[i], E_ARG2);
+				shell->exit_status = 1;
+			}
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 21:01:26 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/29 18:35:44 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/06 21:54:19 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,19 @@ void	gc_free_all(t_gc *gc)
 {
 	t_gc_node	*current;
 	t_gc_node	*tmp;
+
 	current = gc->head;
 	while (current)
 	{
-		free(current->ptr);
+		if (current->ptr)
+			free(current->ptr);
+		current->ptr = NULL;
 		tmp = current;
 		current = current->next;
-		free(tmp);
+		if (tmp)
+			free(tmp);
+		tmp = NULL;
 	}
 	gc->head = NULL;
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/04 19:49:25 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/07 00:19:58 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 # include <token.h>
 # include <libft.h>
 # include <env.h>
+
+# define E_ARG0 ": too many arguments\n"
+# define E_ARG1 ": numeric argument required\n"
+# define E_ARG2 ": not a valid identifier\n"
+
+# define E_FILE0 ": No such file or directory\n"
+# define E_FILE1 ": Not a directory\n"
+# define E_FILE2 ": Is a directory\n"
+
+# define E_PERM0 ": Permission denied\n"
+
+# define E_CMD0 ": command not found\n"
 
 int		is_white_space(
 			int c);
@@ -45,5 +57,5 @@ char	*get_prompt(
 			int status);
 
 bool	ft_isnumeric(const char *str);
-
+void	print_error(bool b_flag, char *sec0, char *sec1, const char *error);
 #endif
