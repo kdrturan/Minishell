@@ -1,7 +1,20 @@
 {
-    "files.associations": {
-        "exec.h": "c",
-        "signal.h": "c",
-        "ioctl.h": "c"
-    }
+  "files.associations": {
+    "exec.h": "c",
+    "signal.h": "c",
+    "ioctl.h": "c"
+  },
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.parameterHints.enabled": false,
+  "editor.wordBasedSuggestions": false,
+  "editor.inlineSuggest.enabled": false,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.autoSurround": "languageDefined"
 }

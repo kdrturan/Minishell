@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/07 00:11:06 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/07 04:23:23 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	pre_check(char *cmd, int *status)
 
 	if (cmd && ft_strchr(cmd, '/'))
 	{
-		if (stat(cmd, &st) == 0)
+		if (cmd && stat(cmd, &st) == 0)
 		{
 			if (S_ISDIR(st.st_mode))
 			{
@@ -89,7 +89,7 @@ void	pre_check(char *cmd, int *status)
 			*status = 127;
 		}
 	}
-	else if (access(cmd, F_OK) == 0)
+	else if (cmd && access(cmd, F_OK) == 0)
 	{
 		print_error(true, cmd, NULL, E_CMD0);
 		*status = 127;

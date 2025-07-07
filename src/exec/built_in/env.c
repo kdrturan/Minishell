@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:41:22 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 00:02:49 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/07 04:28:19 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void	env(t_shell *shell, t_cmd *cmd)
 				shell->env->pairs[i].val);
 		i++;
 	}
+	shell->exit_status = 0;
 }

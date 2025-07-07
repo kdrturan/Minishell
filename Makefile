@@ -3,7 +3,7 @@ NAME        = minishell
 PATH_SRC    = src
 PATH_OBJ    = obj
 
-SUBDIRS     = signal token utils init env _GC debug lexer parser parser/cmd_utils parser/redir_utils exec exec/built_in
+SUBDIRS     = signal token utils init env _GC debug lexer parser parser/cmd_utils parser/redir_utils parser/check_syntax exec exec/built_in
 
 PATH_LIBFT  = lib/libft
 LIBFT       = $(PATH_LIBFT)/libft.a
@@ -91,7 +91,11 @@ setup_env:
 	git remote set-url --add --push origin git@github.com:kdrturan/Minishell.git
 
 run_valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all --suppressions=valgrind.supp ./minishell
+	@valgrind --leak-check=full \
+	         --show-leak-kinds=all \
+	         --suppressions=valgrind.supp \
+	         --quiet \
+	         ./minishell
 
 TEST_NAME = test_parser
 TEST_SRC  = $(wildcard tests/test_parser/*.c) tests/test.c

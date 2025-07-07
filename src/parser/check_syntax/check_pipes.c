@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   check_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 20:09:06 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/07 04:27:35 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/07/07 04:42:22 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/07/07 04:48:20 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exec.h>
+#include <parser.h>
+#include <token.h>
 
-void	pwd(t_shell *shell, t_cmd *cmd)
+void	check_pipes(t_shell *shell)
 {
-	(void)cmd;
-	printf("%s\n", (char *)gc_track(&shell->gc, getcwd(NULL, 0)));
-	shell->exit_status = 0;
+	t_token *token;
+
+	while (token)
+	{
+		
+		token = token->next;
+	}
 }

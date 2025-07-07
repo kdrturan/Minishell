@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:23 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/07 00:03:03 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/07 04:30:11 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	cd(t_shell *shell, t_cmd *cmd)
 	char	*buff;
 	char	*tmp;
 	
-
+	shell->exit_status = 0;
 	check_error(shell,cmd);
 	if (shell->exit_status == 1)
 		return ;
