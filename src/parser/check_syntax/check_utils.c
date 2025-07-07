@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_pipes.c                                      :+:      :+:    :+:   */
+/*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 04:42:22 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 04:48:20 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/07/07 05:30:19 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/07/07 05:51:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,38 @@
 
 void	check_pipes(t_shell *shell)
 {
-	t_token *token;
+	t_cmd *cmd;
 
-	while (token)
+	cmd = shell->cmd_list;
+	while (cmd)
 	{
-		
-		token = token->next;
+		if (cmd->args == NULL || cmd->args[0] == NULL)
+		{
+			shell->exit_status = 2;
+			return ;
+		}
+		cmd = cmd->next;
+	}
+}
+
+void	check_redirs(t_shell *shell)
+{
+	t_cmd	*cmd;
+	t_redir	*redir;
+
+	cmd = shell->cmd_list;
+	while (cmd)
+	{
+		redir = cmd->redir;
+		while (redir)
+		{
+			if (redir->target == NULL)
+			{
+				shell->exit_status = 2;
+				return ;
+			}
+			redir = redir->next;
+		}
+		cmd = cmd->next;
 	}
 }

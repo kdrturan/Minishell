@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:38:54 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/02 17:49:49 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/07 05:38:08 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	parser_run(t_shell *shell)
 {
 	parse_preprocess(shell);
 	generate_commands(shell);
+	check_syntax(shell);
 }

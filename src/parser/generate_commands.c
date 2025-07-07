@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 18:03:49 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 14:30:09 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/07 05:50:46 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,16 @@ static void	add_redir(t_shell *sh, t_token **tok,
 	token_remove(&sh->token_list, op);
 	*tok = skip_ws(*tok);
 	if (!*tok || (*tok)->type == PIPE)
+	{
+		redir_add_back(lst, redir_new(sh, type, NULL));
 		return ;
+	}
 	target = *tok;
 	if (target->type != WORD)
+	{
+		redir_add_back(lst, redir_new(sh, type, NULL));
 		return ;
+	}
 	redir_add_back(lst, redir_new(sh, type, target->text));
 	*tok = target->next;
 	token_remove(&sh->token_list, target);
@@ -98,6 +104,12 @@ void	generate_commands(t_shell *shell)
 		redir = get_redir(shell, shell->token_list);
 		args = get_args(shell);
 		cmd_add_back(&shell->cmd_list, cmd_new(shell, args, redir));
+		if (shell->token_list && shell->token_list->type == PIPE
+			&& shell->token_list->next == NULL)
+		{
+			cmd_add_back(&shell->cmd_list, cmd_new(shell, NULL, NULL));
+			break ;
+		}
 		if (shell->token_list && shell->token_list->next)
 			shell->token_list = shell->token_list->next;
 		else

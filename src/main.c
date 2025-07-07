@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 00:37:22 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/07 05:54:44 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,18 @@ int	main(int ac, char **av, char **env_data)
 		if (shell.input == NULL)
 			break ;
 		add_history(shell.input);
-		/*if (!validate_input(&shell, shell.input))
-		{
-			ft_putendl_fd("syntax error", STDERR_FILENO);
-			free(shell.input);
-			continue ;
-		}*/
 		lexer_run(&shell);
 		parser_run(&shell);
 		//debug_print_cmd_list(shell.cmd_list);
+		if (shell.exit_status == 2)
+		{
+			print_error(false, NULL, NULL, E_SYNTAX);
+			token_clean(&shell.token_list);
+			cmd_clean(&shell.cmd_list);
+			gc_free_all(&shell.gc);
+			free(shell.input);
+			continue ;
+		}
 		if (exec(&shell))
 			break ;
 		set_signals(S_MAIN);
@@ -61,4 +64,3 @@ int	main(int ac, char **av, char **env_data)
 	return (0);
 }
 
-// echo <"../minishell_tester/test_files/infile_big" | echo <"../minishell_tester/test_files/infile" 

@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 00:19:58 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/07 05:28:09 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 
 # define E_CMD0 ": command not found\n"
 
+# define E_SYNTAX "syntax_error\n"
+
 int		is_white_space(
 			int c);
 
@@ -46,16 +48,14 @@ int		get_valid_key_length(
 bool	will_eat(
 			char c);
 
-bool	validate_input(
-			t_shell *shell,
-			char *input);
-
 t_token	*skip_ws(
 			t_token *tok);
 
 char	*get_prompt(
 			int status);
 
+
+void	check_syntax(t_shell *shell);
 bool	ft_isnumeric(const char *str);
 void	print_error(bool b_flag, char *sec0, char *sec1, const char *error);
 #endif
