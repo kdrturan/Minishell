@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 05:54:44 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 21:12:06 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	main(int ac, char **av, char **env_data)
 	init_shell(&shell, env_data);
 	while (1)
 	{
-		shell.input = ft_strtrim(gc_track(&shell.gc,
-					readline(get_prompt(shell.exit_status))), WHITESPACES);
+		shell.input = gc_track(&shell.gc, ft_strtrim(gc_track(&shell.gc,
+					readline(get_prompt(shell.exit_status))), WHITESPACES));
 		if (shell.input == NULL)
 			break ;
-		add_history(shell.input);
 		lexer_run(&shell);
 		parser_run(&shell);
+		add_history(shell.input);
 		//debug_print_cmd_list(shell.cmd_list);
 		if (shell.exit_status == 2)
 		{
@@ -49,7 +49,6 @@ int	main(int ac, char **av, char **env_data)
 			token_clean(&shell.token_list);
 			cmd_clean(&shell.cmd_list);
 			gc_free_all(&shell.gc);
-			free(shell.input);
 			continue ;
 		}
 		if (exec(&shell))
@@ -58,7 +57,6 @@ int	main(int ac, char **av, char **env_data)
 		token_clean(&shell.token_list);
 		cmd_clean(&shell.cmd_list);
 		gc_free_all(&shell.gc);
-		free(shell.input);
 	}
 	gc_free_all(&shell.env_gc);
 	return (0);

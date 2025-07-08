@@ -2,6 +2,8 @@
   "files.associations": {
     "exec.h": "c",
     "signal.h": "c",
-    "ioctl.h": "c"
+    "ioctl.h": "c",
+    "utils.h": "c",
+    "token.h": "c"
   },
 }

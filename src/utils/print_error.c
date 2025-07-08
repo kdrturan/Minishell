@@ -6,13 +6,13 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:46:08 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 00:19:18 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 21:02:01 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <utils.h>
 
-void print_error(bool b_flag, char *sec0, char *sec1, const char *error)
+void print_error(bool b_flag, char *sec0, char *sec1, char *error)
 {
     if (b_flag)
         ft_putstr_fd("OIIA OIIA: ",2);
