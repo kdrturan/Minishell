@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 21:28:03 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 22:39:20 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	main(int ac, char **av, char **env_data)
 		shell.input = gc_track(&shell.gc, ft_strtrim(gc_track(&shell.gc,
 					readline(get_prompt(shell.exit_status))), WHITESPACES));
 		if (shell.input == NULL)
+		{
+			ft_exit(&shell, NULL);
 			break ;
+		}
 		lexer_run(&shell);
 		parser_run(&shell);
 		add_history(shell.input);

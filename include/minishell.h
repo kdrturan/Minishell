@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/03 21:57:13 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 00:15:13 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_cmd		t_cmd;
 struct	s_shell
 {
 	char					*input;
+	char					*home_dir;
 	t_env					*env;
 	t_token					*token_list;
 	t_cmd					*cmd_list;

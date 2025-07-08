@@ -6,13 +6,15 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 20:44:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 21:31:35 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 23:18:23 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 #include <lexer.h>
 #include <readline/readline.h>
+#include <exec.h>
+#include <signal_handler.h>
 
 t_token	*will_complete(t_token *token)
 {
@@ -36,6 +38,12 @@ void	complete_pipe(t_shell *shell)
 		while (1)
 		{
 			input = gc_track(&shell->gc, ft_strtrim(gc_track(&shell->gc, readline(">")), WHITESPACES));
+			if (!input)
+			{
+				print_error(false, NULL, NULL, E_SYNTAX);
+				shell->exit_status = 2;
+				ft_exit(shell, NULL);
+			}
 			if (input && input[0] != '\0')
 			{
 				shell->input = gc_track(&shell->gc, ft_strjoin(shell->input, input));

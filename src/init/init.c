@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 21:45:42 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/06 19:33:28 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 00:15:37 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	init_shell(t_shell *shell, char **env_data)
 	shell->token_list = NULL;
 	shell->cmd_list = NULL;
 	shell->exit_status = 0;
+	shell->home_dir = env_get_value(shell, "HOME");
 	set_signals(S_MAIN);
 }

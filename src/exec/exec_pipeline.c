@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/04 17:15:25 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 22:17:27 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	execute_pipeline(t_shell *shell)
 	int		pipe_fd[2];
 	int		prev_fd;
 	int		flag;
+	pid_t	pid;
 
 	flag = 1;
 	prev_fd = -1;
@@ -33,7 +34,7 @@ void	execute_pipeline(t_shell *shell)
 		{
 			if (commands->redir && commands->redir->type == HEREDOC)
 			{
-				pid_t pid = fork();
+				pid = fork();
 				if (pid == 0)
 					handle_heredoc_main(commands->redir);
 				if (pid == 0)
