@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 04:31:49 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 23:25:52 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 01:32:15 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ void	check_syntax(t_shell *shell)
 	if (shell->exit_status)
 		return ;
 	check_redirs(shell);
-	if (shell->exit_status)
-		return ;
-	check_quotes(shell);
 	if (shell->exit_status)
 		return ;
 }

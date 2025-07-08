@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 05:30:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 23:26:22 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 01:41:14 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,21 @@ void	check_redirs(t_shell *shell)
 
 void	check_quotes(t_shell *shell)
 {
-	
+	t_token	*token;
+	bool	in_squote;
+	bool	in_dquote;
+
+	in_squote = false;
+	in_dquote = false;
+	token = shell->token_list;
+	while (token)
+	{
+		if (token->type == QUOTE && !in_dquote)
+			in_squote = !in_squote;
+		else if (token->type == DQUOTE && !in_squote)
+			in_dquote = !in_dquote;
+		token = token->next;
+	}
+	if (in_squote || in_dquote)
+		shell->exit_status = 2;
 }
