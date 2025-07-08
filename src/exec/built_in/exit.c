@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:54:49 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/07 00:04:05 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 21:32:28 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void    ft_exit(t_shell *shell, t_cmd *cmd)
     value = check_error(shell, cmd);
     if (!value && cmd->args[1])
         value = ft_atoi(shell->cmd_list->args[1]);
-    free(shell->input);
     gc_free_all(&shell->gc);
     gc_free_all(&shell->env_gc);
     gc_free_all(&shell->exec_gc);

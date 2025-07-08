@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 20:44:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 21:18:29 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 21:31:35 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_token	*will_complete(t_token *token)
 {
-	while (token->next)
+	while (token && token->next)
 		token = token->next;
 	while (token && token->type == WS)
 		token = token->prev;
@@ -35,8 +35,7 @@ void	complete_pipe(t_shell *shell)
 	{
 		while (1)
 		{
-			input = gc_track(&shell->gc, ft_strtrim(gc_track(&shell->gc,
-					readline(">")), WHITESPACES));
+			input = gc_track(&shell->gc, ft_strtrim(gc_track(&shell->gc, readline(">")), WHITESPACES));
 			if (input && input[0] != '\0')
 			{
 				shell->input = gc_track(&shell->gc, ft_strjoin(shell->input, input));
@@ -44,6 +43,5 @@ void	complete_pipe(t_shell *shell)
 				break;
 			}
 		}
-		
 	}
 }

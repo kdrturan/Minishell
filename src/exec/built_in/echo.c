@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:27 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/07 01:35:33 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 21:30:09 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	echo(t_shell *shell, t_cmd *cmd)
 	}
 	if (flag == 0)
 		printf("\n");
-	free(shell->input);
 	gc_free_all(&shell->gc);
 	gc_free_all(&shell->env_gc);
 	exit(0);

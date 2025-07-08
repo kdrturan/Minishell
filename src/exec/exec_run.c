@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/07 04:23:23 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 21:32:01 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	cmd_run(t_shell *shell, t_cmd *cmd)
 		execve(cmd->args[0], cmd->args, env);
 	if (!shell->exit_status)
 		handle_error(cmd, &shell->exit_status);
-	free(shell->input);
 	gc_free_all(&shell->gc);
 	gc_free_all(&shell->env_gc);
 	gc_free_all(&shell->exec_gc);

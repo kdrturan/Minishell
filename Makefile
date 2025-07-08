@@ -15,7 +15,7 @@ BASE_INC_DIRS = include $(PATH_LIBFT)
 INC_DIRS      = $(addprefix $(PATH_SRC)/,$(SUBDIRS))
 PATH_INCLUDE  = $(addprefix -I ,$(BASE_INC_DIRS) $(INC_DIRS))
 
-CFLAGS =   -g
+CFLAGS = -fsanitize=address  -g
 
 vpath %.c $(SRC_DIRS)
 

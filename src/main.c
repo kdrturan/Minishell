@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 21:12:06 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/08 21:28:03 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 #include <stdio.h>
 #include <token.h>
 #include <utils.h>
-
 
 int	main(int ac, char **av, char **env_data)
 {
