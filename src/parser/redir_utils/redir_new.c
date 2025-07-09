@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 16:52:38 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 14:08:19 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:05:50 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ t_redir	*redir_new(t_shell *shell, t_redir_type type, char *target)
 	redir->next = NULL;
 	return (redir);
 }
-

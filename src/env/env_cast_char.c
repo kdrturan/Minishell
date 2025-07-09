@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_cast_char.c                                     :+:      :+:    :+:   */
+/*   env_cast_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdrturan <kdrturan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 11:30:59 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/06/10 15:17:13 by kdrturan         ###   ########.fr       */
+/*   Created: 2025/07/09 03:58:37 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/07/09 03:58:43 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ char	**env_cast_char(t_shell *shell)
 
 	i = 0;
 	value = NULL;
-	value = gc_track(&shell->exec_gc, malloc(sizeof(char *) * (shell->env->count
-					+ 1)));
+	value = gc_track(&shell->exec_gc, malloc(sizeof(char *)
+				* (shell->env->count + 1)));
 	while (i < shell->env->count)
 	{
 		temp = gc_track(&shell->exec_gc, ft_strjoin(shell->env->pairs[i].key,

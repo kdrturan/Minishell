@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 20:44:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 23:18:23 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:04:11 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,37 @@ t_token	*will_complete(t_token *token)
 	return (NULL);
 }
 
+static int	append_pipe_input(t_shell *shell)
+{
+	char	*input;
+	char	*trimmed;
+
+	while (1)
+	{
+		input = gc_track(&shell->gc, readline(">"));
+		if (!input)
+		{
+			print_error(false, NULL, NULL, E_SYNTAX);
+			shell->exit_status = 2;
+			ft_exit(shell, NULL);
+		}
+		trimmed = gc_track(&shell->gc, ft_strtrim(input, WHITESPACES));
+		if (trimmed && trimmed[0] != '\0')
+		{
+			shell->input = gc_track(&shell->gc,
+					ft_strjoin(shell->input, trimmed));
+			lexer_run(shell);
+			return (1);
+		}
+	}
+	return (0);
+}
+
 void	complete_pipe(t_shell *shell)
 {
 	t_token	*token;
-	char	*input;
 
 	token = will_complete(shell->token_list);
 	if (token)
-	{
-		while (1)
-		{
-			input = gc_track(&shell->gc, ft_strtrim(gc_track(&shell->gc, readline(">")), WHITESPACES));
-			if (!input)
-			{
-				print_error(false, NULL, NULL, E_SYNTAX);
-				shell->exit_status = 2;
-				ft_exit(shell, NULL);
-			}
-			if (input && input[0] != '\0')
-			{
-				shell->input = gc_track(&shell->gc, ft_strjoin(shell->input, input));
-				lexer_run(shell);
-				break;
-			}
-		}
-	}
+		append_pipe_input(shell);
 }

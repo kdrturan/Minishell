@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 02:52:40 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:07:38 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <signal_handler.h>
-
-
 
 int		exec(t_shell *shell);
 void	env(t_shell *shell, t_cmd *cmd);

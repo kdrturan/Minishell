@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:43:05 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/04 18:48:37 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:02:16 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	expand_special(t_shell *shell, t_token *dollar)
 	else if (*(dollar->next->text) == '?')
 	{
 		dollar->text = gc_track(&shell->gc, ft_itoa(shell->exit_status));
-		dollar->next->text = gc_track(&shell->gc, ft_strdup(dollar->next->text + 1));
+		dollar->next->text = gc_track(&shell->gc,
+				ft_strdup(dollar->next->text + 1));
 		return ;
 	}
 	else if (*(dollar->next->text) == '-')
@@ -33,8 +34,8 @@ static void	expand_special(t_shell *shell, t_token *dollar)
 	else
 	{
 		dollar->text = gc_track(&shell->gc,
-			ft_substr(dollar->next->text, 1,
-				ft_strlen(dollar->next->text) - 1));
+				ft_substr(dollar->next->text, 1,
+					ft_strlen(dollar->next->text) - 1));
 	}
 	token_remove(&shell->token_list, dollar->next);
 }
@@ -87,7 +88,7 @@ static void	expand_word(t_shell *shell, t_token *dollar)
 	char	*key;
 	char	*rest;
 	t_token	*orig_key;
-	t_token *rest_tok;
+	t_token	*rest_tok;
 
 	len = get_valid_key_length(dollar);
 	if (len == 0)

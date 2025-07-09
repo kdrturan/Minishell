@@ -6,13 +6,13 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:41:22 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 04:28:19 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:19:02 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-static bool check_error(t_shell *shell, t_cmd *cmd)
+static bool	check_error(t_shell *shell, t_cmd *cmd)
 {
 	if (cmd && cmd->args && cmd->args[1])
 	{

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 18:12:23 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/09 02:58:05 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/07/09 04:16:28 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/07/09 04:16:46 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,28 @@ static void	print_cd_error(t_shell *shell, t_cmd *cmd, char *path)
 	shell->exit_status = 1;
 }
 
+static char	*get_cd_target(t_shell *shell, t_cmd *cmd)
+{
+	char	*target;
+
+	if (!cmd->args[1] || (cmd->args[1][0] == '~'
+		&& cmd->args[1][1] == '\0'))
+		target = shell->home_dir;
+	else if (cmd->args[1][0] == '-' && cmd->args[1][1] == '\0')
+	{
+		target = env_get_value(shell, "OLDPWD");
+		if (!target || target[0] == '\0')
+		{
+			print_error(true, NULL, NULL, "OLDPWD not set\n");
+			shell->exit_status = 1;
+			return (NULL);
+		}
+	}
+	else
+		target = cmd->args[1];
+	return (target);
+}
+
 void	cd(t_shell *shell, t_cmd *cmd)
 {
 	char	*target;
@@ -34,31 +56,14 @@ void	cd(t_shell *shell, t_cmd *cmd)
 
 	shell->exit_status = 0;
 	if (cmd->args[1] && cmd->args[2])
-	{
-		print_error(true, cmd->args[0], NULL, E_ARG0);
-		shell->exit_status = 1;
-		return ;
-	}
+		return (print_error(true, cmd->args[0], NULL, E_ARG0),
+			(void)(shell->exit_status = 1));
 	oldpwd = env_get_value(shell, "PWD");
-	if (!cmd->args[1] || (cmd->args[1][0] == '~' && cmd->args[1][1] == '\0'))
-		target = shell->home_dir;
-	else if (cmd->args[1][0] == '-' && cmd->args[1][1] == '\0')
-	{
-		target = env_get_value(shell, "OLDPWD");
-		if (target && target[0] == '\0')
-		{
-			print_error(true, "cd", NULL, "OLDPWD not set\n");
-			shell->exit_status = 1;
-			return ;
-		}
-	}
-	else
-		target = cmd->args[1];
-	if (chdir(target) == -1)
-	{
-		print_cd_error(shell, cmd, target);
+	target = get_cd_target(shell, cmd);
+	if (!target)
 		return ;
-	}
+	if (chdir(target) == -1)
+		return (print_cd_error(shell, cmd, target));
 	newpwd = gc_track(&shell->gc, getcwd(NULL, 0));
 	if (newpwd)
 	{

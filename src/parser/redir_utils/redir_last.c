@@ -6,13 +6,13 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 17:53:01 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/06/03 13:57:52 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:06:14 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-t_redir *redir_last(t_redir *redir)
+t_redir	*redir_last(t_redir *redir)
 {
 	if (!redir)
 		return (NULL);
@@ -20,4 +20,3 @@ t_redir *redir_last(t_redir *redir)
 		redir = redir->next;
 	return (redir);
 }
-

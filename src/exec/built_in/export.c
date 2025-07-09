@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:53:36 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 00:06:30 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:18:29 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	export(t_shell *shell, t_cmd *cmd)
 			if (!is_valid_key(key))
 			{
 				print_error(true, cmd->args[0], cmd->args[i], E_ARG2);
-			shell->exit_status = 1;
+				shell->exit_status = 1;
 				i++;
 				continue;
 			}

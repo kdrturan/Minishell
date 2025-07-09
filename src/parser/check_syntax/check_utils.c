@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 05:30:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 01:41:14 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:06:43 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	check_pipes(t_shell *shell)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = shell->cmd_list;
 	while (cmd)

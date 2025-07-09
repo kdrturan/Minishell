@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:38:15 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/03 18:22:44 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:07:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,11 @@ struct					s_env
 };
 
 t_env					*env_parse(t_shell *shell, char **env_data);
-
 void					env_set(t_shell *shell, char *key, char *val);
-
 void					env_add(t_shell *shell, char *key, char *val);
-
 t_env					*env_remove(t_shell *shell, char *key, t_gc *gc);
-
 size_t					env_len(char **env, t_pair *pairs);
-
 char					*env_get_value(t_shell *shell, char *key);
-
 char					**env_cast_char(t_shell *shell);
 void					cmd_run(t_shell *shell, t_cmd *cmd);
 void					child_process(int prev_fd, t_shell *shell, t_cmd *cmd,

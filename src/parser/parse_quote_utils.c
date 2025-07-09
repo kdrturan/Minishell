@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 02:35:44 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/01 00:37:02 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 04:01:23 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	remove_quotes(t_shell *shell)
 
 void	process_double_quotes(t_shell *shell)
 {
-	t_token	*token = shell->token_list;
+	t_token	*token;
 
+	token = shell->token_list;
 	while (token)
 	{
 		if (token->type == DQUOTE && token->next)
@@ -54,7 +55,8 @@ void	process_double_quotes(t_shell *shell)
 	}
 }
 
-static t_token	*join_quote_block(t_shell *shell, t_token *token, t_token_type type)
+static	t_token	*join_quote_block(
+		t_shell *shell, t_token *token, t_token_type type)
 {
 	t_token	*tmp;
 
@@ -68,8 +70,8 @@ static t_token	*join_quote_block(t_shell *shell, t_token *token, t_token_type ty
 		tmp = token;
 		token = token->next;
 		tmp->prev->text = gc_track(&shell->gc,
-			ft_strjoin(tmp->prev->text, tmp->text));
-		token_remove(&shell->token_list, tmp); 
+				ft_strjoin(tmp->prev->text, tmp->text));
+		token_remove(&shell->token_list, tmp);
 	}
 	if (token && token->type == type)
 	{

@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:48:33 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 03:42:23 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 03:59:30 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_token	*convert_dollar_after_heredoc(t_shell *shell, t_token *token)
 	{
 		token_insert(&shell->token_list, token->next,
 			token_new(shell, WORD, gc_track(&shell->gc,
-				ft_strjoin("$", token->next->text))));
+					ft_strjoin("$", token->next->text))));
 		token_remove(&shell->token_list, token->next);
 	}
 	token_remove(&shell->token_list, token);
@@ -52,7 +52,7 @@ static void	mark_here_dollars(t_shell *shell)
 	}
 }
 
-static void process_dollars(t_shell *shell)
+static void	process_dollars(t_shell *shell)
 {
 	t_token	*token;
 
