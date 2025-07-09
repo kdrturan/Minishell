@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/09 03:38:27 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 17:32:31 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void	wait_childs(t_shell *shell)
 		if (commands->pid > 0)
 			waitpid(commands->pid, &commands->status, 0);
 		if ((commands->status & 0x7F) == 0)
-			commands->status  = (commands->status >> 8) & 0xFF;
+			commands->status = (commands->status >> 8) & 0xFF;
 		else
 		{
 			if (commands->status != 13)
 				ft_putstr_fd("\n", 1);
-			commands->status  = 128 + (commands->status & 0x7F);
-
+			commands->status = 128 + (commands->status & 0x7F);
 		}
 		shell->exit_status = commands->status;
 		commands = commands->next;

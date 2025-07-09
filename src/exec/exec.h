@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 04:07:38 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 17:31:50 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	manage_redir(t_redir *redir);
 int		is_builtin(t_cmd *cmd);
 void	manage_redir_main(t_shell *shell, t_redir *redir);
 void	handle_heredoc_main(t_redir *redir);
-void    ft_exit(t_shell *shell, t_cmd *cmd);
+void	ft_exit(t_shell *shell, t_cmd *cmd);
 
 #endif
