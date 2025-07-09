@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 22:39:20 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 03:15:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ int	main(int ac, char **av, char **env_data)
 			gc_free_all(&shell.gc);
 			continue ;
 		}
-		if (exec(&shell))
-			break ;
+		exec(&shell);
 		set_signals(S_MAIN);
 		token_clean(&shell.token_list);
 		cmd_clean(&shell.cmd_list);

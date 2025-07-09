@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 01:17:52 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 22:41:11 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 03:19:24 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ enum	e_mode
 {
 	S_MAIN,
 	S_CHILD,
-	S_HEREDOC,
-	S_COMPLETION
+	S_HEREDOC
 };
 
 void	set_signals(

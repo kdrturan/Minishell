@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/08 22:17:27 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 02:52:58 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	execute_pipeline(t_shell *shell)
 {
 	t_cmd	*commands;
+	int		stdout_copy;
 	int		pipe_fd[2];
 	int		prev_fd;
 	int		flag;
@@ -42,8 +43,11 @@ void	execute_pipeline(t_shell *shell)
 				else
 					wait(NULL);
 			}
-			manage_redir_main(commands->redir);
+			stdout_copy = dup(STDOUT_FILENO);
+			manage_redir_main(shell, commands->redir);
 			flag = builtin_functions(shell, commands);
+			dup2(stdout_copy, STDOUT_FILENO);
+			close(stdout_copy);
 		}
 		else
 		{

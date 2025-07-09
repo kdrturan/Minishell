@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/07 00:24:38 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 02:52:40 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	main_process(int *prev_fd, t_cmd *cmd, int *pipe_fd);
 void	wait_childs(t_shell *shell);
 int		builtin_functions(t_shell *shell, t_cmd *cmd);
 void	handle_heredoc(t_redir *redir);
-void	manage_redir(t_shell *shell, t_redir *redir);
+void	manage_redir(t_redir *redir);
 int		is_builtin(t_cmd *cmd);
-void	manage_redir_main(t_redir *redir);
+void	manage_redir_main(t_shell *shell, t_redir *redir);
 void	handle_heredoc_main(t_redir *redir);
 void    ft_exit(t_shell *shell, t_cmd *cmd);
 

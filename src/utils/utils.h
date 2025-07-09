@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/08 21:02:19 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 02:37:25 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ char	*get_prompt(
 
 void	check_syntax(t_shell *shell);
 bool	ft_isnumeric(const char *str);
-void	print_error(bool b_flag, char *sec0, char *sec1, char *error);
+void	print_error(bool b_flag, char *sec0, char *sec1, const char *error);
 #endif

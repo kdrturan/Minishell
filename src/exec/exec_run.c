@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/08 21:32:01 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 02:08:43 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	cmd_run(t_shell *shell, t_cmd *cmd)
 {
 	char	**env;
 	char	*full_path;
-	int		exit_code;
 
 	full_path = NULL;
 	pre_check(cmd->args[0], &shell->exit_status);

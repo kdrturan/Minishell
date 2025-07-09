@@ -10,16 +10,6 @@
         "cwd": "${fileDirname}",
         "environment": [],
         "externalConsole": false,
-        "MIMode": "gdb",
-        "setupCommands": [
-            {
-                "description": "Switch to child process after fork",
-                "text": "set follow-fork-mode child"
-            },
-            {
-                "description": "Keep both processes attached after fork",
-                "text": "set detach-on-fork off"
-            }
-        ]
+        "MIMode": "gdb"
     }]
 }

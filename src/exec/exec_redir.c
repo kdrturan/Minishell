@@ -6,13 +6,13 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:51:09 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/07 01:37:28 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 03:20:32 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	manage_redir_main(t_redir *redir)
+void	manage_redir_main(t_shell *shell, t_redir *redir)
 {
 	int	fd;
 
@@ -21,9 +21,23 @@ void	manage_redir_main(t_redir *redir)
 		if (redir->type == OUTPUT || redir->type == APPEND)
 		{
 			if (redir->type == APPEND)
+			{
 				fd = open(redir->target, O_CREAT | O_WRONLY | O_APPEND, 0644);
+				if (fd == -1)
+				{
+					print_error(true, redir->target, NULL, E_PERM0);
+					shell->exit_status = 1;
+				}
+			}	
 			else
+			{
 				fd = open(redir->target, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+				if (fd == -1)
+				{
+					print_error(true, redir->target, NULL, E_PERM0);
+					shell->exit_status = 1;
+				}
+			}
 			dup2(fd, STDOUT_FILENO);
 		}
 		else if (redir->type == INPUT)
@@ -31,6 +45,7 @@ void	manage_redir_main(t_redir *redir)
 			if (access(redir->target, F_OK) == -1)
 			{
 				print_error(true, redir->target, NULL, E_FILE0);
+				shell->exit_status = 1;
 			}
 			fd = open(redir->target, O_RDONLY);
 			dup2(fd, STDIN_FILENO);
@@ -41,7 +56,7 @@ void	manage_redir_main(t_redir *redir)
 	}
 }
 
-void	manage_redir(t_shell *shell, t_redir *redir)
+void	manage_redir(t_redir *redir)
 {
 	int	fd;
 

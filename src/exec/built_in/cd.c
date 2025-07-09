@@ -6,14 +6,14 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:12:23 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/09 00:15:45 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 02:58:05 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 #include <errno.h>
 
-static void	print_cd_error(t_shell *shell, t_cmd *cmd, const char *path)
+static void	print_cd_error(t_shell *shell, t_cmd *cmd, char *path)
 {
 	if (errno == ENOENT)
 		print_error(true, cmd->args[0], path, E_FILE0);

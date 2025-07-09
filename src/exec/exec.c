@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:36:50 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/06 22:53:53 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 03:07:38 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 
 int	exec(t_shell *shell)
 {
-	t_cmd *cmds;
-
-	cmds = shell->cmd_list; 
 	execute_pipeline(shell);
-	// while (cmds)
-	// {
-	// 	if (cmds->status == 127)
-	// 	{
-	// 		ft_putstr_fd (cmds->args[0], 2);
-	// 		ft_putstr_fd(": command not found\n", 2);
-	// 	}
-	// 	cmds = cmds->next;
-	// }
 	return (0);
 }

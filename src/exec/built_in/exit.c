@@ -6,13 +6,13 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:54:49 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/08 22:43:19 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 02:55:04 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-static int check_error(t_shell *shell, t_cmd *cmd)
+static int check_error(t_cmd *cmd)
 {
     size_t  i;
 
@@ -43,16 +43,14 @@ void    ft_exit(t_shell *shell, t_cmd *cmd)
 
     if (cmd == NULL)
     {
-        ft_putstr_fd("exit\n", 2);   
         gc_free_all(&shell->gc);
         gc_free_all(&shell->env_gc);
         gc_free_all(&shell->exec_gc);
         exit(shell->exit_status);
     }
-    value = check_error(shell, cmd);
+    value = check_error(cmd);
     if (!value && cmd->args[1])
         value = ft_atoi(shell->cmd_list->args[1]);
-    ft_putstr_fd("exit\n", 2);
     gc_free_all(&shell->gc);
     gc_free_all(&shell->env_gc);
     gc_free_all(&shell->exec_gc);
