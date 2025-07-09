@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 02:37:25 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 03:51:25 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,14 @@
 
 # define E_SYNTAX "syntax_error\n"
 
-int		is_white_space(
-			int c);
-
-char	*str_change(
-			char *dst,
-			char *src,
-			size_t idx,
-			size_t len);
-
-int		get_valid_key_length(
-			t_token *dollar);
-
-bool	will_eat(
-			char c);
-
-t_token	*skip_ws(
-			t_token *tok);
-
-char	*get_prompt(
-			int status);
-
-
+int		is_white_space(int c);
+char	*str_change(char *dst, char *src, size_t idx, size_t len);
+int		get_valid_key_length(t_token *dollar);
+bool	will_eat(char c);
+t_token	*skip_ws(t_token *tok);
+char	*get_prompt(int status);
 void	check_syntax(t_shell *shell);
 bool	ft_isnumeric(const char *str);
 void	print_error(bool b_flag, char *sec0, char *sec1, const char *error);
+
 #endif

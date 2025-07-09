@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 03:15:21 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/09 03:47:50 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,44 @@
 #include <token.h>
 #include <utils.h>
 
+static void	main_loop(t_shell *shell)
+{
+	shell->input = gc_track(&shell->gc, ft_strtrim(
+				gc_track(&shell->gc,
+					readline(get_prompt(shell->exit_status))), WHITESPACES));
+	if (!shell->input)
+	{
+		ft_exit(shell, NULL);
+		return ;
+	}
+	lexer_run(shell);
+	parser_run(shell);
+	add_history(shell->input);
+	if (shell->exit_status == 2 && shell->cmd_list == NULL)
+	{
+		print_error(false, NULL, NULL, E_SYNTAX);
+		token_clean(&shell->token_list);
+		cmd_clean(&shell->cmd_list);
+		gc_free_all(&shell->gc);
+		return ;
+	}
+	exec(shell);
+	set_signals(S_MAIN);
+	token_clean(&shell->token_list);
+	cmd_clean(&shell->cmd_list);
+	gc_free_all(&shell->gc);
+}
+
 int	main(int ac, char **av, char **env_data)
 {
 	t_shell	shell;
 
-	(void)av;
 	(void)ac;
+	(void)av;
 	gc_init(&shell);
 	init_shell(&shell, env_data);
 	while (1)
-	{
-		shell.input = gc_track(&shell.gc, ft_strtrim(gc_track(&shell.gc,
-					readline(get_prompt(shell.exit_status))), WHITESPACES));
-		if (shell.input == NULL)
-		{
-			ft_exit(&shell, NULL);
-			break ;
-		}
-		lexer_run(&shell);
-		parser_run(&shell);
-		add_history(shell.input);
-		//debug_print_cmd_list(shell.cmd_list);
-		if (shell.exit_status == 2)
-		{
-			print_error(false, NULL, NULL, E_SYNTAX);
-			token_clean(&shell.token_list);
-			cmd_clean(&shell.cmd_list);
-			gc_free_all(&shell.gc);
-			continue ;
-		}
-		exec(&shell);
-		set_signals(S_MAIN);
-		token_clean(&shell.token_list);
-		cmd_clean(&shell.cmd_list);
-		gc_free_all(&shell.gc);
-	}
+		main_loop(&shell);
 	gc_free_all(&shell.env_gc);
 	return (0);
 }
-
