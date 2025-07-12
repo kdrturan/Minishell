@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/12 23:19:01 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/13 01:28:25 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ void	cmd_run(t_shell *shell, t_cmd *cmd)
 		execve(cmd->args[0], cmd->args, env);
 	if (!shell->exit_status)
 		handle_error(cmd, &shell->exit_status);
-	printf("312312231231231221\n");
 	gc_free_all(&shell->gc);
 	gc_free_all(&shell->env_gc);
 	gc_free_all(&shell->exec_gc);
