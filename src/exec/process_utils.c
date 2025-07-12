@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/09 17:32:31 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 17:05:22 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	child_process(int prev_fd, t_shell *shell, t_cmd *cmd, int *pipe_fd)
 		close(pipe_fd[1]);
 	}
 	if (cmd->redir)
-		manage_redir(cmd->redir);
+		manage_redir(shell, cmd->redir);
 	if (builtin_functions(shell, cmd))
 		cmd_run(shell, cmd);
 	gc_free_all(&shell->exec_gc);

@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 03:47:50 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 17:27:22 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 static void	main_loop(t_shell *shell)
 {
+	shell->cmd_status = 0;
 	shell->input = gc_track(&shell->gc, ft_strtrim(
 				gc_track(&shell->gc,
 					readline(get_prompt(shell->exit_status))), WHITESPACES));
@@ -37,9 +38,9 @@ static void	main_loop(t_shell *shell)
 	lexer_run(shell);
 	parser_run(shell);
 	add_history(shell->input);
-	if (shell->exit_status == 2 && shell->cmd_list == NULL)
+	if (shell->cmd_status == 2)
 	{
-		print_error(false, NULL, NULL, E_SYNTAX);
+		
 		token_clean(&shell->token_list);
 		cmd_clean(&shell->cmd_list);
 		gc_free_all(&shell->gc);

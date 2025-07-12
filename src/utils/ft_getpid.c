@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_syntax.c                                     :+:      :+:    :+:   */
+/*   ft_getpid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 04:31:49 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/12 16:41:42 by tuaydin          ###   ########.fr       */
+/*   Created: 2025/07/12 16:16:45 by tuaydin           #+#    #+#             */
+/*   Updated: 2025/07/12 17:27:27 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
 
-void	check_syntax(t_shell *shell)
+int	exit_code(int code)
 {
-	check_pipes(shell);
-	if (shell->exit_status || shell->cmd_status)
-		return ;
-	check_redirs(shell);
-	if (shell->exit_status || shell->cmd_status)
-		return ;
+	static int exit_code;
+
+	if (code == -1)
+		return (exit_code);
+	exit_code = code;
+	return (exit_code);
 }

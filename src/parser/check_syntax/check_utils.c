@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 05:30:19 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 04:06:43 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 16:42:06 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	check_pipes(t_shell *shell)
 	{
 		if (cmd->args == NULL || cmd->args[0] == NULL)
 		{
+			print_error(false, NULL, NULL, E_SYNTAX);
 			shell->exit_status = 2;
+			shell->cmd_status = 2;
 			return ;
 		}
 		cmd = cmd->next;
@@ -42,7 +44,9 @@ void	check_redirs(t_shell *shell)
 		{
 			if (redir->target == NULL)
 			{
+				print_error(false, NULL, NULL, E_SYNTAX);
 				shell->exit_status = 2;
+				shell->cmd_status = 2;
 				return ;
 			}
 			redir = redir->next;
@@ -69,5 +73,9 @@ void	check_quotes(t_shell *shell)
 		token = token->next;
 	}
 	if (in_squote || in_dquote)
+	{
+		print_error(false, NULL, NULL, E_SYNTAX);
 		shell->exit_status = 2;
+		shell->cmd_status = 2;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:07 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 00:15:13 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 17:27:18 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ struct	s_shell
 	t_gc					env_gc;
 	t_gc					exec_gc;
 	int						exit_status;
+	int						cmd_status;
 };
 
 #endif

@@ -4,6 +4,7 @@
     "signal.h": "c",
     "ioctl.h": "c",
     "utils.h": "c",
-    "token.h": "c"
+    "token.h": "c",
+    "readline.h": "c"
   },
 }

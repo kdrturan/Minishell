@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 04:16:28 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 04:16:46 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 16:45:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,15 @@ static char	*get_cd_target(t_shell *shell, t_cmd *cmd)
 {
 	char	*target;
 
+	target = NULL;
 	if (!cmd->args[1] || (cmd->args[1][0] == '~'
 		&& cmd->args[1][1] == '\0'))
-		target = shell->home_dir;
+	{
+		if (!cmd->args[1])
+			target = env_get_value(shell, "HOME");
+		if (!target && cmd->args[1][0] == '~' && cmd->args[1][1] == '\0')
+			target = shell->home_dir;
+	}
 	else if (cmd->args[1][0] == '-' && cmd->args[1][1] == '\0')
 	{
 		target = env_get_value(shell, "OLDPWD");

@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:51:09 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/09 03:20:32 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 17:37:21 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	manage_redir_main(t_shell *shell, t_redir *redir)
 	}
 }
 
-void	manage_redir(t_redir *redir)
+void	manage_redir(t_shell *shell, t_redir *redir)
 {
 	int	fd;
 
@@ -95,7 +95,7 @@ void	manage_redir(t_redir *redir)
 			dup2(fd, STDIN_FILENO);
 		}
 		if (redir->type == HEREDOC)
-			handle_heredoc(redir);
+			handle_heredoc(shell, redir);
 		else
 			close(fd);
 		redir = redir->next;
@@ -119,7 +119,7 @@ void	handle_heredoc_main(t_redir *redir)
 }
 
 
-void	handle_heredoc(t_redir *redir)
+void	handle_heredoc(t_shell *shell, t_redir *redir)
 {
 	char	*tmp;
 	int		pipefd[2];
