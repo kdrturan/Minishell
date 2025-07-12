@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/12 17:27:36 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 23:08:40 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <stdlib.h>
-# include <stdbool.h>
-# include <token.h>
-# include <libft.h>
 # include <env.h>
+# include <libft.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <token.h>
 
 # define E_ARG0 ": too many arguments\n"
 # define E_ARG1 ": numeric argument required\n"
@@ -42,5 +42,5 @@ char	*get_prompt(int status);
 void	check_syntax(t_shell *shell);
 bool	ft_isnumeric(const char *str);
 void	print_error(bool b_flag, char *sec0, char *sec1, const char *error);
-int	exit_code(int code);
+int		exit_code(int code);
 #endif

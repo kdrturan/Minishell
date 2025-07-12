@@ -1,15 +1,24 @@
 {
     "version": "0.2.0",
-    "configurations": [{
-        "name": "(gdb) Launch",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceRoot}/minishell",
-        "args": [],
-        "stopAtEntry": false,
-        "cwd": "${fileDirname}",
-        "environment": [],
-        "externalConsole": false,
-        "MIMode": "gdb"
-    }]
+    "configurations": [
+        {
+            "name": "(gdb) Launch with child follow",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/minishell",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable follow-fork-mode",
+                    "text": "-gdb-set follow-fork-mode child",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
 }

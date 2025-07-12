@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/12 17:27:22 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 23:06:45 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@
 static void	main_loop(t_shell *shell)
 {
 	shell->cmd_status = 0;
-	shell->input = gc_track(&shell->gc, ft_strtrim(
-				gc_track(&shell->gc,
+	shell->input = gc_track(&shell->gc, ft_strtrim(gc_track(&shell->gc,
 					readline(get_prompt(shell->exit_status))), WHITESPACES));
 	if (!shell->input)
 	{
@@ -40,7 +39,6 @@ static void	main_loop(t_shell *shell)
 	add_history(shell->input);
 	if (shell->cmd_status == 2)
 	{
-		
 		token_clean(&shell->token_list);
 		cmd_clean(&shell->cmd_list);
 		gc_free_all(&shell->gc);

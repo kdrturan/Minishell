@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:53:36 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 04:18:29 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 23:03:39 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,18 @@ void	export(t_shell *shell, t_cmd *cmd)
 			print_error(true, cmd->args[0], cmd->args[i], E_ARG2);
 			shell->exit_status = 1;
 			i++;
-			continue;
+			continue ;
 		}
 		if (eq)
 		{
-			key = gc_track(&shell->env_gc, ft_substr(cmd->args[i], 0, eq - cmd->args[i]));
+			key = gc_track(&shell->env_gc, ft_substr(cmd->args[i], 0, eq
+						- cmd->args[i]));
 			if (!is_valid_key(key))
 			{
 				print_error(true, cmd->args[0], cmd->args[i], E_ARG2);
 				shell->exit_status = 1;
 				i++;
-				continue;
+				continue ;
 			}
 			val = gc_track(&shell->env_gc, ft_strdup(eq + 1));
 			env_set(shell, key, val);

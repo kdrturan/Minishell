@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exec_run.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:35:19 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/09 03:36:05 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 23:19:01 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exec.h>
 #include <errno.h>
-#include <sys/stat.h>
+#include <exec.h>
 #include <stdio.h>
+#include <sys/stat.h>
 
 int	builtin_functions(t_shell *shell, t_cmd *cmd)
 {
@@ -21,11 +21,11 @@ int	builtin_functions(t_shell *shell, t_cmd *cmd)
 	{
 		if (!ft_strncmp("env", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
 			env(shell, cmd);
-		else if (!ft_strncmp("export", cmd->args[0],
-				ft_strlen(cmd->args[0]) + 1))
+		else if (!ft_strncmp("export", cmd->args[0], ft_strlen(cmd->args[0])
+				+ 1))
 			export(shell, cmd);
-		else if (!ft_strncmp("unset", cmd->args[0],
-				ft_strlen(cmd->args[0]) + 1))
+		else if (!ft_strncmp("unset", cmd->args[0], ft_strlen(cmd->args[0])
+				+ 1))
 			unset(shell, cmd);
 		else if (!ft_strncmp("pwd", cmd->args[0], ft_strlen(cmd->args[0]) + 1))
 			pwd(shell, cmd);
@@ -43,11 +43,16 @@ int	builtin_functions(t_shell *shell, t_cmd *cmd)
 	return (0);
 }
 
-void	handle_error(t_cmd *cmd, int* status)
+void	handle_error(t_cmd *cmd, int *status)
 {
-	struct stat statbuf;
+	struct stat	statbuf;
 
-	if (errno == EACCES)
+	if (cmd->args && cmd->args[0] && cmd->args[0][0] == '\0')
+	{
+		print_error(true, cmd->args[0], NULL, E_CMD0);
+		*status = 127;
+	}
+	else if (errno == EACCES)
 	{
 		if (stat(cmd->args[0], &statbuf) == 0 && S_ISDIR(statbuf.st_mode))
 			print_error(true, cmd->args[0], NULL, E_FILE2);
@@ -66,7 +71,7 @@ void	handle_error(t_cmd *cmd, int* status)
 
 void	pre_check(char *cmd, int *status)
 {
-	struct stat st;
+	struct stat	st;
 
 	if (cmd && ft_strchr(cmd, '/'))
 	{
@@ -98,7 +103,6 @@ void	pre_check(char *cmd, int *status)
 		*status = 0;
 }
 
-
 void	cmd_run(t_shell *shell, t_cmd *cmd)
 {
 	char	**env;
@@ -115,6 +119,7 @@ void	cmd_run(t_shell *shell, t_cmd *cmd)
 		execve(cmd->args[0], cmd->args, env);
 	if (!shell->exit_status)
 		handle_error(cmd, &shell->exit_status);
+	printf("312312231231231221\n");
 	gc_free_all(&shell->gc);
 	gc_free_all(&shell->env_gc);
 	gc_free_all(&shell->exec_gc);
@@ -126,8 +131,8 @@ char	*find_in_path(t_shell *shell, t_cmd *cmd)
 	int		is_exist;
 	char	**full_path;
 	char	*path;
-	
 	size_t	i;
+
 	i = 0;
 	path = env_get_value(shell, "PATH");
 	full_path = (char **)gc_track_array(&shell->exec_gc, (void **)ft_split(path,

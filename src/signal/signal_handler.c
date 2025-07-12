@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:57 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/12 19:10:56 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/12 23:08:17 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <readline/readline.h>
 #include <signal_handler.h>
 #include <sys/ioctl.h>
 #include <utils.h>
-#include <readline/readline.h>
+
 static void	signal_handler(int sig)
 {
-	(void) sig;
+	(void)sig;
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	write(1, "\n", 1);
@@ -26,10 +27,11 @@ static void	signal_handler(int sig)
 static void	heredoc(int sig)
 {
 	(void)sig;
-	rl_replace_line("", 0);
+	exit_code(130);
+	close(STDIN_FILENO);
 	rl_on_new_line();
-	ft_putstr_fd("\n", 1);
-	exit(130);>
+	rl_replace_line("", 0);
+	write(1, "\n", 1);
 }
 
 void	set_signals(t_mode mode)
