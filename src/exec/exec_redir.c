@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:51:09 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/13 01:48:22 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/13 02:18:06 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	manage_redir_main(t_shell *shell, t_redir *redir)
 {
 	int	fd;
 
+	fd = -1;
 	while (redir)
 	{
 		if (redir->type == OUTPUT || redir->type == APPEND)
@@ -56,7 +57,7 @@ void	manage_redir_main(t_shell *shell, t_redir *redir)
 			fd = open(redir->target, O_RDONLY);
 			dup2(fd, STDIN_FILENO);
 		}
-		else
+		else if (fd != -1)
 			close(fd);
 		redir = redir->next;
 	}

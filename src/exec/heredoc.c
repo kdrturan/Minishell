@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:57:20 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/12 23:04:25 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/13 02:20:43 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
-
-void	heredoc_error_handler(t_shell *shell, char *tmp)
-{
-	gc_free_all(&shell->gc);
-	gc_free_all(&shell->env_gc);
-	gc_free_all(&shell->exec_gc);
-	free(tmp);
-	exit(130);
-}
 
 void	heredoc_loop(t_shell *shell, t_redir *redir, int flag, int *pipefd)
 {
@@ -29,7 +20,11 @@ void	heredoc_loop(t_shell *shell, t_redir *redir, int flag, int *pipefd)
 	{
 		tmp = readline("> ");
 		if (exit_code(-1) == 130)
-			heredoc_error_handler(shell, tmp);
+		{
+			shell->exit_status = 130;
+			gc_track(&shell->gc, tmp);
+			c_exit(shell);
+		}
 		if (!tmp || !ft_strncmp(tmp, redir->target, ft_strlen(redir->target)
 				+ 1))
 		{
