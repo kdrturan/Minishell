@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:42:51 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/13 01:28:59 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/13 01:41:54 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	wait_childs(t_shell *shell)
 {
 	t_cmd	*commands;
+	bool	flag;
 
+	flag = false;
 	commands = shell->cmd_list;
 	while (commands)
 	{
@@ -26,12 +28,14 @@ void	wait_childs(t_shell *shell)
 		else
 		{
 			if (commands->status != 13)
-				ft_putstr_fd("\n", 1);
+				flag = true;
 			commands->status = 128 + (commands->status & 0x7F);
 		}
 		shell->exit_status = commands->status;
 		commands = commands->next;
 	}
+	if (flag)
+		ft_putchar_fd('\n', STDIN_FILENO);
 }
 
 void	main_process(int *prev_fd, t_cmd *cmd, int *pipe_fd)

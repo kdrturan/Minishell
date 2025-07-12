@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/12 23:08:40 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/13 01:48:03 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	check_syntax(t_shell *shell);
 bool	ft_isnumeric(const char *str);
 void	print_error(bool b_flag, char *sec0, char *sec1, const char *error);
 int		exit_code(int code);
+void	c_exit(t_shell *shell);
 #endif

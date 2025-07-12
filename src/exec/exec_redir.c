@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:51:09 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/12 23:20:25 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/13 01:48:22 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	redir_stdout_processes(t_shell *shell, t_redir *redir, int fd)
 		{
 			print_error(true, redir->target, NULL, E_PERM0);
 			shell->exit_status = 1;
+			c_exit(shell);
 		}
 	}
 	else
@@ -30,6 +31,7 @@ void	redir_stdout_processes(t_shell *shell, t_redir *redir, int fd)
 		{
 			print_error(true, redir->target, NULL, E_PERM0);
 			shell->exit_status = 1;
+			c_exit(shell);
 		}
 	}
 	dup2(fd, STDOUT_FILENO);
@@ -49,6 +51,7 @@ void	manage_redir_main(t_shell *shell, t_redir *redir)
 			{
 				print_error(true, redir->target, NULL, E_FILE0);
 				shell->exit_status = 1;
+				c_exit(shell);
 			}
 			fd = open(redir->target, O_RDONLY);
 			dup2(fd, STDIN_FILENO);
@@ -73,10 +76,8 @@ void	manage_redir(t_shell *shell, t_redir *redir)
 			if (access(redir->target, F_OK) == -1)
 			{
 				print_error(true, redir->target, NULL, E_FILE0);
-				gc_free_all(&shell->gc);
-				gc_free_all(&shell->env_gc);
-				gc_free_all(&shell->exec_gc);
-				exit(1);
+				shell->exit_status = 1;
+				c_exit(shell);
 			}
 			fd = open(redir->target, O_RDONLY);
 			dup2(fd, STDIN_FILENO);
