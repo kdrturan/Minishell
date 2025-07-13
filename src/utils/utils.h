@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 05:07:09 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/13 01:48:03 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/14 01:46:33 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,7 @@ bool	ft_isnumeric(const char *str);
 void	print_error(bool b_flag, char *sec0, char *sec1, const char *error);
 int		exit_code(int code);
 void	c_exit(t_shell *shell);
+int		ft_getpid(void);
+bool	is_interrupted(int code);
+
 #endif

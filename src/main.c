@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/13 23:23:48 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/14 01:51:00 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,21 @@ static void	main_loop(t_shell *shell)
 	shell->cmd_status = 0;
 	shell->input = gc_track(&shell->gc, ft_strtrim(gc_track(&shell->gc,
 					readline(get_prompt(shell->exit_status))), WHITESPACES));
-	if (exit_code(-1) == 130)
-	{
-		shell->exit_status = 130;
-		open("/dev/tty", O_RDONLY);
-		exit_code(0);
-		return ;
-	}
 	if (!shell->input)
 	{
 		ft_exit(shell, NULL);
 		return ;
 	}
+	if (exit_code(-1) == 130)
+	{
+		shell->exit_status = 130;
+		open("/dev/tty", O_RDONLY);
+		if (!is_interrupted(-1))
+		is_interrupted(1);
+		exit_code(0);
+		return ;
+	}
+	is_interrupted(1);
 	lexer_run(shell);
 	parser_run(shell);
 	add_history(shell->input);

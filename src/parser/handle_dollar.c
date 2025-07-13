@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 02:43:05 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 04:02:16 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/14 01:27:14 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	expand_special(t_shell *shell, t_token *dollar)
 {
 	if (dollar->next->type == DOLLAR)
-		dollar->text = gc_track(&shell->gc, ft_itoa(getpid()));
+		dollar->text = gc_track(&shell->gc, ft_itoa(ft_getpid()));
 	else if (*(dollar->next->text) == '?')
 	{
 		dollar->text = gc_track(&shell->gc, ft_itoa(shell->exit_status));

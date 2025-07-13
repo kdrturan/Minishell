@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:51:09 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/13 20:53:27 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/14 02:21:41 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	redir_stdout_processes(t_shell *shell, t_redir *redir, int fd)
 			c_exit(shell);
 		}
 	}
+	shell->exit_status = 0;
 	dup2(fd, STDOUT_FILENO);
 }
 

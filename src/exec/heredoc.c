@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:57:20 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/13 23:34:43 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/14 02:24:17 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ void	handle_heredoc(t_shell *shell)
 		shell->exit_status = 130;
 		open("/dev/tty", O_RDONLY);
 	}
+	else
+		shell->exit_status = 0;
 	set_signals(S_MAIN);
 }

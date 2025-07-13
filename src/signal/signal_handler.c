@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:57 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/13 23:23:54 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/14 01:49:10 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 static void	signal_handler(int sig)
 {
 	(void)sig;
-	write(1, "\n", 1);
-	exit_code(130);
+	if (!is_interrupted(-1))
+		write(STDOUT_FILENO, "\n", 1);
 	close(STDIN_FILENO);
+	exit_code(130);
 }
 
 static void	heredoc(int sig)
