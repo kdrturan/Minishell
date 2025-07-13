@@ -6,7 +6,7 @@
 /*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/12 23:06:45 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/13 23:23:48 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,17 @@
 
 static void	main_loop(t_shell *shell)
 {
+	set_signals(S_MAIN);
 	shell->cmd_status = 0;
 	shell->input = gc_track(&shell->gc, ft_strtrim(gc_track(&shell->gc,
 					readline(get_prompt(shell->exit_status))), WHITESPACES));
+	if (exit_code(-1) == 130)
+	{
+		shell->exit_status = 130;
+		open("/dev/tty", O_RDONLY);
+		exit_code(0);
+		return ;
+	}
 	if (!shell->input)
 	{
 		ft_exit(shell, NULL);
@@ -45,7 +53,6 @@ static void	main_loop(t_shell *shell)
 		return ;
 	}
 	exec(shell);
-	set_signals(S_MAIN);
 	token_clean(&shell->token_list);
 	cmd_clean(&shell->cmd_list);
 	gc_free_all(&shell->gc);

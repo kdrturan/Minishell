@@ -3,65 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:57:20 by abturan           #+#    #+#             */
-/*   Updated: 2025/07/13 02:20:43 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/13 23:34:43 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
-void	heredoc_loop(t_shell *shell, t_redir *redir, int flag, int *pipefd)
+void	file_heredoc(t_shell *shell, t_redir *redirs)
 {
+	int		fd;
+	char	*tmpstr;
 	char	*tmp;
 
+	tmpstr = NULL;
+	fd = open(".temp_heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
 	{
 		tmp = readline("> ");
-		if (exit_code(-1) == 130)
-		{
-			shell->exit_status = 130;
-			gc_track(&shell->gc, tmp);
-			c_exit(shell);
-		}
-		if (!tmp || !ft_strncmp(tmp, redir->target, ft_strlen(redir->target)
+		if (!tmp || !ft_strncmp(tmp, redirs->target, ft_strlen(redirs->target)
 				+ 1))
 		{
 			free(tmp);
 			break ;
 		}
-		if (flag)
-		{
-			write(pipefd[1], tmp, ft_strlen(tmp));
-			write(pipefd[1], "\n", 1);
-		}
+		tmpstr = gc_track(&shell->gc, ft_strjoin(tmpstr, tmp));
+		tmpstr = gc_track(&shell->gc, ft_strjoin(tmpstr, "\n"));
 		free(tmp);
 	}
+	write(fd, tmpstr, ft_strlen(tmpstr));
+	tmpstr = NULL;
+	redirs->target = ".temp_heredoc";
+	redirs->type = INPUT;
+	redirs = redirs->next;
 }
 
-void	handle_heredoc(t_shell *shell, t_redir *redir)
+void	handle_heredoc(t_shell *shell)
 {
-	int		pipefd[2];
-	t_redir	*redirtmp;
-	int		flag;
+	t_cmd	*tmp_cmd;
+	t_redir	*redirs;
 
-	(void)shell;
 	set_signals(S_HEREDOC);
-	flag = 1;
-	redirtmp = redir;
-	pipe(pipefd);
-	while (redirtmp)
+	tmp_cmd = shell->cmd_list;
+	while (tmp_cmd)
 	{
-		redirtmp = redirtmp->next;
-		if (redirtmp && redirtmp->type == HEREDOC)
-			flag = 0;
+		redirs = tmp_cmd->redir;
+		while (redirs)
+		{
+			if (redirs->type != HEREDOC)
+			{
+				redirs = redirs->next;
+				continue ;
+			}
+			file_heredoc(shell, redirs);
+		}
+		tmp_cmd = tmp_cmd->next;
 	}
-	heredoc_loop(shell, redir, flag, pipefd);
-	if (flag)
+	if (exit_code(-1) == 130)
 	{
-		close(pipefd[1]);
-		dup2(pipefd[0], STDIN_FILENO);
-		close(pipefd[0]);
+		shell->exit_status = 130;
+		open("/dev/tty", O_RDONLY);
 	}
+	set_signals(S_MAIN);
 }

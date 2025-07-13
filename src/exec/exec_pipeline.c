@@ -6,60 +6,49 @@
 /*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/12 22:26:19 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/13 22:12:30 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <exec.h>
 
+static void	init_exev_var(t_exec *exec_var, t_shell *shell)
+{
+	exec_var->flag = 1;
+	exec_var->prev_fd = -1;
+	exec_var->commands = shell->cmd_list;
+}
+
+static void	pre_child(t_cmd *commands)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	commands->pid = fork();
+}
+
 void	execute_pipeline(t_shell *shell)
 {
-	t_cmd	*commands;
-	int		stdout_copy;
-	int		pipe_fd[2];
-	int		prev_fd;
-	int		flag;
-	pid_t	pid;
+	t_exec	var;
 
-	flag = 1;
-	prev_fd = -1;
-	commands = shell->cmd_list;
-	while (commands)
+	init_exev_var(&var, shell);
+	handle_heredoc(shell);
+	if (exit_code(-1) == 130)
+		return ;
+	while (var.commands)
 	{
-		if (commands->next && pipe(pipe_fd) == -1)
+		pipe(var.pipe_fd);
+		if (!shell->cmd_list->next && is_builtin(var.commands))
 		{
-			perror("pipe");
-			exit(1);
-		}
-		if (!shell->cmd_list->next && is_builtin(commands))
-		{
-			if (commands->redir && commands->redir->type == HEREDOC)
-			{
-				pid = fork();
-				if (pid == 0)
-					handle_heredoc_main(commands->redir);
-				if (pid == 0)
-					exit(0);
-				else
-					wait(NULL);
-			}
-			stdout_copy = dup(STDOUT_FILENO);
-			manage_redir_main(shell, commands->redir);
-			flag = builtin_functions(shell, commands);
-			dup2(stdout_copy, STDOUT_FILENO);
-			close(stdout_copy);
+			manage_redir_main(shell, var.commands->redir);
+			var.flag = builtin_functions(shell, var.commands);
 		}
 		else
-		{
-			signal(SIGINT, SIG_IGN);
-			signal(SIGQUIT, SIG_IGN);
-			commands->pid = fork();
-		}
-		if (flag && commands->pid == 0)
-			child_process(prev_fd, shell, commands, pipe_fd);
+			pre_child(var.commands);
+		if (var.flag && var.commands->pid == 0)
+			child_process(var.prev_fd, shell, var.commands, var.pipe_fd);
 		else
-			main_process(&prev_fd, commands, pipe_fd);
-		commands = commands->next;
+			main_process(&var.prev_fd, var.commands, var.pipe_fd);
+		var.commands = var.commands->next;
 	}
 	if (shell->cmd_list && shell->cmd_list->pid)
 		wait_childs(shell);

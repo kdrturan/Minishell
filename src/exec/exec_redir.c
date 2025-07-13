@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:51:09 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/13 02:18:06 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/13 20:53:27 by abturan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ void	manage_redir(t_shell *shell, t_redir *redir)
 			fd = open(redir->target, O_RDONLY);
 			dup2(fd, STDIN_FILENO);
 		}
-		if (redir->type == HEREDOC)
-			handle_heredoc(shell, redir);
-		else if (fd != -1)
+		if (fd != -1)
 			close(fd);
 		redir = redir->next;
 	}
