@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 02:35:44 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/09 04:01:23 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/15 18:34:37 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,29 @@ void	remove_quotes(t_shell *shell)
 	}
 }
 
+bool	will_expand(t_token	*f_token, t_token	*b_token)
+{
+	bool			flag;
+	t_token_type	type;
+	
+	flag = false;
+	while (b_token)
+	{
+		if (b_token->type == QUOTE || b_token->type == DQUOTE)
+		{	flag = false;
+			type = b_token->type;
+			while(f_token)
+			{
+				if (f_token->type == type)
+					flag = true;
+				f_token = f_token->next;
+			}
+		}
+		b_token = b_token->prev;
+	}
+	return (flag);
+}
+
 void	process_double_quotes(t_shell *shell)
 {
 	t_token	*token;
@@ -46,7 +69,10 @@ void	process_double_quotes(t_shell *shell)
 			while (token && token->type != DQUOTE)
 			{
 				if (token->type == DOLLAR)
-					handle_dollar(shell, token);
+				{
+					if (will_expand(token, token))
+						handle_dollar(shell, token);
+				}
 				token = token->next;
 			}
 		}
