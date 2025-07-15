@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 02:35:44 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/15 18:34:37 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/15 18:41:17 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	will_expand(t_token	*f_token, t_token	*b_token)
 {
 	bool			flag;
 	t_token_type	type;
-	
+
 	flag = false;
 	while (b_token)
 	{
