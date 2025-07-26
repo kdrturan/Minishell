@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:37:18 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/14 02:26:31 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/26 14:15:12 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h> 
 
 typedef struct s_exec
 {
