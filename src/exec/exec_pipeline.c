@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abturan <abturan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:32:10 by kdrturan          #+#    #+#             */
-/*   Updated: 2025/07/13 22:12:30 by abturan          ###   ########.fr       */
+/*   Updated: 2025/07/26 03:01:16 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	execute_pipeline(t_shell *shell)
 		return ;
 	while (var.commands)
 	{
-		pipe(var.pipe_fd);
+		if (var.commands->next)
+			pipe(var.pipe_fd);
 		if (!shell->cmd_list->next && is_builtin(var.commands))
 		{
 			manage_redir_main(shell, var.commands->redir);

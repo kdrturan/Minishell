@@ -6,7 +6,7 @@
 /*   By: tuaydin <tuaydin@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 22:29:43 by tuaydin           #+#    #+#             */
-/*   Updated: 2025/07/14 01:51:00 by tuaydin          ###   ########.fr       */
+/*   Updated: 2025/07/26 03:11:17 by tuaydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,25 @@
 #include <token.h>
 #include <utils.h>
 
+static void	handle_int(t_shell *shell)
+{
+	shell->exit_status = 130;
+	open("/dev/tty", O_RDONLY);
+	if (!is_interrupted(-1))
+		is_interrupted(1);
+	exit_code(0);
+}
+
 static void	main_loop(t_shell *shell)
 {
 	set_signals(S_MAIN);
 	shell->cmd_status = 0;
 	shell->input = gc_track(&shell->gc, ft_strtrim(gc_track(&shell->gc,
 					readline(get_prompt(shell->exit_status))), WHITESPACES));
-	if (!shell->input)
-	{
-		ft_exit(shell, NULL);
-		return ;
-	}
 	if (exit_code(-1) == 130)
-	{
-		shell->exit_status = 130;
-		open("/dev/tty", O_RDONLY);
-		if (!is_interrupted(-1))
-		is_interrupted(1);
-		exit_code(0);
-		return ;
-	}
+		return (handle_int(shell));
+	if (!shell->input)
+		return (ft_exit(shell, NULL));
 	is_interrupted(1);
 	lexer_run(shell);
 	parser_run(shell);

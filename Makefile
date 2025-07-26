@@ -95,6 +95,7 @@ run_valgrind:
 	         --show-leak-kinds=all \
 	         --suppressions=valgrind.supp \
 	         --quiet \
+			 --track-fds=yes \
 	         ./minishell
 
 TEST_NAME = test_parser
