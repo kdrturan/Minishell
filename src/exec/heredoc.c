@@ -12,14 +12,15 @@
 
 #include <exec.h>
 
-void	file_heredoc(t_shell *shell, t_redir *redirs)
+void	file_heredoc(t_shell *shell, t_redir *redirs, int *fd)
 {
-	int		fd;
 	char	*tmpstr;
 	char	*tmp;
 
 	tmpstr = NULL;
-	fd = open(".temp_heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	*fd = open(".temp_heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (*fd == -1)
+		return ;
 	while (1)
 	{
 		tmp = readline("> ");
@@ -33,19 +34,20 @@ void	file_heredoc(t_shell *shell, t_redir *redirs)
 		tmpstr = gc_track(&shell->gc, ft_strjoin(tmpstr, "\n"));
 		free(tmp);
 	}
-	write(fd, tmpstr, ft_strlen(tmpstr));
+	write(*fd, tmpstr, ft_strlen(tmpstr));
 	tmpstr = NULL;
 	redirs->target = ".temp_heredoc";
 	redirs->type = INPUT;
 	redirs = redirs->next;
 }
 
-void	handle_heredoc(t_shell *shell)
+static	void	heredoc_loop(t_shell *shell)
 {
 	t_cmd	*tmp_cmd;
 	t_redir	*redirs;
+	int		fd;
 
-	set_signals(S_HEREDOC);
+	fd = -1;
 	tmp_cmd = shell->cmd_list;
 	while (tmp_cmd)
 	{
@@ -57,10 +59,18 @@ void	handle_heredoc(t_shell *shell)
 				redirs = redirs->next;
 				continue ;
 			}
-			file_heredoc(shell, redirs);
+			file_heredoc(shell, redirs, &fd);
+			if (fd != -1)
+				close(fd);
 		}
 		tmp_cmd = tmp_cmd->next;
 	}
+}
+
+void	handle_heredoc(t_shell *shell)
+{
+	set_signals(S_HEREDOC);
+	heredoc_loop(shell);
 	if (exit_code(-1) == 130)
 	{
 		shell->exit_status = 130;

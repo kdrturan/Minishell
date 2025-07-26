@@ -15,11 +15,70 @@ BASE_INC_DIRS = include $(PATH_LIBFT)
 INC_DIRS      = $(addprefix $(PATH_SRC)/,$(SUBDIRS))
 PATH_INCLUDE  = $(addprefix -I ,$(BASE_INC_DIRS) $(INC_DIRS))
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
-vpath %.c $(SRC_DIRS)
-
-SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
+SRCS = \
+	src/_GC/gc.c \
+	src/debug/debug_cmd.c \
+	src/debug/debug_env.c \
+	src/debug/debug_token.c \
+	src/env/env_add.c \
+	src/env/env_cast_char.c \
+	src/env/env_get_value.c \
+	src/env/env_len.c \
+	src/env/env_parse.c \
+	src/env/env_remove.c \
+	src/env/env_set.c \
+	src/exec/built_in/built_in.c \
+	src/exec/built_in/cd.c \
+	src/exec/built_in/echo.c \
+	src/exec/built_in/env.c \
+	src/exec/built_in/exit.c \
+	src/exec/built_in/export.c \
+	src/exec/built_in/pwd.c \
+	src/exec/built_in/unset.c \
+	src/exec/exec.c \
+	src/exec/exec_pipeline.c \
+	src/exec/exec_preprocess.c \
+	src/exec/exec_redir.c \
+	src/exec/exec_run.c \
+	src/exec/heredoc.c \
+	src/exec/process_utils.c \
+	src/init/init.c \
+	src/lexer/identify_tokens.c \
+	src/lexer/lexer.c \
+	src/main.c \
+	src/parser/check_syntax/check_syntax.c \
+	src/parser/check_syntax/check_utils.c \
+	src/parser/cmd_utils/cmd_add_back.c \
+	src/parser/cmd_utils/cmd_clean.c \
+	src/parser/cmd_utils/cmd_last.c \
+	src/parser/cmd_utils/cmd_new.c \
+	src/parser/generate_commands.c \
+	src/parser/handle_dollar.c \
+	src/parser/merge_words.c \
+	src/parser/parse_preprocess.c \
+	src/parser/parse_quote_utils.c \
+	src/parser/parser.c \
+	src/parser/redir_utils/redir_add_back.c \
+	src/parser/redir_utils/redir_last.c \
+	src/parser/redir_utils/redir_new.c \
+	src/signal/signal_handler.c \
+	src/token/token_add_back.c \
+	src/token/token_clean.c \
+	src/token/token_insert.c \
+	src/token/token_last.c \
+	src/token/token_new.c \
+	src/token/token_remove.c \
+	src/utils/c_exit.c \
+	src/utils/exit_code.c \
+	src/utils/ft_getpid.c \
+	src/utils/get_prompt.c \
+	src/utils/is_interrupted.c \
+	src/utils/print_error.c \
+	src/utils/utils_env.c \
+	src/utils/utils_str.c \
+	src/utils/utils_token.c
 
 OBJS = $(patsubst $(PATH_SRC)/%, \
                   $(PATH_OBJ)/%, \
@@ -38,27 +97,7 @@ else ifeq ($(UNAME_S),Linux)
 	LIBS = -L$(CHECK_PREFIX)/lib -lreadline -lhistory -lncurses $(LIBFT)
 endif
 
-STOP_ANIM = \
-	kill -TERM $$anim_pid 2>/dev/null || true; \
-	pkill -TERM -P $$anim_pid 2>/dev/null || true
-
-all:
-	@{ \
-		( exec bash -c 'trap "exit" INT TERM; \
-		  while true; do $(MAKE) -s -C ascii_anim ascii_anim; done' \
-		) 2>/dev/null & \
-		anim_pid=$$!; \
-		$(MAKE) --no-print-directory $(NAME) >build.log 2>&1; status=$$?; \
-		$(STOP_ANIM); \
-		wait $$anim_pid 2>/dev/null || true; \
-		if [ $$status -eq 0 ]; then \
-			printf '\033c'; echo "✅  Build succeeded"; rm -f build.log; \
-		else \
-			printf '\033c'; echo "❌  Build failed. Last 100 lines of log:"; \
-			tail -n 100 build.log; \
-		fi; \
-		exit $$status; \
-	}
+all: $(NAME)
 
 $(LIBFT):
 	@make -C $(PATH_LIBFT) all
@@ -95,34 +134,6 @@ run_valgrind:
 	         --show-leak-kinds=all \
 	         --suppressions=valgrind.supp \
 	         --quiet \
-			 --track-fds=yes \
 	         ./minishell
-
-TEST_NAME = test_parser
-TEST_SRC  = $(wildcard tests/test_parser/*.c) tests/test.c
-TEST_OBJS = $(filter-out $(PATH_OBJ)/main.o, $(OBJS))
-
-test_parse: $(LIBFT) $(TEST_OBJS)
-	@$(CC) $(CFLAGS) $(TEST_SRC) $(TEST_OBJS) -o $(TEST_NAME) \
-		$(PATH_INCLUDE) $(LIBS)
-	@./$(TEST_NAME)
-	@rm -f $(TEST_NAME)
-
-help:
-	@echo ""
-	@echo "╔════════════════════════════════════════════════════════════╗"
-	@echo "║                    Available Make Targets                  ║"
-	@echo "╠════════════════════════════════════════════════════════════╣"
-	@echo "║ make              │ Build the project with ASCII animation ║"
-	@echo "║ make all          │ Same as 'make' (includes animation)    ║"
-	@echo "║ make minishell    │ Compile only the minishell binary      ║"
-	@echo "║ make clean        │ Remove object files and build log      ║"
-	@echo "║ make fclean       │ Clean everything including binary      ║"
-	@echo "║ make re           │ Rebuild the project from scratch       ║"
-	@echo "║ make update_libs  │ Clone/update libft from GitHub         ║"
-	@echo "║ make setup_env    │ Set Git remotes for pushing branches   ║"
-	@echo "║ make run_valgrind │ Run Valgrind with memory checks        ║"
-	@echo "╚════════════════════════════════════════════════════════════╝"
-	@echo ""
 
 .PHONY: all clean fclean re update_libs setup_env run_valgrind help 

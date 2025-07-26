@@ -50,7 +50,7 @@ void			manage_redir(t_shell *shell, t_redir *redir);
 int				is_builtin(t_cmd *cmd);
 void			manage_redir_main(t_shell *shell, t_redir *redir);
 void			ft_exit(t_shell *shell, t_cmd *cmd);
-void			file_heredoc(t_shell *shell, t_redir *redirs);
+void			file_heredoc(t_shell *shell, t_redir *redirs, int *fd);
 void			handle_heredoc(t_shell *shell);
 void			pre_check(char *cmd, int *status);
 void			pre_check_part(struct stat st, char *cmd, int *status);
