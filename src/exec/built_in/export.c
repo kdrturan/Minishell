@@ -12,22 +12,6 @@
 
 #include <exec.h>
 
-static bool	is_valid_key(char *key)
-{
-	if (!key)
-		return (false);
-	if (ft_isdigit(*key))
-		return (false);
-	while (*key)
-	{
-		if (ft_isalnum(*key) || *key == '_')
-			key++;
-		else
-			return (false);
-	}
-	return (true);
-}
-
 static void	print_env(t_shell *shell)
 {
 	size_t	i;
@@ -49,7 +33,8 @@ static void	error_and_set(t_shell *shell, char *cmd_name, char *arg)
 	shell->exit_status = 1;
 }
 
-static void	process_with_equal(t_shell *shell, char *cmd_name, char *arg, char *eq)
+static void	process_with_equal(
+		t_shell *shell, char *cmd_name, char *arg, char *eq)
 {
 	char	*key;
 	char	*val;
@@ -67,6 +52,7 @@ static void	process_with_equal(t_shell *shell, char *cmd_name, char *arg, char *
 static void	process_arg(t_shell *shell, char *cmd_name, char *arg)
 {
 	char	*eq;
+	char	*key;
 
 	eq = ft_strchr(arg, '=');
 	if (eq == arg && ft_strlen(arg) == 1)
@@ -78,8 +64,6 @@ static void	process_arg(t_shell *shell, char *cmd_name, char *arg)
 		process_with_equal(shell, cmd_name, arg, eq);
 	else if (is_valid_key(arg))
 	{
-		char	*key;
-
 		key = gc_track(&shell->env_gc, ft_strdup(arg));
 		env_set(shell, key, NULL);
 	}

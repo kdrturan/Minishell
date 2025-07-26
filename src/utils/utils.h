@@ -46,5 +46,6 @@ int		exit_code(int code);
 void	c_exit(t_shell *shell);
 int		ft_getpid(void);
 bool	is_interrupted(int code);
+bool	is_valid_key(char *key);
 
 #endif

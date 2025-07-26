@@ -42,3 +42,19 @@ int	get_valid_key_length(t_token *dollar)
 	}
 	return (i);
 }
+
+bool	is_valid_key(char *key)
+{
+	if (!key)
+		return (false);
+	if (ft_isdigit(*key))
+		return (false);
+	while (*key)
+	{
+		if (ft_isalnum(*key) || *key == '_')
+			key++;
+		else
+			return (false);
+	}
+	return (true);
+}
