@@ -1,67 +1,54 @@
-Minishell – A Simple Linux Shell Simulator
-Minishell is a Linux command-line shell simulator written in C. It reads user input, breaks it down into tokens (lexical analysis), parses the syntax into structured commands, and executes them using fork/exec system calls. It supports both built-in commands and external programs with features like piping, redirection, and environment variable expansion.
+# 🐚 Minishell – A Simple Linux Shell Simulator
 
-🔧 Features
-Lexical analysis and command parsing: Splits user input into tokens and parses them into a command table.
+**Minishell** is a Linux command-line shell simulator written in C. It reads user input, breaks it down into tokens (lexical analysis), parses the syntax into structured commands, and executes them using `fork`/`exec` system calls. It supports built-in commands, external programs, environment variable expansion, piping, and redirection.
 
-Built-in and external commands: Supports commands like cd, echo, pwd, exit, as well as external programs like ls, cat, etc.
+---
 
-Environment variable expansion: Recognizes and expands variables like $HOME, $PATH.
+## 🔧 Features
 
-Pipes and I/O redirection: Supports Unix-style pipes (|) and redirection operators (>, <).
+- **Lexical analysis and parsing**: Input is tokenized and transformed into executable command structures.
+- **Built-in & external command support**: Includes `cd`, `echo`, `pwd`, `exit`, and supports external binaries like `ls`, `cat`, etc.
+- **Environment variable expansion**: Interprets variables like `$HOME`, `$PATH`.
+- **Pipes & redirection**: Supports `|`, `>`, `<`, and combined operators.
+- **Signal handling**: Handles Ctrl+C and similar signals gracefully.
 
-Signal handling: Responds to user signals (e.g., Ctrl+C) and handles them gracefully without crashing.
+---
 
-🧱 Project Structure
-Tokenizer: Reads the input line character by character and splits it into tokens using spaces and special characters as delimiters.
+## 🧱 Architecture
 
-Parser: Analyzes the token list and builds a command table representing the execution plan.
+- **Tokenizer**: Scans the input string and splits it into meaningful tokens.
+- **Parser**: Validates token sequences and builds command tables.
+- **Executor**: Executes each command with support for piping, redirection, and built-ins.
 
-Executor: Forks a new process for each command and runs it using execve. Also handles pipes, redirection, and built-in commands.
+---
 
-⚙️ Installation & Usage
-Clone the repository:
+## ⚙️ Installation & Usage
 
-bash
-Copy
-Edit
+```bash
+# 1. Clone the repository
 git clone https://github.com/kdrturan/Minishell.git
-Navigate to the project folder:
 
-bash
-Copy
-Edit
+# 2. Navigate into the project directory
 cd Minishell
-Compile the source code:
-If a Makefile is included:
 
-bash
-Copy
-Edit
-make
-Or manually with GCC:
+# 3. Build the project
+make          # if a Makefile is provided
 
-bash
-Copy
-Edit
+# Or manually compile:
 gcc *.c -o minishell
-Run the shell:
 
-bash
-Copy
-Edit
+# 4. Run the shell
 ./minishell
-⚠️ Note: This project is designed to run on Unix-like systems (Linux/macOS). Windows is not supported due to POSIX dependencies.
 
-💡 Example Usage
-bash
-Copy
-Edit
+Note: POSIX-compliant OS required (Linux/macOS). Windows is not supported.
+
+💡 Example Session
+
 $ ./minishell
 minishell> echo "Hello World"
 Hello World
 minishell> ls -l
-(total 16)
+total 16
 -rw-r--r-- 1 user user  123 Jan  1 12:34 README.md
 -rw-r--r-- 1 user user 1024 Jan  1 12:34 main.c
 minishell> cd ..
@@ -69,15 +56,11 @@ minishell> pwd
 /home/user
 minishell> cat file.txt | grep "example" > result.txt
 minishell> exit
-📋 Requirements
-Compiler: GCC 5.2.0 or higher with C99/C11 support.
 
-Make (optional): For easy build with Makefile.
 
-OS: Linux or Unix-like environment (POSIX compliant).
+Requirements
+GCC ≥ 5.2.0
 
-🤝 Contributing
-This is an open-source project. Contributions, bug reports, or feature suggestions are welcome! Feel free to fork the repository and open a pull request. Contribution guidelines may be available in a CONTRIBUTING.md file if present.
+Make (optional)
 
-📄 License
-This project is under the copyright of the author. Please refer to the LICENSE file (if available) for licensing details. If not specified, it is assumed to be under default copyright.
+Linux or Unix-like OS with POSIX support
