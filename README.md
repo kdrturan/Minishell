@@ -10,7 +10,7 @@
 - **Built-in & external command support**: Includes `cd`, `echo`, `pwd`, `exit`, and supports external binaries like `ls`, `cat`, etc.
 - **Environment variable expansion**: Interprets variables like `$HOME`, `$PATH`.
 - **Pipes & redirection**: Supports `|`, `>`, `<`, and combined operators.
-- **Signal handling**: Handles Ctrl+C and similar signals gracefully.
+- **Signal handling**: Handles `Ctrl+C` and similar signals gracefully.
 
 ---
 
@@ -39,11 +39,15 @@ gcc *.c -o minishell
 
 # 4. Run the shell
 ./minishell
+```
 
-Note: POSIX-compliant OS required (Linux/macOS). Windows is not supported.
+> 📌 **Note:** POSIX-compliant OS required (Linux/macOS). Windows is not supported.
 
-💡 Example Session
+---
 
+## 💡 Example Session
+
+```bash
 $ ./minishell
 minishell> echo "Hello World"
 Hello World
@@ -56,11 +60,14 @@ minishell> pwd
 /home/user
 minishell> cat file.txt | grep "example" > result.txt
 minishell> exit
+```
 
+---
 
-Requirements
-GCC ≥ 5.2.0
+## 📋 Requirements
 
-Make (optional)
+- GCC ≥ 5.2.0
+- Make (optional)
+- Linux or Unix-like OS with POSIX support
 
-Linux or Unix-like OS with POSIX support
+---
